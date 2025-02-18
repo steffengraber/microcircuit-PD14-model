@@ -1,6 +1,6 @@
-# CorticalMicrocircuit_PotjansDiesmann - PyNest implementation
+# PyNEST implementation of the cortical microcircuit model 
 
-# Simulation script
+# Simulation scripts
 
 ## Downscaled
 See [model.py](model.py) and [parameter_dicts.py](parameter_dicts.py)
@@ -19,6 +19,8 @@ The model implementation runs with [NEST 3.6](https://github.com/nest/nest-simul
 ## Architecture dependencies
 
 * The full microcircuit requires approximately 16 GB of RAM.
+
+[TODO table with memory consumption for different scales]
 
 ## Software dependencies
 
