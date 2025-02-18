@@ -22,7 +22,7 @@ The original purpose of this model was to understand the relationship between th
 In recent years, the model became an established Computational Neuroscience benchmark for various soft- and hardware architectures (van Albada et al., 2018; Jordan et al., 2018; Rhodes et al., 2020; Dasbach et al., 2021; Albers et al., 2022; Kurth et al., 2022; Heittmann et al., 2022; Pronold et al., 2022; Pronold et al., 2022; Golosio et al., 2023; Kauth et al., 2023; Schmidt et al., 2024).
 
 ## Model description
-See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf)
+See [`doc/ModelDescription_microcircuit-PD14-model.pdf`](doc/ModelDescription_microcircuit-PD14-model.pdf)
 
 ## Model implementations
 * [PyNEST](PyNEST/README.md)
