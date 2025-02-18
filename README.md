@@ -23,7 +23,7 @@ In recent years, the model became an established Computational Neuroscience benc
 
 ## Model description
 
-A detailed mathematical, implementation agnostic description of the model and model parameters is provided [here](doc/ModelDescription_microcircuit-PD14-model.pdf).
+A detailed mathematical, implementation agnostic description of the model and its parameters is provided [here](doc/ModelDescription_microcircuit-PD14-model.pdf).
 
 ## Model implementations
 * [PyNEST](PyNEST/README.md)
