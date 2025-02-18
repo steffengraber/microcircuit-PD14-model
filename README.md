@@ -11,7 +11,7 @@ Similarly, all synapses are described by an identical dynamics, and differ only 
 Synaptic weights and spike transmission latencies are randomly drawn from distributions which depend only on the type of the presynaptic neuron (excitatory or inhibitory), but are otherwise identical for all neurons and connections (with one exception).
 In addition to inputs from the local network, neurons receive external inputs representing thalamic afferents and cortico-cortical inputs from more distant cortical regions. 
 
-The original purpose of this model was to understand the relationship between the connectivity and the spiking activity within local cortical circuits. Spefically, the model demonstrates that the observed cell-type and layer specificity of in-vivo firing rates is largely explained by the specificity in the number of connections between cortical subpopulations, and doesn't require a specificity in single neuron or synapse dynamics.
+The original purpose of this model was to understand the relationship between the connectivity and the spiking activity within local cortical circuits. Specifically, the model demonstrates that the observed cell-type and layer specificity of in-vivo firing rates is largely explained by the specificity in the number of connections between cortical subpopulations, and doesn't require a specificity in single neuron or synapse dynamics.
 
 |  |  |  |
 |--|--|--|
@@ -19,7 +19,7 @@ The original purpose of this model was to understand the relationship between th
 
 *Sketch of the cortical microcircuit model (left), spiking activity (middle) and distributions of time averaged single neuron firing rates (right). Adapted from (van Albada et al., 2018)*
 
-In recent years, the model became an established Compuational Neuroscience benchmark for various soft- and hardware architectures (van Albada et al., 2018; Jordan et al., 2018; Rhodes et al., 2020; Dasbach et al., 2021; Albers et al., 2022; Kurth et al., 2022; Heittmann et al., 2022; Pronold et al., 2022; Pronold et al., 2022; Golosio et al., 2023; Kauth et al., 2023; Schmidt et al., 2024).
+In recent years, the model became an established Computational Neuroscience benchmark for various soft- and hardware architectures (van Albada et al., 2018; Jordan et al., 2018; Rhodes et al., 2020; Dasbach et al., 2021; Albers et al., 2022; Kurth et al., 2022; Heittmann et al., 2022; Pronold et al., 2022; Pronold et al., 2022; Golosio et al., 2023; Kauth et al., 2023; Schmidt et al., 2024).
 
 ## Model description
 See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf)
@@ -47,7 +47,7 @@ See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelD
 
 [Heittmann et al. (2022). Simulating the cortical microcircuit significantly faster than real time on the IBM INC-3000 neural supercomputer. Frontiers in Neuroscience, 15, 728460.](https://doi.org/10.3389/fnins.2021.728460)
 
-[Pronold et al. (2022). Routing brain traffic through the von neumann bottleneck: Parallel sorting and refactoring. Frontiers in Neuroinformatics, 15, 785068.](https://doi.org/10.3389/fninf.2021.785068)
+[Pronold et al. (2022). Routing brain traffic through the von Neumann bottleneck: Parallel sorting and refactoring. Frontiers in Neuroinformatics, 15, 785068.](https://doi.org/10.3389/fninf.2021.785068)
 
 [Pronold et al. (2022). Routing brain traffic through the von Neumann bottleneck: Efficient cache usage in spiking neural network simulation code on general purpose computers. Parallel computing, 113, 102952.](https://doi.org/10.1016/j.parco.2022.102952)
 
