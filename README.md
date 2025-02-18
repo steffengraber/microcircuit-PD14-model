@@ -15,7 +15,7 @@ In addition to inputs from the local network, neurons receive external inputs re
 |--|--|--|
 | <img src="figures/potjans_2014_microcircuit.png" width="300"/> | <img src="figures/potjans_2014_raster_plot.png" width="400"/> | <img src="figures/potjans_2014_box_plot.png" width="400"/> |
 
-*Sketch of the cortical microciruit model (left), and spiking activity (middle) and distributions of time averaged single neuron firing rates (right) for the excitatory (blue) and inhibitory neuron populations (red) in different layers L2/3,...,L6. Adapted from (van Albada et al., 2018)*
+*Sketch of the cortical microcircuit model (left), spiking activity (middle) and distributions of time averaged single neuron firing rates (right). Adapted from (van Albada et al., 2018)*
 
 
 ## Model description
