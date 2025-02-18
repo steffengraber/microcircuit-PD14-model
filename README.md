@@ -11,7 +11,10 @@ Similarly, all synapses are described by an identical dynamics, and differ only 
 Synaptic weights and spike transmission latencies are randomly drawn from distributions which depend only on the type of the presynaptic neuron (excitatory or inhibitory), but are otherwise identical for all neurons and connections (with one exception).
 In addition to inputs from the local network, neurons receive external inputs representing thalamic afferents and cortico-cortical inputs from more distant cortical regions. The original purpose of this model was to understand the relationship between the connectivity and the activity within the local cortical network. Spefically, the model demonstrates that the observed cell-type and layer specificity of in-vivo firing rates is largely explained by the specificity in the number of connections between subpopulations, rather than by differences in single neuron or synapse dynamics.
 
-[TODO network sketch and raster plot]
+|  |  |  |
+|--|--|--|
+| <img src="figures/potjans_2014_microcircuit.png" width="400"/> | <img src="figures/potjans_2014_raster_plot.png" width="400"/> | <img src="figures/potjans_2014_box_plot.png" width="400"/> |
+
 
 ## Model description
 See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf)
