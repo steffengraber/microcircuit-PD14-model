@@ -26,15 +26,15 @@ rule convert_network_sketch_to_pdf:
 
 rule generate_connectivity_matrix:
 	input:
-		"figures/NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.py"
+		"figures/connectivity_microcircuit-PD14-model.py"
 
 	output:
-		"figures/NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.svg"
+		"figures/connectivity_microcircuit-PD14-model.svg"
 
 	run:
 		shell("python {input}")
-		shell("mv NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.svg figures")
-		print("WARNING: %s needs to be manually integrated into figures/NetworkSketch_CorticalMicrocircuit_PotjansDiesmann.fodg" % output)
+		shell("mv connectivity_microcircuit-PD14-model.svg figures")
+		print("WARNING: %s needs to be manually integrated into figures/NetworkSketch_microcircuit-PD14-model.fodg" % output)
 
 rule clean:
 	input:

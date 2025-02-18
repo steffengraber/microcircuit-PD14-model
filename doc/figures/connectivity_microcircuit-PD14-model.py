@@ -42,6 +42,6 @@ ax = plt.gca()
 #ax.set_aspect('equal', 'box')
 #plt.subplots_adjust(left=0.2, right=0.9, bottom=0.2, top=0.8)
 plt.tight_layout(pad=0.5)
-plt.savefig('NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.svg')
+plt.savefig('connectivity_microcircuit-PD14-model.svg')
 #plt.show()
 
