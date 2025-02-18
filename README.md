@@ -43,7 +43,7 @@ See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelD
 
 [Albers et al. (2022). A modular workflow for performance benchmarking of neuronal network simulations. Frontiers in neuroinformatics, 16, 837549.](https://doi.org/10.3389/fninf.2022.837549)
 
-[Kurth et al. (2022). Sub-realtime simulation of a neuronal network of natural density. Neuromorphic computing and engineering, 2(2), 021001.](doi:10.1088/2634-4386/ac55fc)
+[Kurth et al. (2022). Sub-realtime simulation of a neuronal network of natural density. Neuromorphic computing and engineering, 2(2), 021001.](https://doi.org/10.1088/2634-4386/ac55fc)
 
 [Golosio et al.  (2023). Runtime Construction of Large-Scale Spiking Neuronal Network Models on GPU Devices. Applied Sciences, 13(17), 9598.](https://doi.org/10.3390/app13179598)
 
