@@ -1,0 +1,44 @@
+configfile: "config.yaml"
+MODELS = config["MODELS"]
+
+rule all:
+	input:
+		expand("ModelDescription_{MODEL}.pdf", MODEL=MODELS)
+
+rule compile_tex_source:
+	input:
+		'ModelDescription_{MODEL}.tex',
+		'figures/NetworkSketch_{MODEL}.pdf'
+	output:
+		'ModelDescription_{MODEL}.pdf'
+	run:
+		shell('pdflatex {input}[0]')
+		shell('pdflatex {input}[0]')      
+
+rule convert_network_sketch_to_pdf:
+	input:
+		expand("figures/NetworkSketch_{MODEL}.fodg", MODEL=MODELS)
+
+	output:
+		expand("figures/NetworkSketch_{MODEL}.pdf", MODEL=MODELS)
+	run:
+		shell('libreoffice --convert-to pdf:draw_pdf_Export {input} --outdir figures')
+
+rule generate_connectivity_matrix:
+	input:
+		"figures/NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.py"
+
+	output:
+		"figures/NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.svg"
+
+	run:
+		shell("python {input}")
+		shell("mv NetworkSketch_Connectivity_CorticalMicrocircuit_PotjansDiesmann.svg figures")
+		print("WARNING: %s needs to be manually integrated into figures/NetworkSketch_CorticalMicrocircuit_PotjansDiesmann.fodg" % output)
+
+rule clean:
+	input:
+		expand("figures/NetworkSketch_{MODEL}.pdf", MODEL=MODELS)
+	run:
+		shell("rm -f *~ *.log *.aux *.bbl *.blg *.idx *.ilg *.ind *.lof *.out *.pfg *.toc *.soc *.nav *.snm *.bcf *.xml *blx.bib")
+		shell("rm {input}")
