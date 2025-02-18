@@ -15,6 +15,8 @@ In addition to inputs from the local network, neurons receive external inputs re
 |--|--|--|
 | <img src="figures/potjans_2014_microcircuit.png" width="400"/> | <img src="figures/potjans_2014_raster_plot.png" width="400"/> | <img src="figures/potjans_2014_box_plot.png" width="400"/> |
 
+*Network sketch (left), spiking activity (middle), and distributions of time averaged single neuron firing rates (right) of the cortical microcircuit model. Adapted from (van Albada et al., 2018)*
+
 
 ## Model description
 See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf)
@@ -25,3 +27,5 @@ See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelD
 ## References
 
 [Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)
+
+[van Albada et al. (2018). Performance Comparison of the Digital Neuromorphic Hardware SpiNNaker and the Neural Network Simulation Software NEST for a Full-Scale Cortical Microcircuit Model. Front. Neurosci. 12:291.](https://doi.org/10.3389/fnins.2018.00291)
