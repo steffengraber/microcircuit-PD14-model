@@ -24,8 +24,8 @@ In recent years, the model became an established Compuational Neuroscience bench
 ## Model description
 See [`doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf`](doc/ModelDescription_CorticalMicrocircuit_PotjansDiesmann.pdf)
 
-## Available implementations
-* PyNEST ([README](PyNEST/README.md), [code](PyNEST/model.py))
+## Model implementations
+* [PyNEST](PyNEST/README.md)
 
 ## References
 
