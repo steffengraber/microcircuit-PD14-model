@@ -19,7 +19,7 @@ The original purpose of this model was to understand the relationship between th
 |--|--|--|
 | <img src="figures/potjans_2014_microcircuit.png" width="300"/> | <img src="figures/potjans_2014_raster_plot.png" width="400"/> | <img src="figures/potjans_2014_box_plot.png" width="400"/> |
 
-*Sketch of the cortical microcircuit model (left), spiking activity (middle) and distributions of time averaged single neuron firing rates (right). Adapted from (van Albada et al., 2018)*
+*Sketch of the cortical microcircuit model (left), spiking activity (middle) and distributions of time averaged single-neuron firing rates across neurons in each subpopulation (right). Adapted from (van Albada et al., 2018)*
 
 In recent years, the model became an established Computational Neuroscience benchmark for various soft- and hardware architectures (van Albada et al., 2018; Jordan et al., 2018; Rhodes et al., 2020; Dasbach et al., 2021; Albers et al., 2022; Kurth et al., 2022; Heittmann et al., 2022; Pronold et al., 2022; Pronold et al., 2022; Golosio et al., 2023; Kauth et al., 2023; Schmidt et al., 2024).
 
