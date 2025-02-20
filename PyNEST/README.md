@@ -44,7 +44,7 @@ See [INSTALL.md](INSTALL.md).
 
 [TODO: revise]
 
-See [example](examples_run_microciruit.py).
+See [example](examples/run_microcircuit.py).
 
 ## References
 
