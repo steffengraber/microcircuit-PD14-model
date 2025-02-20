@@ -97,9 +97,16 @@ def main():
         run_example()
         
     if args['config']:
+
+        print()
+        print("Model parameters:")
+        print("-----------------")
         pprint.pprint(net_dict)
         pprint.pprint(stim_dict)
+        print()
+        print("Simulation parameters:")
+        print("----------------------")
         pprint.pprint(sim_dict)                
-                
+        print()
 if __name__ == '__main__':
     main()
