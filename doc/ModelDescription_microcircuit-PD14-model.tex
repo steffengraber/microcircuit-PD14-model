@@ -71,7 +71,7 @@ pdfkeywords={}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{document}
 
-\title{\bf Cortical microcircuit model (Potjans \& Diesmann, 2014)}
+\title{Model description:\\{\bf CorticalMicrocircuit\_PotjansDiesmann}}
 \author{}
 \date{}
 \maketitle
@@ -280,7 +280,7 @@ pdfkeywords={}
   \hline
   \textbf{Type} & Poisson point process \\
   \hline 
-	\textbf{Description} & independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in\mathcal{P}$) of a Poisson point process with constant rate
+	\textbf{Description} & independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate
 \begin{equation*}
 	\nu_{\mathcal{C}_x} = K_{\mathcal{C}_x} \cdot \nu_{\mathcal{C}}\, ,
 \end{equation*}
@@ -398,7 +398,7 @@ pdfkeywords={}
   \item distributed synaptic delays
   \begin{equation*}
       d_{ij} = \begin{cases} 
-	      \text{max}(d_\text{min},z_{x}), & j \in x\in\{\mathcal{P},\mathcal{T}\} \\
+	      \text{max}(d_\text{min},z_{x}), & j \in x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6},\mathcal{T}\} \\
       	\bar{d}_{x}, & j \in x=\mathcal{C} \\
       \end{cases}
   \end{equation*}
@@ -426,7 +426,7 @@ pdfkeywords={}
   \begin{itemize}
   \item membrane potentials:
     %$V_i(t=0)\sim\mathcal{N}(\mu_{V_0},\sigma_{V_0})$ randomly and independently drawn from a normal distribution with mean $\mu_{V_0}$ and standard deviation $\sigma_{V_0}$ ($\forall{}i$)
-	  $V_{i\in y}(t=0)\sim\mathcal{N}(V_{0,\text{mean}}^{(y)},V_{0,\text{std}}^{(y)})$ randomly and independently drawn from a normal distribution with population specific mean $V_{0,\text{mean}}^{(y)}$ and population specific standard deviation $V_{0,\text{std}}^{(y)}$ for $y\in\mathcal{P}$
+	  $V_{i}(t=0)\sim\mathcal{N}(V_{0,\text{mean}}^{(y)},V_{0,\text{std}}^{(y)})$ randomly and independently drawn from a normal distribution with population specific mean $V_{0,\text{mean}}^{(y)}$ and population specific standard deviation $V_{0,\text{std}}^{(y)}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)
   \item synaptic currents: $I_{i}(t=0)=0\,\text{pA}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)
   \end{itemize}\\
   \hline
