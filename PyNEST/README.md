@@ -40,6 +40,13 @@ See [INSTALL.md](INSTALL.md).
 
 * The full microcircuit requires approximately 16 GB of RAM.
 
+## Usage
+
+[TODO: revise]
+
+See [example](examples_run_microciruit.py).
+
 ## References
+
 [TODO: NEST refs]
 
