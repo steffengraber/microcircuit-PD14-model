@@ -10,7 +10,7 @@ The network is connected according to the [`fixed_total_number`](https://nest-si
 
 The model implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git)
 
-## Simulation parameters
+### Simulation parameters
 
 [TODO: revise table; add simulation time resolution, number of threads, seed,...]
 
