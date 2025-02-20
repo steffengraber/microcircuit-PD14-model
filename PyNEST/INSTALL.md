@@ -30,7 +30,7 @@ procedure.
 To run the test suite type
 
 ```bash
-pytest microcircuit-PD14-model
+pytest microcircuit
 ```
 
 
