@@ -1,0 +1,63 @@
+[project]
+name = "microcircuit"
+description = "PyNEST implementation of the cortical microcircuit model of Potjans & Diesmann (2014)."
+version = "0.1.0"
+readme = "README.md"
+authors = [
+    { name = "Tom Tetzlaff", email = "t.tetzlaff@fz-juelich.de" },
+    { name = "Johanna Senk", email = "j.senk@fz-juelich.de" }    
+]
+
+requires-python = ">=3.8"
+dependencies = [
+    "docopt-ng",
+    "ruamel.yaml",
+    # "nest-simulator",   ## needs `pip install nest-simulator` to become available
+    "matplotlib"
+]
+
+[metadata]
+description-file = "README.md"
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GPL-2.0-or-later",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/INM-6/microcircuit-PD14-model"
+"Bug Tracker" = "https://github.com/INM-6/microcircuit-PD14-model/issues"
+
+[project.scripts]
+#run_microcircuit = "microcircuit.run_microcircuit:main"
+microcircuit = "microcircuit.__main__:main"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "bump2version",
+    "flake8",
+    "mypy",
+    "pre-commit",
+    "pydocstyle",
+    "pylint",
+    "pytest",
+    "pytest-black",
+    "pytest-cov",
+    "pytest-flake8",
+    "pytest-mypy",
+    "pytest-pydocstyle",
+    "pytest-pylint",
+    "pytest-xdist",
+]
+doc = [
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "pygments",
+    "recommonmark",
+]
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
