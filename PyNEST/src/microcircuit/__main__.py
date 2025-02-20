@@ -13,6 +13,7 @@ Options:
 import logging
 import time
 
+import pprint
 from pprint import pformat
 from docopt import docopt       # type: ignore
 
@@ -82,7 +83,6 @@ def run_example():
         + "  Time to simulate:    {:.3f} s\n".format(time_simulate - time_presimulate)
         + "  Time to evaluate:    {:.3f} s\n".format(time_evaluate - time_simulate)
     )
-
     
 def main():
     'Start main CLI entry point.'
@@ -91,17 +91,15 @@ def main():
         log.setLevel(logging.DEBUG)
     log.debug(pformat(args))
 
-    log.info("Hello World")
+    #log.info("Hello World")
 
     if args['run']:        
         run_example()
         
     if args['config']:
-        from ruamel.yaml import YAML
-        import sys
-        yaml=YAML()
-        yaml.dump({"net_dict": net_dict, "stim_dict": stim_dict, "sim_dict": sim_dict}, sys.stdout)
-
-        
+        pprint.pprint(net_dict)
+        pprint.pprint(stim_dict)
+        pprint.pprint(sim_dict)                
+                
 if __name__ == '__main__':
     main()
