@@ -4,25 +4,22 @@
 
 [TODO: revise]
 
-- cloning the project
-  ```bash
-  git clone git@github.com:INM-6/microcircuit-PD14-model.git
-  ```
-- the PyNEST implementation is contained in the PyNEST folder:
+The PyNEST implementation of the moel is contained in `microcircuit-PD14-model/PyNEST`:
   ```bash
   cd PyNEST
   ```
 
-- we recommend installing the python package inside a specific python environment
-  +  create a python environment
-  ```bash
+We recommend installing the python package inside a python environment:
+  +  Create a python environment
+  ``bash
   python -m venv venv
   ```
-  + activate the python environment
+  + Activate the python environment:
   ```
   source venv/bin/activate
   ```
-- install the python package
+
+The `microcircuit` python package can be installed using:
   ```bash
   pip install -U pip
   pip install .
