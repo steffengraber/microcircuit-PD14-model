@@ -12,7 +12,7 @@
   cd PyNEST
   ```
 
-- option 1: using the python package
+- we recommend installing the python package inside a specific python environment
   +  create a python environment
   ```bash
   python -m venv venv
@@ -21,12 +21,12 @@
   ```
   source venv/bin/activate
   ```
-  + install the python package
+- install the python package
   ```bash
   pip install -U pip
   pip install .
   ```
-  + you can now import the python package `microcircuit` in your python applications (irrespective of your current working folder)
+- you can now import the python package `microcircuit` in your python applications (irrespective of your current working folder)
   ```python
   import microcircuit
   ```
