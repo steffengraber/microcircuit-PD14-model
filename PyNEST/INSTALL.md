@@ -1,6 +1,34 @@
 
 # PyNEST implementation of the cortical microcircuit model of Potjans & Diesmann (2014)
 
+- cloning the project
+  ```bash
+  git clone git@github.com:INM-6/microcircuit-PD14-model.git
+  ```
+- the PyNEST implementation is contained in the PyNEST folder:
+  ```bash
+  cd PyNEST
+  ```
+
+- option 1: using the python package
+  +  create a python environment
+  ```bash
+  python -m venv venv
+  ```
+  + activate the python environment
+  ```
+  source venv/bin/activate
+  ```
+  + install the python package
+  ```bash
+  pip install -U pip
+  pip install .
+  ```
+  + import the python package `microcircuit` in your python applications
+  ```python
+  import microcircuit
+  ```
+- option 2: without using the python package
 
 Installation
 ------------
