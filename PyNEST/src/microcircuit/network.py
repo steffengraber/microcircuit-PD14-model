@@ -30,10 +30,10 @@ build and simulate the network.
 import os
 import warnings
 
-from microcircuit import helpers
 import nest
 import numpy as np
 
+from microcircuit import helpers
 
 class Network:
     """Provides functions to setup NEST, to create and connect all nodes of

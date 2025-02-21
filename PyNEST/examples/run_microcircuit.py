@@ -33,9 +33,9 @@ basic plots of the network activity.
 import time
 
 import nest
-from microcircuit import network
 import numpy as np
 
+from microcircuit import network
 from microcircuit.network_params import default_net_dict as net_dict
 from microcircuit.sim_params import default_sim_dict as sim_dict
 from microcircuit.stimulus_params import default_stim_dict as stim_dict
@@ -86,6 +86,10 @@ def main():
     # Summarize time measurements. Rank 0 usually takes longest because of the
     # data evaluation and print calls.
 
+    ## current memory consumption of the python process (in MB)
+    import psutil
+    mem = psutil.Process().memory_info().rss / (1024 * 1024)
+    
     print(
         "\nTimes of Rank {}:\n".format(nest.Rank())
         + "  Total time:          {:.3f} s\n".format(time_evaluate - time_start)
@@ -96,8 +100,10 @@ def main():
         + "  Time to simulate:    {:.3f} s\n".format(time_simulate - time_presimulate)
         + "  Time to evaluate:    {:.3f} s\n".format(time_evaluate - time_simulate)
     )
+    print()
+    print("\nMemory consumption: %dMB" % mem)
+    print()
 
-
-
+    
 if __name__== '__main__':
     main()

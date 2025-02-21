@@ -1,5 +1,59 @@
 # PyNEST implementation of the cortical microcircuit model 
 
+## Installation
+
+[TODO: revise]
+
+- cloning the project
+  ```bash
+  git clone git@github.com:INM-6/microcircuit-PD14-model.git
+  ```
+- the PyNEST implementation is contained in the PyNEST folder:
+  ```bash
+  cd PyNEST
+  ```
+
+- we recommend installing the python package inside a specific python environment
+  +  create a python environment
+  ```bash
+  python -m venv venv
+  ```
+  + activate the python environment
+  ```
+  source venv/bin/activate
+  ```
+- install the python package
+  ```bash
+  pip install -U pip
+  pip install .
+  ```
+
+## Usage
+
+You can now import the python package `microcircuit` in your python applications
+
+```python
+import microcircuit
+```
+See also [example](examples/run_microcircuit.py).
+  
+## Software requirements
+
+- NEST 3.x (tested on NEST 3.8; see [NEST installation](https://nest-simulator.readthedocs.io/en/stable/installation))
+- Python 3.x (tested on Python 3.10)
+- NumPy
+- SciPy
+- Matplotlib (optional)
+
+## Hardware requirements
+
+[TODO: check and revise numbers]
+
+| Scale         | RAM   |
+|---------------|-------|
+| 0.1 (default) | 567MB |
+| 1             | 16GB  |
+
 ## Implementation details
 
 [TODO: revise]
@@ -12,7 +66,7 @@ The model implementation runs with [NEST 3.6](https://github.com/nest/nest-simul
 
 ### Simulation parameters
 
-[TODO: revise table; add simulation time resolution, number of threads, seed,...]
+[TODO: revise table with default parameters (see sim_params.py); add simulation time resolution, number of threads, seed,...]
 
 | Name | Value | Description |
 |--|--|--|
@@ -21,32 +75,26 @@ The model implementation runs with [NEST 3.6](https://github.com/nest/nest-simul
 | $`t_{\mathrm{presim}}`$ | $`500\,\mathrm{ms}`$| duration of pre-simulation phase |
 | $`t_{\mathrm{sim}}`$ | $`1000\,\mathrm{ms}`$| duration of simulation phase |
 
-## Installation
+## Benchmarking strategies
 
-See [INSTALL.md](INSTALL.md).
+[TODO]
 
-## Software dependencies
+## Testing
 
-[TODO: revise]
-
-* NEST 3
-* Python 3
-* numpy
-* matplotlib - if provided plotting routines ares used
-
-## Hardware requirements
-
-[TODO table with memory consumption for different scales]
-
-* The full microcircuit requires approximately 16 GB of RAM.
-
-## Usage
-
-[TODO: revise]
-
-See [example](examples/run_microcircuit.py).
+[TODO]
 
 ## References
 
 [TODO: NEST refs]
 
+License
+-------
+
+This project is licensed under GNU General Public License v2.0 or later.
+See LICENSE for details.
+
+```
+SPDX-License-Identifier: GPL-2.0-or-later
+SPDX-Copyright: 2025, Forschungszentrum Jülich GmbH, Jülich, Germany
+SPDX-Author: Bender Bending Rodríguez <t.tetzlaff@fz-juelich.de, j.senk@fz-juelich.de>
+```

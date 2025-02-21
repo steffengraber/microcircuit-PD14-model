@@ -30,6 +30,10 @@ A detailed mathematical, implementation agnostic description of the model and it
 ## Model implementations
 * [PyNEST](PyNEST/README.md)
 
+## Repository Contents
+
+[TODO]
+
 ## References
 
 [Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)

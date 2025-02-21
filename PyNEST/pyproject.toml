@@ -13,7 +13,8 @@ dependencies = [
     "docopt-ng",
     "ruamel.yaml",
     # "nest-simulator",   ## needs `pip install nest-simulator` to become available
-    "matplotlib"
+    "matplotlib",
+    "psutil"
 ]
 
 [metadata]
