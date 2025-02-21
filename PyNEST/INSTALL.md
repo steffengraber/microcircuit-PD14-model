@@ -30,7 +30,6 @@
   ```python
   import microcircuit
   ```
-- option 2: without using the python package
 
 Installation
 ------------
