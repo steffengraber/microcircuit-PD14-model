@@ -1,6 +1,8 @@
 
 # PyNEST implementation of the cortical microcircuit model of Potjans & Diesmann (2014)
 
+[TODO: NEST requirement, link to NEST installation page: https://nest-simulator.readthedocs.io/en/stable/installation/index.html]
+
 - cloning the project
   ```bash
   git clone git@github.com:INM-6/microcircuit-PD14-model.git
@@ -24,7 +26,7 @@
   pip install -U pip
   pip install .
   ```
-  + import the python package `microcircuit` in your python applications
+  + you can now import the python package `microcircuit` in your python applications (irrespective of your current working folder)
   ```python
   import microcircuit
   ```
