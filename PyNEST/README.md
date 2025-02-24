@@ -11,7 +11,7 @@ The PyNEST implementation of the model is contained in `microcircuit-PD14-model/
 
 We recommend installing the python package inside a python environment:
 - Create a python environment
-  ``bash
+  ```bash
   python -m venv venv
   ```
 - Activate the python environment:
@@ -66,10 +66,13 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 
 | Name | Value | Description |
 |--|--|--|
-| $`\Delta{}t`$ | $`???\,\text{ms}`$ | duration of simulation step |
+| $`\Delta{}t`$ | $`0.1\,\text{ms}`$ | duration of simulation step |
 | `tics_per_step` | $`???`$ | number of tics per simulation step $`\Delta{t}`$ (time resolution) |
 | $`t_{\mathrm{presim}}`$ | $`500\,\mathrm{ms}`$| duration of pre-simulation phase |
 | $`t_{\mathrm{sim}}`$ | $`1000\,\mathrm{ms}`$| duration of simulation phase |
+| $`\mathrm{local\_num\_threads}`$ | $`4`$ | local number of threads per MPI process |
+| $`\mathrm{rec\_V\_int}`$ | $`1.0\,\text{ms}`$ | recording interval of the membrane potential |
+| $`\mathrm{rng\_seed}`$ | $`55`$ | Seed for NEST |
 
 ## Benchmarking strategies
 
