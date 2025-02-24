@@ -240,6 +240,7 @@ def plot_raster(path, name, begin, end, N_scaling):
     label_pos = [(mod_node_ids[i, 0] + mod_node_ids[i + 1, 1]) / 2.0 for i in np.arange(0, 8, 2)]
 
     stp = 1
+
     if N_scaling > 0.1:
         stp = int(10.0 * N_scaling)
         print("  Only spikes of neurons in steps of {} are shown.".format(stp))

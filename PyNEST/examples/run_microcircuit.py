@@ -40,11 +40,12 @@ from microcircuit.network_params import default_net_dict as net_dict
 from microcircuit.sim_params import default_sim_dict as sim_dict
 from microcircuit.stimulus_params import default_stim_dict as stim_dict
 
-scaling_factor = 0.1
-
+scaling_factor = 0.2
 net_dict["N_scaling"] = scaling_factor
 net_dict["K_scaling"] = scaling_factor
 
+sim_dict['data_path'] = 'data_scale_%.2f/' % scaling_factor
+    
 def main():
 
     time_start = time.time()
@@ -60,6 +61,7 @@ def main():
     # transient has passed.
 
     net = network.Network(sim_dict, net_dict, stim_dict)
+    
     time_network = time.time()
 
     net.create()
@@ -86,10 +88,9 @@ def main():
     # The computation of spike rates discards the presimulation time to exclude
     # initialization artifacts.
 
-    # raster_plot_interval = np.array([stim_dict["th_start"] - 100.0, stim_dict["th_start"] + 100.0])
-    # firing_rates_interval = np.array([sim_dict["t_presim"], sim_dict["t_presim"] + sim_dict["t_sim"]])
-    ## TODO: plotting doesn't work for N_scaling=0.5
-    # net.evaluate(raster_plot_interval, firing_rates_interval)
+    raster_plot_interval = np.array([stim_dict["th_start"] - 100.0, stim_dict["th_start"] + 100.0])
+    firing_rates_interval = np.array([sim_dict["t_presim"], sim_dict["t_presim"] + sim_dict["t_sim"]])
+    net.evaluate(raster_plot_interval, firing_rates_interval)
     time_evaluate = time.time()
 
     ###############################################################################

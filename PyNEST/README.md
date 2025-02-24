@@ -49,8 +49,9 @@ See also [example](examples/run_microcircuit.py).
 | `N_scaling`=`K_scaling`   | RAM    |
 |---------------------------|--------|
 | 0.1 (default)             |  484MB |
+| 0.2                       | 1116MB |
 | 0.5                       | 4382MB |
-| 1                         | 16GB ?  |
+| 1                         | 16GB ? |
 
 ## Implementation details
 
