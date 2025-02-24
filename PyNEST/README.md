@@ -56,7 +56,7 @@ See also [example](examples/run_microcircuit.py).
 
 [TODO: revise]
 
-This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.io/en/v3.6/models/iaf_psc_exp.html) neuron and the [`static_synapse`](https://nest-simulator.readthedocs.io/en/v3.6/models/static_synapse.html) synapse models provided in [NEST]. The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/v3.6/synapses/connection_management.html#rule-fixed-total-number) connection rule in NEST. The neuron dynamics is propagated in time using exact integration ([Rotter & Diesmann (1999)]) with a simulation step size $`\Delta{}t`$.
+This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.io/en/v3.6/models/iaf_psc_exp.html) neuron and the [`static_synapse`](https://nest-simulator.readthedocs.io/en/v3.6/models/static_synapse.html) synapse models provided in [NEST]. The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/v3.6/synapses/connection_management.html#rule-fixed-total-number) connection rule in NEST. The neuron dynamics is propagated in time using exact integration ([Rotter & Diesmann (1999)]) with a simulation step size `sim_resolution`.
 
 The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git)
 
@@ -66,13 +66,13 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 
 | Name | Value | Description |
 |--|--|--|
-| $`\Delta{}t`$ | $`0.1\,\text{ms}`$ | duration of simulation step |
-| `tics_per_step` | $`???`$ | number of tics per simulation step $`\Delta{t}`$ (time resolution) |
-| $`t_{\mathrm{presim}}`$ | $`500\,\mathrm{ms}`$| duration of pre-simulation phase |
-| $`t_{\mathrm{sim}}`$ | $`1000\,\mathrm{ms}`$| duration of simulation phase |
-| $`\mathrm{local\_num\_threads}`$ | $`4`$ | local number of threads per MPI process |
-| $`\mathrm{rec\_V\_int}`$ | $`1.0\,\text{ms}`$ | recording interval of the membrane potential |
-| $`\mathrm{rng\_seed}`$ | $`55`$ | Seed for NEST |
+| `sim_resolution` | $`0.1\,\text{ms}`$ | simulation time resolution (duration of one simulation step) |
+| `tics_per_step` | $`???`$ | number of tics per simulation step `sim_resolution` (time resolution) |
+| `t_presim` | $`500\,\text{ms}`$| duration of pre-simulation phase |
+| `t_sim` | $`1000\,\text{ms}`$| duration of simulation phase |
+| `local_num_threads` | $`4`$ | local number of threads per MPI process |
+| `rec_V_int` | $`1\,\text{ms}`$ | recording interval of the membrane potential |
+| `rng_seed` | $`55`$ | Seed for NEST |
 
 ## Benchmarking strategies
 
