@@ -71,8 +71,8 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 | `t_presim` | $`500\,\text{ms}`$| duration of pre-simulation phase |
 | `t_sim` | $`1000\,\text{ms}`$| duration of simulation phase |
 | `local_num_threads` | $`4`$ | local number of threads per MPI process |
-| `rec_V_int` | $`1\,\text{ms}`$ | recording interval of the membrane potential |
-| `rng_seed` | $`55`$ | Seed for NEST |
+| `rec_V_int` | $`1\,\text{ms}`$ | interval of membrane-potential recordings |
+| `rng_seed` | $`55`$ | seed of NEST random-number generator |
 
 ## Benchmarking strategies
 
