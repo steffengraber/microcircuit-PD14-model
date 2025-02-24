@@ -34,7 +34,7 @@ A detailed mathematical, implementation agnostic description of the model and it
 
 |  |  | 
 |--|--|
-| [`docs`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/docs) | (implementation agnostic) model description |
+| [`docs`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/docs) | model description (implementation agnostic)|
 | [`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST) | PyNEST implementation |
 | [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
 
