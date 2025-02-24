@@ -30,9 +30,11 @@ A detailed mathematical, implementation agnostic description of the model and it
 ## Model implementations
 * [PyNEST](PyNEST/README.md)
 
-## Repository Contents
+## Repository contents
 
-[TODO]
+[`docs`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/docs): (implementation agnostic) model description
+[`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST): PyNEST implementation
+[`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures): figures for overview
 
 ## References
 

@@ -40,6 +40,11 @@ from microcircuit.network_params import default_net_dict as net_dict
 from microcircuit.sim_params import default_sim_dict as sim_dict
 from microcircuit.stimulus_params import default_stim_dict as stim_dict
 
+scaling_factor = 0.1
+
+net_dict["N_scaling"] = scaling_factor
+net_dict["K_scaling"] = scaling_factor
+
 def main():
 
     time_start = time.time()
@@ -69,6 +74,10 @@ def main():
     net.simulate(sim_dict["t_sim"])
     time_simulate = time.time()
 
+    ## current memory consumption of the python process (in MB)
+    import psutil
+    mem = psutil.Process().memory_info().rss / (1024 * 1024)
+    
     ###############################################################################
     # Plot a spike raster of the simulated neurons and a box plot of the firing
     # rates for each population.
@@ -77,18 +86,15 @@ def main():
     # The computation of spike rates discards the presimulation time to exclude
     # initialization artifacts.
 
-    raster_plot_interval = np.array([stim_dict["th_start"] - 100.0, stim_dict["th_start"] + 100.0])
-    firing_rates_interval = np.array([sim_dict["t_presim"], sim_dict["t_presim"] + sim_dict["t_sim"]])
-    net.evaluate(raster_plot_interval, firing_rates_interval)
+    # raster_plot_interval = np.array([stim_dict["th_start"] - 100.0, stim_dict["th_start"] + 100.0])
+    # firing_rates_interval = np.array([sim_dict["t_presim"], sim_dict["t_presim"] + sim_dict["t_sim"]])
+    ## TODO: plotting doesn't work for N_scaling=0.5
+    # net.evaluate(raster_plot_interval, firing_rates_interval)
     time_evaluate = time.time()
 
     ###############################################################################
     # Summarize time measurements. Rank 0 usually takes longest because of the
     # data evaluation and print calls.
-
-    ## current memory consumption of the python process (in MB)
-    import psutil
-    mem = psutil.Process().memory_info().rss / (1024 * 1024)
     
     print(
         "\nTimes of Rank {}:\n".format(nest.Rank())
