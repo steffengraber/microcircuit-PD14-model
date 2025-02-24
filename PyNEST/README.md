@@ -4,17 +4,17 @@
 
 [TODO: revise]
 
-The PyNEST implementation of the moel is contained in `microcircuit-PD14-model/PyNEST`:
+The PyNEST implementation of the model is contained in `microcircuit-PD14-model/PyNEST`:
   ```bash
   cd PyNEST
   ```
 
 We recommend installing the python package inside a python environment:
-  +  Create a python environment
+- Create a python environment
   ``bash
   python -m venv venv
   ```
-  + Activate the python environment:
+- Activate the python environment:
   ```
   source venv/bin/activate
   ```
