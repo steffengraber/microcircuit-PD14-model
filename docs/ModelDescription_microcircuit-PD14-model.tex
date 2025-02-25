@@ -103,11 +103,11 @@ pdfkeywords={}
   \textbf{Populations} & $8$ cortical populations in $4$ layers ($\text{L2/3}$, $\text{L4}$, $\text{L5}$,
   $\text{L6}$), driven by a thalamic population ($\mathcal{T}$) and cortico-cortical inputs ($\mathcal{C}$)\\
   \hline 
-  \textbf{Connectivity} & random, independent, population-specific\\
+  \textbf{Connectivity} & random, independent, population specific\\
   \hline 
-  \textbf{Neuron model} & cortex: leaky integrate-and-fire (LIF); thalamus, cortico-cortical inputs: point process\\
+  \textbf{Neuron model} & cortex: leaky integrate-and-fire (LIF); thalamus, cortico-cortical inputs: Poisson point process\\
   \hline 
-  \textbf{Synapse model} & exponential postsynaptic currents with static, normally distributed weights\\
+  \textbf{Synapse model} & exponential postsynaptic currents with static, normally distributed weights and delays\\
   \hline 
   \textbf{Predictions} & population specific spiking activity\\
 
@@ -226,7 +226,7 @@ pdfkeywords={}
 
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%
-\caption{Description of the network model (continued on next page).}
+\caption{Description of the network model (continued).}
 \label{tab:model_description_1}
 \end{table}
 \clearpage
@@ -245,7 +245,7 @@ pdfkeywords={}
   \hline
   \multicolumn{2}{|>{\color{black}\columncolor{lightgray}}c|}{\textbf{Cortical neurons}}\\
   \hline
-  \textbf{Type} & current-based leaky integrate-and-fire with exponential synaptic current \\
+  \textbf{Type} & leaky integrate-and-fire (LIF)\\
   \hline 
   \textbf{Description} & dynamics of membrane potential $V_{i}(t)$ and spiking activity $s_i(t)$ of neuron $i\in x$ for $x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$:
                          \begin{itemize}
@@ -311,7 +311,7 @@ pdfkeywords={}
   \textbf{Synapses}
   }\\
   \hline 
-  \textbf{Type} & exponential synaptic currents with random connectivity \\
+  \textbf{Type} & exponential postsynaptic currents with static weights and delays \\
   \hline 
   \textbf{Description} &
   \begin{itemize}
@@ -381,8 +381,6 @@ pdfkeywords={}
   \multicolumn{2}{|>{\color{white}\columncolor{black}}c|}{
 	  \textbf{Synapses (continued)}
   }\\
-  %\hline 
-  %\textbf{Type} & exponential synaptic currents with random connectivity \\
   \hline 
   \textbf{Description} &
   \begin{itemize}
@@ -398,9 +396,8 @@ pdfkeywords={}
   \begin{equation*}
       z_{yx} \sim\mathcal{N}\left\{\bar{I}_{yx},\,\sigma_{\text{s},yx}^2\right\}
   \end{equation*}
-  drawn from a normal distribution
+  drawn from a normal distribution with mean $\bar{I}_{y,x}$, variance $\sigma_{\text{s},yx}^2$
   \item[] note: clipping of synaptic weights leads to a deviation of the total number of synapses with non-zero weights from $K_{yx}$ (see ``Connectivity'')
-
   \item distributed synaptic delays
   \begin{equation*}
       d_{ij} = \begin{cases} 
@@ -412,7 +409,7 @@ pdfkeywords={}
   \begin{equation*}
       z_{x} \sim\mathcal{N}\left\{\bar{d}_{x},\,\sigma_{\text{d},x}^2\right\}
   \end{equation*}
-  drawn from a normal distribution and minimal delay $d_\text{min} > 0$
+  drawn from a normal distribution with mean $\bar{d}_{x}$, variance $\sigma_{\text{d},x}^2$, and minimal delay $d_\text{min} > 0$
   \end{itemize}\\
   \hline
 \end{tabular}
@@ -430,9 +427,11 @@ pdfkeywords={}
 \hline
   \textbf{Description} &
   \begin{itemize}
-  \item membrane potentials:
-    %$V_i(t=0)\sim\mathcal{N}(\mu_{V_0},\sigma_{V_0})$ randomly and independently drawn from a normal distribution with mean $\mu_{V_0}$ and standard deviation $\sigma_{V_0}$ ($\forall{}i$)
-	  $V_{i}(t=0)\sim\mathcal{N}(V_{0,\text{mean}}^{(y)},V_{0,\text{std}}^{(y)})$ randomly and independently drawn from a normal distribution with population specific mean $V_{0,\text{mean}}^{(y)}$ and population specific standard deviation $V_{0,\text{std}}^{(y)}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)
+  \item membrane potentials
+    \begin{equation*}
+      V_i(t=0)\sim\mathcal{N}(\bar{V}_{0,x},\sigma_{\text{v},x}^2)
+    \end{equation*}
+  randomly and independently drawn from a normal distribution with mean $\bar{V}_{0,x}$ and variance $\sigma^2_{\text{v},x}$ ($\forall i \in x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)
   \item synaptic currents: $I_{i}(t=0)=0\,\text{pA}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)
   \end{itemize}\\
   \hline
@@ -445,7 +444,6 @@ pdfkeywords={}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Model parameters}
 \label{sec:model_parameters}
-
 %%
 \renewcommand{\arraystretch}{1.2}
 %%
@@ -627,7 +625,7 @@ $\nu_{\mathcal{C}}$ & $8\sps$ & rate of cortico-cortical inputs\\
     \multicolumn{3}{|c|}{}\\
     \hline
 \end{tabular}
-\caption{\bf Model parameters (continued on next page).}
+\caption{Model parameters (continued on next page).}
 \end{table}
 
 \begin{table}[H]
@@ -666,19 +664,19 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \multicolumn{3}{|>{\color{black}\columncolor{lightgray}}c|}{\textbf{Initial conditions}}\\
 \hline
-\multicolumn{3}{|>{\color{black}\columncolor{white}}c|}{\textbf{Original implementation}}\\
-\hline 
-\textbf{Name} & \textbf{Value} & \textbf{Description}\\
-\hline
-\drvd{$V_{0,\text{mean}}$}    & \drvd{$-58.0\,\mV$} & homogeneous mean of the distribution \\
-	& & of the initial membrane potential \\
-	& & ($V_{0, \text{mean}}^{(y)} = V_{0, \text{mean}} \; \forall y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)\\
-\hline
-\drvd{$V_{0,\text{std}}$}    & \drvd{$10.0\,\mV$} & homogeneous standard deviation of the distribution \\ 
-	& & of the initial membrane potential \\
-	& & ($V_{0, \text{std}}^{(y)} = V_{0, \text{std}} \; \forall y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$)\\
-\hline
-\multicolumn{3}{|>{\color{black}\columncolor{white}}c|}{\textbf{Population specific implementation}}\\
+% \multicolumn{3}{|>{\color{black}\columncolor{white}}c|}{\textbf{Original implementation}}\\
+% \hline 
+% \textbf{Name} & \textbf{Value} & \textbf{Description}\\
+% \hline
+% \drvd{$V_{0,\text{mean}}$}    & \drvd{$-58.0\,\mV$} & homogeneous mean of the distribution \\
+% 	& & of the initial membrane potential \\
+% 	& & $V_{0, \text{mean}}^{(y)} = V_{0, \text{mean}} \quad \forall y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$\\
+% \hline
+% \drvd{$V_{0,\text{std}}$}    & \drvd{$10.0\,\mV$} & homogeneous standard deviation of the distribution \\ 
+% 	& & of the initial membrane potential \\
+% 	& & $V_{0, \text{std}}^{(y)} = V_{0, \text{std}} \quad \forall y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$\\
+% \hline
+\multicolumn{3}{|>{\color{black}\columncolor{white}}c|}{\textbf{Population specific mean and standard deviation of initial membrane-potential distributions}}\\
 \hline
 %\vspace{-1ex}
 \multicolumn{3}{|c|}{}\\
@@ -686,11 +684,11 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
 %\begin{center}
 	\begin{tabular}{|p{14ex}|>{\raggedleft}p{7ex}|>{\raggedleft}p{7ex}|>{\raggedleft}p{7ex}|>{\raggedleft}p{7ex}|>{\raggedleft}p{7ex}|>{\raggedleft}p{7ex}|>{\raggedleft}p{7ex}|>{\raggedleft\arraybackslash}p{7ex}|}
 	\hline
-	$y$ & $\mathcal{E}_{23}$ & $\mathcal{I}_{23}$ & $\mathcal{E}_{4}$ & $\mathcal{I}_{4}$ & $\mathcal{E}_{5}$ & $\mathcal{I}_{5}$ & $\mathcal{E}_{6}$ & $\mathcal{I}_{6}$\\
+	population $x$ & $\mathcal{E}_{23}$ & $\mathcal{I}_{23}$ & $\mathcal{E}_{4}$ & $\mathcal{I}_{4}$ & $\mathcal{E}_{5}$ & $\mathcal{I}_{5}$ & $\mathcal{E}_{6}$ & $\mathcal{I}_{6}$\\
         \hline
-	\vspace{-1ex} \drvd{$V_{0, \text{mean}}^{(y)}$ in $\mV$} & \vspace{-1ex} \drvd{$-68.28$} & \vspace{-1ex} \drvd{$-63.16$} & \vspace{-1ex} \drvd{$-63.33$} & \vspace{-1ex} \drvd{$-63.45$} & \vspace{-1ex} \drvd{$-63.11$} & \vspace{-1ex} \drvd{$-61.66$} & \vspace{-1ex} \drvd{$-66.72$} & \vspace{-1ex} \drvd{$-61.45$}\\
+	\vspace{-1ex} $\bar{V}_{0, x}$ ($\mV$) & \vspace{-1ex} $-68.28$ & \vspace{-1ex} $-63.16$ & \vspace{-1ex} $-63.33$ & \vspace{-1ex} $-63.45$ & \vspace{-1ex} $-63.11$ & \vspace{-1ex} $-61.66$ & \vspace{-1ex} $-66.72$ & \vspace{-1ex} $-61.45$\\
         \hline
-	\vspace{-1ex} \drvd{$V_{0, \text{std}}^{(y)}$ in $\mV$} & \vspace{-1ex} \drvd{$5.36$} & \vspace{-1ex} \drvd{$4.57$} & \vspace{-1ex} \drvd{$4.74$} & \vspace{-1ex} \drvd{$4.94$} & \vspace{-1ex} \drvd{$4.94$} & \vspace{-1ex} \drvd{$4.55$} & \vspace{-1ex} \drvd{$5.46$} & \vspace{-1ex} \drvd{$4.48$}\\
+	\vspace{-1ex} $\sigma_{\text{v}, x}$ ($\mV$) & \vspace{-1ex} $5.36$ & \vspace{-1ex} $4.57$ & \vspace{-1ex} $4.74$ & \vspace{-1ex} $4.94$ & \vspace{-1ex} $4.94$ & \vspace{-1ex} $4.55$ & \vspace{-1ex} $5.46$ & \vspace{-1ex} $4.48$\\
         \hline
 \end{tabular}
 %\end{center}
@@ -699,21 +697,12 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
 \hline
 \end{tabular}
 
-\caption{\bf Model parameters (continued).}
+\caption{Model parameters (continued).}
 \end{table}
-
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
-% \section{Remarks}
-% \label{sec:remarks}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 \appendix
-
 \section{Single-neuron dynamics in normal form (subthreshold)}
 \label{sec:normal_form}
 \begin{itemize}
@@ -782,9 +771,8 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
     \end{aligned}
   \end{equation}
 \end{itemize}
-
-
-\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\clearpage
 \section{Exact integration of  single-neuron dynamics (subthreshold)}
 \label{sec:exact_integration}
 
@@ -816,9 +804,6 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% references
-
-
-
 \clearpage
 \begin{thebibliography}{}
 
