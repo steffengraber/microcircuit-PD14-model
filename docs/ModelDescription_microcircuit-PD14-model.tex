@@ -71,7 +71,7 @@ pdfkeywords={}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{document}
 
-\title{Model description:\\{\bf CorticalMicrocircuit\_PotjansDiesmann}}
+\title{Detailed description of the \\ cortical microcircuit model (Potjans \& Diesmann, 2014)}
 \author{}
 \date{}
 \maketitle
@@ -81,12 +81,15 @@ pdfkeywords={}
 \def\marg{1ex}
 \setlength{\parindent}{0pt}
 
+\tableofcontents
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Model description}
 \label{sec:model_description}
-
-%% model description table
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% model description table: Summary and Populations
+%%
 \begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 %%%%%%%%%%%%%%%%%%%
@@ -137,8 +140,10 @@ pdfkeywords={}
 \caption{Description of the network model (continued on next page).}
 \label{tab:model_description}
 \end{table}
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% model description table (continued)
+%% model description table (continued): Connectivity
+%%
 \addtocounter{table}{-1}
 \begin{table}[H]
 %%%%%%%%%%%%%%%%%%%
@@ -224,10 +229,10 @@ pdfkeywords={}
 \caption{Description of the network model (continued on next page).}
 \label{tab:model_description_1}
 \end{table}
-
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%% model description table
+%% model description table: Neurons
+%%
 \begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 %%%%%%%%%%%%%%%%%%% 
@@ -236,7 +241,7 @@ pdfkeywords={}
   |@{\hspace*{\marg}}p{0.8\textwidth-2.\marg}@{\hspace*{\marg}}
   |}
   \hline 
-  \multicolumn{2}{|>{\color{white}\columncolor{black}}c|}{\textbf{Neuron }}\\
+  \multicolumn{2}{|>{\color{white}\columncolor{black}}c|}{\textbf{Neurons}}\\
   \hline
   \multicolumn{2}{|>{\color{black}\columncolor{lightgray}}c|}{\textbf{Cortical neurons}}\\
   \hline
@@ -292,9 +297,10 @@ pdfkeywords={}
 \caption{Description of the network model (continued).}
 \label{tab:model_description_2}
 \end{table}
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
+%% model description table: Synapses
+%%
 \begin{table}
 \begin{tabular}{
   |@{\hspace*{\marg}}p{0.2\textwidth-2.\marg}@{\hspace*{\marg}}
@@ -358,14 +364,14 @@ pdfkeywords={}
   \end{itemize}\\
   \hline
 \end{tabular}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \caption{Description of the network model (continued).}
 \label{tab:model_description_2}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
+%% model description table: Synapses (cnt) and Initial conditions
+%%
 \begin{table}
 \begin{tabular}{
   |@{\hspace*{\marg}}p{0.2\textwidth-2.\marg}@{\hspace*{\marg}}
@@ -434,7 +440,7 @@ pdfkeywords={}
 %%%%%%%%%%%%%%%%%%%
 \caption{Description of the network model (continued).}
 \end{table}
-
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Model parameters}
