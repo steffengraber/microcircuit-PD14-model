@@ -38,9 +38,9 @@ A detailed mathematical, implementation agnostic description of the model and it
 |  |  | 
 |--|--|
 | [`docs`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/docs) | model description (implementation agnostic)|
-| [`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST) | PyNEST implementation |
-| [`PyNEST/examples`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/examples) | example script to run the microcircuit |
-| [`PyNEST/src/microcircuit`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/src/microcircuit) | scripts to implement microcircuit python package |
+| [`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST) | PyNEST implementation (python package)|
+| &emsp;[`PyNEST/src/microcircuit`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/src/microcircuit) | source code of the python package|
+| &emsp;[`PyNEST/examples`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/examples) | example script illustrating useage of the python package |
 | [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
 
 ## References
