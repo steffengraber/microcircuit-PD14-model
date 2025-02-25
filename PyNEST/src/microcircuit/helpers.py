@@ -231,7 +231,8 @@ def plot_raster(path, name, begin, end, N_scaling):
     """
 
     fig_size = (4,3) ## figure size (inch)
-    ms = 2           ## marker size
+    ms = 1           ## marker size
+    alpha = 1
     ylabels = ["L2/3", "L4", "L5", "L6"]
     color_list = np.tile(["#595289", "#af143c"], 4)
 
@@ -272,8 +273,8 @@ def plot_raster(path, name, begin, end, N_scaling):
         neurons = np.abs(data[i]["sender"] - last_node_id) + 1
         all_neurons +=list(neurons)
         if i % 2 == 0:
-            plt.hlines(mod_node_ids[i, 0], begin, end, color='0.8', ls='-', lw=2, zorder=0)
-        plt.plot(times[::stp], neurons[::stp], ".", ms=ms, color=color_list[i], rasterized = True)
+            plt.hlines(mod_node_ids[i, 0], begin, end, color='0.8', ls='-', lw=1, zorder=0)
+        plt.plot(times[::stp], neurons[::stp], "o", ms=ms, alpha=alpha, color=color_list[i], mew=0, rasterized = True)
     plt.xlabel('time (ms)')
     plt.ylabel(r'neuron id')
     plt.yticks(label_pos, ylabels, rotation=0)
@@ -344,8 +345,7 @@ def boxplot(path, populations):
 
     """
 
-    
-    #fs=18
+
     fig_size = (4,3) ## figure size (inch)
     
     pop_names = [string.replace("23", "2/3") for string in populations]
@@ -369,7 +369,6 @@ def boxplot(path, populations):
     rcParams['axes.labelsize']    = 8
     rcParams['ytick.labelsize']   = 8
     rcParams['xtick.labelsize']   = 8
-    rcParams['ytick.major.size']  = 0   ## remove y ticks      
     rcParams['text.usetex']       = True
     rcParams['legend.framealpha'] = 1.0
     rcParams['legend.edgecolor']  = 'k'
