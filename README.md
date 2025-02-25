@@ -5,7 +5,9 @@
 
 ## Overview
 
-The model of a cortical microcircuit proposed by Potjans and Diesmann (2014) describes the neuronal circuitry under ~1 mm$`^2`$ cortical surface. The network consists of 4 cortical layers (L2/3, L4, L5, L6), each being represented by a randomly connected network of excitatory and inhibitory point neurons. 
+This repository contains a detailed mathematical description and a reference implementation of the model of a cortical microcircuit proposed by [Potjans & Diesmann (2014)]. 
+The model describes the neuronal circuitry under ~1 mm$`^2`$ cortical surface. 
+It comprises four cortical layers (L2/3, L4, L5, L6), each represented by a randomly connected network of excitatory and inhibitory point neurons. 
 The network connectivity is derived from anatomical and electrophysiological data.
 Connection probabilities between neurons in the network are highly specific and depend on the cell type (excitatory, inhibitory) and on the locations (cortical layers) of the pre- and postsynaptic neurons.
 In contrast to this high specificity in the connectivity, all neurons in the network are identical and share the same dynamics and parameters, irrespective of their type and location.
@@ -13,7 +15,8 @@ Similarly, all synapses are described by an identical dynamics, and differ only 
 Synaptic weights and spike transmission latencies are randomly drawn from distributions which depend only on the type of the presynaptic neuron (excitatory or inhibitory), but are otherwise identical for all neurons and connections (with one exception).
 In addition to inputs from the local network, neurons receive external inputs representing thalamic afferents and cortico-cortical inputs from more distant cortical regions. 
 
-The original purpose of this model was to understand the relationship between the connectivity and the spiking activity within local cortical circuits. Specifically, the model demonstrates that the observed cell-type and layer specificity of in-vivo firing rates is largely explained by the specificity in the number of connections between cortical subpopulations, and doesn't require a specificity in single neuron or synapse dynamics.
+The original purpose of this model was to understand the relationship between the connectivity and the spiking activity within local cortical circuits. 
+Specifically, the model demonstrates that the observed cell-type and layer specificity of in-vivo firing rates is largely explained by the specificity in the number of connections between cortical subpopulations, and doesn't require a specificity in single neuron or synapse dynamics.
 
 |  |  |  |
 |--|--|--|
@@ -35,11 +38,15 @@ A detailed mathematical, implementation agnostic description of the model and it
 |  |  | 
 |--|--|
 | [`docs`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/docs) | model description (implementation agnostic)|
-| [`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST) | PyNEST implementation |
+| [`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST) | PyNEST implementation (python package)|
+| &emsp;[`PyNEST/src/microcircuit`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/src/microcircuit) | source code of the python package|
+| &emsp;[`PyNEST/examples`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/examples) | example script illustrating useage of the python package |
 | [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
 
 ## References
 
+[Potjans & Diesmann (2014)]: #Potjans14_785
+<a name="Potjans14_785"></a>
 [Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)
 
 [van Albada et al. (2018). Performance Comparison of the Digital Neuromorphic Hardware SpiNNaker and the Neural Network Simulation Software NEST for a Full-Scale Cortical Microcircuit Model. Front. Neurosci. 12:291.](https://doi.org/10.3389/fnins.2018.00291)

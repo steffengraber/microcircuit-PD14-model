@@ -1,10 +1,8 @@
 # PyNEST implementation of the cortical microcircuit model 
 
-## Installation
+## Installing the python package `microcircuit`
 
-[TODO: revise]
-
-The PyNEST implementation of the model is contained in `microcircuit-PD14-model/PyNEST`:
+The PyNEST implementation of the model is provided in the form of a python package `microcircuit` and is contained in `microcircuit-PD14-model/PyNEST`:
   ```bash
   cd PyNEST
   ```
@@ -38,50 +36,34 @@ See also [example](examples/run_microcircuit.py).
 
 - NEST 3.x (tested on NEST 3.8; see [NEST installation](https://nest-simulator.readthedocs.io/en/stable/installation))
 - Python 3.x (tested on Python 3.10)
-- NumPy
-- SciPy
-- Matplotlib (optional)
+
+- docopt-ng, matplotlib, numpy, psutil, ruamel.yaml (handled by python package dependencies)
 
 ## Hardware requirements
 
-[TODO: check and revise numbers]
-
-| `N_scaling`=`K_scaling`   | RAM    |
-|---------------------------|--------|
-| 0.1 (default)             |  484MB |
-| 0.2                       | 1116MB |
-| 0.5                       | 4382MB |
-| 1                         | 16GB ? |
+| scaling factor (`N_scaling`=`K_scaling`)  | Memory    |
+|-------------------------------------------|-----------|
+| 0.1 (default)                             |  490 MB   |
+| 0.2                                       | 1200 MB   |
+| 0.5                                       | 4400 MB   |
+| 1                                         |   14 GB   |
 
 ## Implementation details
 
-[TODO: revise]
-
-This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.io/en/stable/models/iaf_psc_exp.html) neuron and the [`static_synapse`](https://nest-simulator.readthedocs.io/en/stable/models/static_synapse.html) synapse models provided in [NEST]. The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/stable/synapses/connectivity_concepts.html#random-fixed-total-number) connection rule in NEST. The neuron dynamics is propagated in time using exact integration ([Rotter & Diesmann (1999)]) with a simulation step size `sim_resolution`.
+This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.io/en/stable/models/iaf_psc_exp.html) neuron and the [`static_synapse`](https://nest-simulator.readthedocs.io/en/stable/models/static_synapse.html) synapse models provided in [NEST]. 
+The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/stable/synapses/connectivity_concepts.html#random-fixed-total-number) connection rule in NEST. 
+The neuron dynamics is integrated in a time-driven manner using exact integration with a simulation step size `sim_resolution` ([Rotter & Diesmann (1999)]).
 
 The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git)
 
-### Simulation parameters
+### Simulation parameters (defaults)
 
-[TODO: revise/check table; use default parameters (see sim_params.py)]
-
-| Name | Value | Description |
-|--|--|--|
-| `sim_resolution` | $`0.1\,\text{ms}`$ | simulation time resolution (duration of one simulation step) |
-| `tics_per_step` | $`???`$ | number of tics per simulation step `sim_resolution` (time resolution) |
-| `t_presim` | $`500\,\text{ms}`$| duration of pre-simulation phase |
-| `t_sim` | $`1000\,\text{ms}`$| duration of simulation phase |
-| `local_num_threads` | $`4`$ | local number of threads per MPI process |
-| `rec_V_int` | $`1\,\text{ms}`$ | interval of membrane-potential recordings |
-| `rng_seed` | $`55`$ | seed of NEST random-number generator |
-
-## Benchmarking strategies
-
-[TODO]
-
-## Testing
-
-[TODO]
+| Name             | Value            | Description                                                  |
+|------------------|------------------|--------------------------------------------------------------|
+| `sim_resolution` | 0.1 ms           | simulation time resolution (duration of one simulation step) |
+| `t_presim`       | 500 ms           | duration of pre-simulation phase (warm-up)                   |
+| `t_sim`          | 1000 ms          | duration of simulation phase                                 |
+| `rec_dev`        | `spike_recorder` | recording device                                             |
 
 ## References
 
