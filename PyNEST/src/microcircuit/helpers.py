@@ -229,7 +229,9 @@ def plot_raster(path, name, begin, end, N_scaling):
     None
 
     """
-    fs = 18  # fontsize
+
+    fig_size = (4,3) ## figure size (inch)
+    ms = 2           ## marker size
     ylabels = ["L2/3", "L4", "L5", "L6"]
     color_list = np.tile(["#595289", "#af143c"], 4)
 
@@ -239,21 +241,48 @@ def plot_raster(path, name, begin, end, N_scaling):
 
     label_pos = [(mod_node_ids[i, 0] + mod_node_ids[i + 1, 1]) / 2.0 for i in np.arange(0, 8, 2)]
 
+    ######################
+    from matplotlib import rcParams
+    rcParams['figure.figsize']    = fig_size
+    rcParams['figure.dpi']        = 300
+    rcParams['font.family']       = 'sans-serif'
+    rcParams['font.size']         = 8
+    rcParams['legend.fontsize']   = 8
+    rcParams['axes.titlesize']    = 10
+    rcParams['axes.labelsize']    = 8
+    rcParams['ytick.labelsize']   = 8
+    rcParams['xtick.labelsize']   = 8
+    rcParams['ytick.major.size']  = 0   ## remove y ticks      
+    rcParams['text.usetex']       = True
+    rcParams['legend.framealpha'] = 1.0
+    rcParams['legend.edgecolor']  = 'k'
+
+    plt.figure(1)
+    plt.clf()
+    
     stp = 1
 
     if N_scaling > 0.1:
         stp = int(10.0 * N_scaling)
-        print("  Only spikes of neurons in steps of {} are shown.".format(stp))
+        print("  Only every %dth spike is plotted." % stp)
 
-    plt.figure(figsize=(8, 6))
+    all_neurons = []
     for i, n in enumerate(sd_names):
         times = data[i]["time_ms"]
         neurons = np.abs(data[i]["sender"] - last_node_id) + 1
-        plt.plot(times[::stp], neurons[::stp], ".", color=color_list[i])
-    plt.xlabel("time [ms]", fontsize=fs)
-    plt.xticks(fontsize=fs)
-    plt.yticks(label_pos, ylabels, fontsize=fs)
-    plt.savefig(os.path.join(path, "raster_plot.png"), dpi=300)
+        all_neurons +=list(neurons)
+        if i % 2 == 0:
+            plt.hlines(mod_node_ids[i, 0], begin, end, color='0.8', ls='-', lw=2, zorder=0)
+        plt.plot(times[::stp], neurons[::stp], ".", ms=ms, color=color_list[i], rasterized = True)
+    plt.xlabel('time (ms)')
+    plt.ylabel(r'neuron id')
+    plt.yticks(label_pos, ylabels, rotation=0)
+    plt.xlim(begin, end)
+    all_neurons = np.unique(all_neurons)
+    plt.ylim(all_neurons[0], all_neurons[-1])
+    
+    plt.subplots_adjust(bottom=0.13,left=0.12,top=0.97,right=0.95)
+    plt.savefig(os.path.join(path, "raster_plot.png"))    
 
 
 def firing_rates(path, name, begin, end):
@@ -314,7 +343,11 @@ def boxplot(path, populations):
     None
 
     """
-    fs = 18
+
+    
+    #fs=18
+    fig_size = (4,3) ## figure size (inch)
+    
     pop_names = [string.replace("23", "2/3") for string in populations]
     label_pos = list(range(len(populations), 0, -1))
     color_list = ["#af143c", "#595289"]
@@ -325,7 +358,25 @@ def boxplot(path, populations):
     for i in np.arange(len(populations))[::-1]:
         rates_per_neuron_rev.append(np.loadtxt(os.path.join(path, ("rate" + str(i) + ".dat"))))
 
-    plt.figure(figsize=(8, 6))
+    ######################
+    from matplotlib import rcParams
+    rcParams['figure.figsize']    = fig_size
+    rcParams['figure.dpi']        = 300
+    rcParams['font.family']       = 'sans-serif'
+    rcParams['font.size']         = 8
+    rcParams['legend.fontsize']   = 8
+    rcParams['axes.titlesize']    = 10
+    rcParams['axes.labelsize']    = 8
+    rcParams['ytick.labelsize']   = 8
+    rcParams['xtick.labelsize']   = 8
+    rcParams['ytick.major.size']  = 0   ## remove y ticks      
+    rcParams['text.usetex']       = True
+    rcParams['legend.framealpha'] = 1.0
+    rcParams['legend.edgecolor']  = 'k'
+
+    plt.figure(1)
+    plt.clf()
+    
     bp = plt.boxplot(
         rates_per_neuron_rev, 0, "rs", 0, medianprops=medianprops, meanprops=meanprops, meanline=True, showmeans=True
     )
@@ -345,10 +396,12 @@ def boxplot(path, populations):
         k = i % 2
         boxPolygon = Polygon(boxCoords, facecolor=color_list[k])
         plt.gca().add_patch(boxPolygon)
-    plt.ylabel("firing rate [spikes/s]", fontsize=fs)
-    plt.xticks(label_pos, pop_names, fontsize=fs)
-    plt.yticks(fontsize=fs)
-    plt.savefig(os.path.join(path, "box_plot.png"), dpi=300)
+    plt.xlabel(r'neuron population')
+    plt.ylabel("firing rate (spikes/s)")
+    plt.xticks(label_pos, pop_names)
+
+    plt.subplots_adjust(bottom=0.13,left=0.12,top=0.97,right=0.95)
+    plt.savefig(os.path.join(path, "box_plot.png"))
 
 
 def __gather_metadata(path, name):
