@@ -7,7 +7,10 @@ import time
 import nest
 import numpy as np
 
+## import model implementation
 from microcircuit import network
+
+## import (default) parameters (network, simulation, stimulus)
 from microcircuit.network_params import default_net_dict as net_dict
 from microcircuit.sim_params import default_sim_dict as sim_dict
 from microcircuit.stimulus_params import default_stim_dict as stim_dict
