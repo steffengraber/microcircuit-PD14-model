@@ -1,10 +1,8 @@
 # PyNEST implementation of the cortical microcircuit model 
 
-## Installation
+## Installing the python package `microcircuit`
 
-[TODO: revise]
-
-The PyNEST implementation of the model is contained in `microcircuit-PD14-model/PyNEST`:
+The PyNEST implementation of the model is provided in the form of a python package `microcircuit` and is contained in `microcircuit-PD14-model/PyNEST`:
   ```bash
   cd PyNEST
   ```
@@ -43,14 +41,12 @@ See also [example](examples/run_microcircuit.py).
 
 ## Hardware requirements
 
-[TODO: check and revise numbers]
-
-| `N_scaling`=`K_scaling`   | Memory    |
-|---------------------------|--------|
-| 0.1 (default)             |  484 MB |
-| 0.2                       | 1116 MB |
-| 0.5                       | 4382 MB |
-| 1                         |   16 GB? |
+| scaling factor (`N_scaling`=`K_scaling`)  | Memory    |
+|-------------------------------------------|-----------|
+| 0.1 (default)                             |  490 MB   |
+| 0.2                                       | 1200 MB   |
+| 0.5                                       | 4400 MB   |
+| 1                                         |   14 GB   |
 
 ## Implementation details
 
