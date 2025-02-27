@@ -16,6 +16,7 @@ We recommend installing the python package inside a python environment:
   ```
   source venv/bin/activate
   ```
+- Note: NEST needs to be installed locally in the virtual envirionment (see software requirements)
 
 The `microcircuit` python package can be installed using:
   ```bash
@@ -34,8 +35,8 @@ See also [example](examples/run_microcircuit.py).
   
 ## Software requirements
 
-- NEST 3.x (tested on NEST 3.8; see [NEST installation](https://nest-simulator.readthedocs.io/en/stable/installation))
-- Python 3.x (tested on Python 3.10)
+- NEST ([NEST installation](https://nest-simulator.readthedocs.io/en/stable/installation))
+- Python (tested on Python 3.10)
 
 - docopt-ng, matplotlib, numpy, psutil, ruamel.yaml (handled by python package dependencies)
 
@@ -54,7 +55,7 @@ This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.
 The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/stable/synapses/connectivity_concepts.html#random-fixed-total-number) connection rule in NEST. 
 The neuron dynamics is integrated in a time-driven manner using exact integration with a simulation step size `sim_resolution` ([Rotter & Diesmann (1999)]).
 
-The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git)
+The PyNEST implementation runs with [NEST 3.8](https://github.com/nest/nest-simulator.git)
 
 ### Simulation parameters (defaults)
 
