@@ -45,8 +45,6 @@ A detailed mathematical, implementation agnostic description of the model and it
 
 ## References
 
-[[1]] [Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)
-
 [1]: <https://doi.org/10.1093/cercor/bhs358> "Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806."
 
 [2]: <https://doi.org/10.3389/fnins.2018.00291> "van Albada et al. (2018). Performance Comparison of the Digital Neuromorphic Hardware SpiNNaker and the Neural Network Simulation Software NEST for a Full-Scale Cortical Microcircuit Model. Front. Neurosci. 12:291."
