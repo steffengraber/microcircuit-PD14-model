@@ -46,30 +46,43 @@ A detailed mathematical, implementation agnostic description of the model and it
 ## References
 
 [1]: <https://doi.org/10.1093/cercor/bhs358> "Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806."
+[Potjans & Diesmann (2014)]: [The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)
 
 [2]: <https://doi.org/10.3389/fnins.2018.00291> "van Albada et al. (2018). Performance Comparison of the Digital Neuromorphic Hardware SpiNNaker and the Neural Network Simulation Software NEST for a Full-Scale Cortical Microcircuit Model. Front. Neurosci. 12:291."
+[van Albada et al. (2018)]: [Performance Comparison of the Digital Neuromorphic Hardware SpiNNaker and the Neural Network Simulation Software NEST for a Full-Scale Cortical Microcircuit Model. Front. Neurosci. 12:291.](https://doi.org/10.3389/fnins.2018.00291)
 
 [3]: <https://doi.org/10.3389/fninf.2018.00002> "Jordan et al. (2018). Extremely scalable spiking neuronal network simulation code: from laptops to exascale computers. Frontiers in Neuroinformatics, 12, 317068."
+[Jordan et al. (2018)]: [Extremely scalable spiking neuronal network simulation code: from laptops to exascale computers. Frontiers in Neuroinformatics, 12, 317068.](https://doi.org/10.3389/fninf.2018.00002)
 
 [4]: <https://doi.org/10.1098/rsta.2019.0160> "Rhodes et al. (2020). Real-time cortical simulation on neuromorphic hardware. Philosophical Transactions of the Royal Society A, 378(2164), 20190160."
+[Rhodes et al. (2020)]: [Real-time cortical simulation on neuromorphic hardware. Philosophical Transactions of the Royal Society A, 378(2164), 20190160.](https://doi.org/10.1098/rsta.2019.0160)
 
 [5]: <https://doi.org/10.3389/fnins.2021.757790> "Dasbach et al. (2021). Dynamical characteristics of recurrent neuronal networks are robust against low synaptic weight resolution. Frontiers in Neuroscience, 15, 757790."
+[Dasbach et al. (2021)]: [Dynamical characteristics of recurrent neuronal networks are robust against low synaptic weight resolution. Frontiers in Neuroscience, 15, 757790.](https://doi.org/10.3389/fnins.2021.757790)
 
 [6]: <https://doi.org/10.3389/fninf.2022.837549> "Albers et al. (2022). A modular workflow for performance benchmarking of neuronal network simulations. Frontiers in neuroinformatics, 16, 837549."
+[Albers et al. (2022)]: [A modular workflow for performance benchmarking of neuronal network simulations. Frontiers in neuroinformatics, 16, 837549.](https://doi.org/10.3389/fninf.2022.837549)
 
 [7]: <https://doi.org/10.1088/2634-4386/ac55fc> "Kurth et al. (2022). Sub-realtime simulation of a neuronal network of natural density. Neuromorphic computing and engineering, 2(2), 021001."
+[Kurth et al. (2022)]: [Sub-realtime simulation of a neuronal network of natural density. Neuromorphic computing and engineering, 2(2), 021001.](https://doi.org/10.1088/2634-4386/ac55fc)
 
 [8]: <https://doi.org/10.3389/fnins.2021.728460> "Heittmann et al. (2022). Simulating the cortical microcircuit significantly faster than real time on the IBM INC-3000 neural supercomputer. Frontiers in Neuroscience, 15, 728460."
+[Heittmann et al. (2022)]: [Simulating the cortical microcircuit significantly faster than real time on the IBM INC-3000 neural supercomputer. Frontiers in Neuroscience, 15, 728460.](https://doi.org/10.3389/fnins.2021.728460)
 
 [9]: <https://doi.org/10.3389/fninf.2021.785068> "Pronold et al. (2022). Routing brain traffic through the von Neumann bottleneck: Parallel sorting and refactoring. Frontiers in Neuroinformatics, 15, 785068."
+[Pronold et al. (2022)]: [Routing brain traffic through the von Neumann bottleneck: Parallel sorting and refactoring. Frontiers in Neuroinformatics, 15, 785068.](https://doi.org/10.3389/fninf.2021.785068)
 
 [10]: <https://doi.org/10.1016/j.parco.2022.102952> "Pronold et al. (2022). Routing brain traffic through the von Neumann bottleneck: Efficient cache usage in spiking neural network simulation code on general purpose computers. Parallel computing, 113, 102952."
+[Pronold et al. (2022)]: [Routing brain traffic through the von Neumann bottleneck: Efficient cache usage in spiking neural network simulation code on general purpose computers. Parallel computing, 113, 102952.](https://doi.org/10.1016/j.parco.2022.102952)
 
 [11]: <https://doi.org/10.3390/app13179598> "Golosio et al.  (2023). Runtime Construction of Large-Scale Spiking Neuronal Network Models on GPU Devices. Applied Sciences, 13(17), 9598."
+[Golosio et al.  (2023)]: [Runtime Construction of Large-Scale Spiking Neuronal Network Models on GPU Devices. Applied Sciences, 13(17), 9598.](https://doi.org/10.3390/app13179598)
 
 [12]: <https://doi.org/10.3389/fncom.2023.1144143> "Kauth et al. (2023). neuroAIx-Framework: design of future neuroscience simulation systems exhibiting execution of the cortical microcircuit model 20× faster than biological real-time. Frontiers in Computational Neuroscience, 17, 1144143."
+[Kauth et al. (2023)]: [neuroAIx-Framework: design of future neuroscience simulation systems exhibiting execution of the cortical microcircuit model 20× faster than biological real-time. Frontiers in Computational Neuroscience, 17, 1144143.](https://doi.org/10.3389/fncom.2023.1144143)
 
 [13]: <https://doi.org/10.48550/arXiv.2412.02619> "Schmidt et al. (2024). Demonstrating the Advantages of Analog Wafer-Scale Neuromorphic Hardware. arXiv:2412.02619."
+[Schmidt et al. (2024)]: [Demonstrating the Advantages of Analog Wafer-Scale Neuromorphic Hardware. arXiv:2412.02619.](https://doi.org/10.48550/arXiv.2412.02619)
 
 ## License
 
