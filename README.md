@@ -5,8 +5,6 @@
 
 ## Overview
 
-[bla bla][0]
-
 This repository contains a detailed mathematical description and a reference implementation of the model of a cortical microcircuit proposed by [Potjans & Diesmann (2014)][1]. 
 The model describes the neuronal circuitry under ~1 mm$`^2`$ cortical surface. 
 It comprises four cortical layers (L2/3, L4, L5, L6), each represented by a randomly connected network of excitatory and inhibitory point neurons. 
@@ -46,9 +44,6 @@ A detailed mathematical, implementation agnostic description of the model and it
 | [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
 
 ## References
-
-[0]: < >
-Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806. [link](https://doi.org/10.1093/cercor/bhs358)
 
 [1]: <https://doi.org/10.1093/cercor/bhs358> "Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806."
 [Potjans & Diesmann (2014)]: [The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)
