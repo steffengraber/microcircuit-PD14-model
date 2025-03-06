@@ -55,7 +55,7 @@ This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.
 The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/stable/synapses/connectivity_concepts.html#random-fixed-total-number) connection rule in NEST. 
 The neuron dynamics is integrated in a time-driven manner using exact integration with a simulation step size `sim_resolution` ([Rotter & Diesmann (1999)][1]).
 
-The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git) ([Villamar, et al., (2023)][2])
+The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git) ([Villamar et al. (2023)][2])
 
 ### Simulation parameters (defaults)
 
@@ -69,8 +69,10 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 ## References
 
 [1]: <https://doi.org/10.1007/s004220050570> "Rotter & Diesmann (1999). Exact digital simulation of time-invariant linear systems with applications to neuronal modeling. Biological Cybernetics 81(5-6):381-402. doi:10.1007/s004220050570"
+[Rotter & Diesmann (1999)]: [Exact digital simulation of time-invariant linear systems with applications to neuronal modeling. Biological Cybernetics 81(5-6):381-402. doi:10.1007/s004220050570](https://doi.org/10.1007/s004220050570)
 
 [2]: <https://doi.org/10.5281/zenodo.8344932> "Villamar et al. (2023). NEST 3.6 (3.6). Zenodo. doi:10.5281/zenodo.8344932"
+[Villamar et al. (2023)]: [NEST 3.6 (3.6). Zenodo. doi:10.5281/zenodo.8344932](https://doi.org/10.5281/zenodo.8344932)
 
 License
 -------
