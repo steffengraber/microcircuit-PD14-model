@@ -47,10 +47,8 @@ A detailed mathematical, implementation agnostic description of the model and it
 
 ## References
 
-[0]: <>
-[Potjans & Diesmann (2014)](https://doi.org/10.1093/cercor/bhs358). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806. 
-
-[link](https://doi.org/10.1093/cercor/bhs358)
+[0]: < >
+Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806. [link](https://doi.org/10.1093/cercor/bhs358)
 
 [1]: <https://doi.org/10.1093/cercor/bhs358> "Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806."
 [Potjans & Diesmann (2014)]: [The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806.](https://doi.org/10.1093/cercor/bhs358)
