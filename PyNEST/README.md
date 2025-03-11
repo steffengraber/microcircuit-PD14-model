@@ -34,12 +34,13 @@ runs the unit test(s) in `microcircuit-PD14-model/PyNEST/tests`.
 
 ## Usage
 
-You can now import the python package `microcircuit` in your python applications
+After installation, the `microcircuit` python package can be imported in a python application using
 
 ```python
 import microcircuit
 ```
-See also [example](examples/run_microcircuit.py).
+
+See [this example](examples/run_microcircuit.py) for a more detailed illustration of how the package can be used.
   
 ## Software requirements
 
