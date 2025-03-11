@@ -44,9 +44,8 @@ A detailed mathematical, implementation agnostic description of the model and it
 | [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
 
 ## Contact
-
-- [Tom Tetzlaff](t.tetzlaff@fz-juelich.de)
 - [Johanna Senk](j.senk@fz-juelich.de)
+- [Tom Tetzlaff](t.tetzlaff@fz-juelich.de)
 
 ## References
 
