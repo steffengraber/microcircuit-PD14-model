@@ -28,7 +28,11 @@ A dictionary with parameters defining the simulation.
 
 import os
 
+<<<<<<< HEAD
 default_sim_dict = {
+=======
+sim_dict = {
+>>>>>>> 1883d326a147daaefcc52b064736596d8541c497
     # The full simulation time is the sum of a presimulation time and the main
     # simulation time.
     # presimulation time (in ms)

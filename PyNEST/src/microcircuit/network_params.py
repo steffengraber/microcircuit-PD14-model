@@ -29,6 +29,10 @@ parameters.
 
 import numpy as np
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1883d326a147daaefcc52b064736596d8541c497
 def get_exc_inh_matrix(val_exc, val_inh, num_pops):
     """Creates a matrix for excitatory and inhibitory values.
 
@@ -158,5 +162,8 @@ updated_dict = {
 }
 
 net_dict.update(updated_dict)
+<<<<<<< HEAD
 
 default_net_dict = net_dict
+=======
+>>>>>>> 1883d326a147daaefcc52b064736596d8541c497
