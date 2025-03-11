@@ -43,10 +43,6 @@ A detailed mathematical, implementation agnostic description of the model and it
 | &emsp;[`PyNEST/examples`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/examples) | example script illustrating usage of the python package |
 | [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
 
-## Contact
-- [Johanna Senk](j.senk@fz-juelich.de)
-- [Tom Tetzlaff](t.tetzlaff@fz-juelich.de)
-
 ## References
 
 [1]: <https://doi.org/10.1093/cercor/bhs358> "Potjans & Diesmann (2014). The cell-type specific cortical microcircuit: relating structure and activity in a full-scale spiking network model. Cerebral Cortex, 24(3), 785-806."
@@ -87,6 +83,10 @@ A detailed mathematical, implementation agnostic description of the model and it
 
 [13]: <https://doi.org/10.48550/arXiv.2412.02619> "Schmidt et al. (2024). Demonstrating the Advantages of Analog Wafer-Scale Neuromorphic Hardware. arXiv:2412.02619."
 [Schmidt et al. (2024). Demonstrating the Advantages of Analog Wafer-Scale Neuromorphic Hardware. arXiv:2412.02619.](https://doi.org/10.48550/arXiv.2412.02619)
+
+## Contact
+- [Johanna Senk](j.senk@fz-juelich.de)
+- [Tom Tetzlaff](t.tetzlaff@fz-juelich.de)
 
 ## License
 
