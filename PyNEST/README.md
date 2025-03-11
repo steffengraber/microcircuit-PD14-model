@@ -24,6 +24,14 @@ The `microcircuit` python package can be installed using:
   pip install .
   ```
 
+## Testing
+
+Executing
+```bash
+pytest
+```
+runs the unit test(s) in `microcircuit-PD14-model/PyNEST/tests`.
+
 ## Usage
 
 You can now import the python package `microcircuit` in your python applications
@@ -69,10 +77,10 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 ## References
 
 [1]: <https://doi.org/10.1007/s004220050570> "Rotter & Diesmann (1999). Exact digital simulation of time-invariant linear systems with applications to neuronal modeling. Biological Cybernetics 81(5-6):381-402. doi:10.1007/s004220050570"
-[Rotter & Diesmann (1999)]: [Exact digital simulation of time-invariant linear systems with applications to neuronal modeling. Biological Cybernetics 81(5-6):381-402. doi:10.1007/s004220050570](https://doi.org/10.1007/s004220050570)
+[Rotter & Diesmann (1999), Exact digital simulation of time-invariant linear systems with applications to neuronal modeling. Biological Cybernetics 81(5-6):381-402. doi:10.1007/s004220050570](https://doi.org/10.1007/s004220050570)
 
 [2]: <https://doi.org/10.5281/zenodo.8344932> "Villamar et al. (2023). NEST 3.6 (3.6). Zenodo. doi:10.5281/zenodo.8344932"
-[Villamar et al. (2023)]: [NEST 3.6 (3.6). Zenodo. doi:10.5281/zenodo.8344932](https://doi.org/10.5281/zenodo.8344932)
+[Villamar et al. (2023), NEST 3.6 (3.6). Zenodo. doi:10.5281/zenodo.8344932](https://doi.org/10.5281/zenodo.8344932)
 
 License
 -------
