@@ -61,9 +61,9 @@ See also [example](examples/run_microcircuit.py).
 
 This implementation uses the [`iaf_psc_exp`](https://nest-simulator.readthedocs.io/en/stable/models/iaf_psc_exp.html) neuron and the [`static_synapse`](https://nest-simulator.readthedocs.io/en/stable/models/static_synapse.html) synapse models provided in [NEST]. 
 The network is connected according to the [`fixed_total_number`](https://nest-simulator.readthedocs.io/en/stable/synapses/connectivity_concepts.html#random-fixed-total-number) connection rule in NEST. 
-The neuron dynamics is integrated in a time-driven manner using exact integration with a simulation step size `sim_resolution` ([Rotter & Diesmann (1999)][1]).
+The neuron dynamics is integrated in a time-driven manner using exact integration with a simulation step size `sim_resolution` [(Rotter & Diesmann, 1999)][1].
 
-The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git) ([Villamar et al. (2023)][2])
+The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simulator.git) [(Villamar et al., 2023)][2].
 
 ### Simulation parameters (defaults)
 
