@@ -28,7 +28,7 @@ In recent years, the model became an established Computational Neuroscience benc
 A detailed mathematical, implementation agnostic description of the model and its parameters is provided [here](docs/ModelDescription_microcircuit-PD14-model.pdf).
 
 ## Model implementations
-* [PyNEST](PyNEST/README.md)
+* [PyNEST](PyNEST/README.md) <a href="http://www.nest-simulator.org"> <img src="https://github.com/nest/nest-simulator/blob/master/doc/logos/nest-simulated.png" alt="NEST simulated" width="50"/></a>
 
 ## Repository contents
 
