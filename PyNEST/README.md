@@ -92,5 +92,5 @@ See LICENSE for details.
 ```
 SPDX-License-Identifier: GPL-2.0-or-later
 SPDX-Copyright: 2025, Forschungszentrum Jülich GmbH, Jülich, Germany
-SPDX-Author: Bender Bending Rodríguez <t.tetzlaff@fz-juelich.de, j.senk@fz-juelich.de>
+SPDX-Author: Johanna Senk <j.senk@fz-juelich.de>, Tom Tetzlaff <t.tetzlaff@fz-juelich.de>
 ```
