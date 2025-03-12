@@ -1,5 +1,8 @@
 # PyNEST implementation of the cortical microcircuit model 
 
+[![www.python.org](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org) 
+<a href="http://www.nest-simulator.org"> <img src="https://github.com/nest/nest-simulator/blob/master/doc/logos/nest-simulated.png" alt="NEST simulated" width="50"/></a> 
+
 ## Installing the python package `microcircuit`
 
 The PyNEST implementation of the model is provided in the form of a python package `microcircuit` and is contained in `microcircuit-PD14-model/PyNEST`:
