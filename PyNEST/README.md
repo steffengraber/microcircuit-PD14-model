@@ -86,11 +86,6 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 License
 -------
 
-This project is licensed under GNU General Public License v2.0 or later.
-See LICENSE for details.
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-```
-SPDX-License-Identifier: GPL-2.0-or-later
-SPDX-Copyright: 2025, Forschungszentrum Jülich GmbH, Jülich, Germany
-SPDX-Author: Johanna Senk <j.senk@fz-juelich.de>, Tom Tetzlaff <t.tetzlaff@fz-juelich.de>
-```
+This project is licensed under GNU General Public License v2.0 or later. See LICENSE for details.
