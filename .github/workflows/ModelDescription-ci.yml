@@ -39,4 +39,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: docs/ModelDescription_microcircuit-PD14-model.pdf
-          tag_name: v1.0.0
+          tag_name: latest_model_description
