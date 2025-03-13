@@ -84,6 +84,10 @@ A detailed mathematical, implementation agnostic description of the model and it
 [13]: <https://doi.org/10.48550/arXiv.2412.02619> "Schmidt et al. (2024). Demonstrating the Advantages of Analog Wafer-Scale Neuromorphic Hardware. arXiv:2412.02619."
 [Schmidt et al. (2024). Demonstrating the Advantages of Analog Wafer-Scale Neuromorphic Hardware. arXiv:2412.02619.](https://doi.org/10.48550/arXiv.2412.02619)
 
+## Contact
+- [Johanna Senk](mailto:j.senk@fz-juelich.de)
+- [Tom Tetzlaff](mailto:t.tetzlaff@fz-juelich.de)
+
 ## License
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]

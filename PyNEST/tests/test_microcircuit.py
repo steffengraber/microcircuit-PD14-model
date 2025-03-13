@@ -1,5 +1,5 @@
 '''
-testsuit for correct simulation
+Unit test including network creation, connection and simulation.
 '''
 
 #####################
@@ -28,6 +28,7 @@ def test_simulation():
     sim_dict['t_sim'] = 100.0 
 
     def run_simulation():
+        
         ## create instance of the network
         net = network.Network(sim_dict, net_dict, stim_dict)
 
