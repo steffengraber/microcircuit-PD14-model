@@ -22,7 +22,7 @@ jobs:
         with:
           root_file: ModelDescription_microcircuit-PD14-model.tex
           working_directory: docs
-          output_directory: docs
+          extra_system_packages: geometry float xcolor amsmath amssymb mathtools bm natbib diagbox enumitem multirow cleveref amsthm
 
       - name: List of out files
         run: ls -R docs
