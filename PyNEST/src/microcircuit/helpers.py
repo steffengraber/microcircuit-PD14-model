@@ -254,7 +254,7 @@ def plot_raster(path, name, begin, end, N_scaling):
     rcParams['ytick.labelsize']   = 8
     rcParams['xtick.labelsize']   = 8
     rcParams['ytick.major.size']  = 0   ## remove y ticks      
-    rcParams['text.usetex']       = True
+    rcParams['text.usetex']       = False 
     rcParams['legend.framealpha'] = 1.0
     rcParams['legend.edgecolor']  = 'k'
 
@@ -369,7 +369,7 @@ def boxplot(path, populations):
     rcParams['axes.labelsize']    = 8
     rcParams['ytick.labelsize']   = 8
     rcParams['xtick.labelsize']   = 8
-    rcParams['text.usetex']       = True
+    rcParams['text.usetex']       = False 
     rcParams['legend.framealpha'] = 1.0
     rcParams['legend.edgecolor']  = 'k'
 
