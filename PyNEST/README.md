@@ -52,7 +52,7 @@ See [this example](examples/run_microcircuit.py) for a more detailed illustratio
 
 - docopt-ng, matplotlib, numpy, psutil, ruamel.yaml (handled by python package dependencies)
 
-## Hardware requirements
+## Memory requirements
 
 | scaling factor (`N_scaling`=`K_scaling`)  | Memory    |
 |-------------------------------------------|-----------|
@@ -60,6 +60,9 @@ See [this example](examples/run_microcircuit.py) for a more detailed illustratio
 | 0.2                                       | 1200 MB   |
 | 0.5                                       | 4400 MB   |
 | 1                                         |   14 GB   |
+
+## Performance benchmarking
+Recent performance benchmarking results for the microcircuit model can be found [here](https://nest-test.readthedocs.io/en/neuron-docs/benchmark_results.html).
 
 ## Implementation details
 
