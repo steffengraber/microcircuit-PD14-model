@@ -48,7 +48,7 @@ See [this example](examples/run_microcircuit.py) for a more detailed illustratio
 ## Software requirements
 
 - NEST ([NEST installation](https://nest-simulator.readthedocs.io/en/stable/installation))
-- Python (tested on Python 3.10)
+- Python 3.x
 
 - docopt-ng, matplotlib, numpy, psutil, ruamel.yaml (handled by python package dependencies)
 
