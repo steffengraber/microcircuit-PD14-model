@@ -1,7 +1,4 @@
 # Cortical microcircuit model (Potjans & Diesmann, 2014)
-[![www.python.org](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org) 
-<a href="http://www.nest-simulator.org"> <img src="https://github.com/nest/nest-simulator/blob/master/doc/logos/nest-simulated.png" alt="NEST simulated" width="50"/></a> 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Overview
 
@@ -37,11 +34,13 @@ A detailed mathematical, implementation agnostic description of the model and it
 
 |  |  | 
 |--|--|
-| [`docs`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/docs) | model description (implementation agnostic)|
-| [`PyNEST`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST) | PyNEST implementation (python package)|
-| &emsp;[`PyNEST/src/microcircuit`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/src/microcircuit) | source code |
-| &emsp;[`PyNEST/examples`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/PyNEST/examples) | example script illustrating usage of the python package |
-| [`figures`](https://github.com/INM-6/microcircuit-PD14-model/tree/main/figures) | overview figures |
+| [`docs`](docs) | model description (implementation agnostic)|
+| [`PyNEST`](PyNEST) | PyNEST implementation (python package)|
+| &emsp;[`PyNEST/src/microcircuit`](PyNEST/src/microcircuit) | source code |
+| &emsp;[`PyNEST/examples`](PyNEST/examples) | examples illustrating usage of the python package |
+| &emsp;[`PyNEST/reference_data`](PyNEST/reference_data) | reference spike data |
+| &emsp;[`PyNEST/tests`](PyNEST/tests) | unit tests |
+| [`figures`](figures) | overview figures |
 
 ## References
 
