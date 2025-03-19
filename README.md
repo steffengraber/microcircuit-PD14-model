@@ -88,7 +88,7 @@ A detailed mathematical, implementation agnostic description of the model and it
 - [Tom Tetzlaff](mailto:t.tetzlaff@fz-juelich.de)
 
 ## Contribute
-We welcome contributions to our code and documentation. For bug reports, feature requests, documentation improvements, or other issues, you can create a [GitHub issue](https://github.com/INM-6/microcircuit-PD14-model/issues/new/choose).
+We welcome contributions to the documentation and the code. For bug reports, feature requests, documentation improvements, or other issues, please create a [GitHub issue](https://github.com/INM-6/microcircuit-PD14-model/issues/new/choose).
 
 ## License
 
