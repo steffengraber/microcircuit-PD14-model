@@ -1,5 +1,8 @@
 # PyNEST implementation of the cortical microcircuit model 
 
+[![www.python.org](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org) 
+<a href="http://www.nest-simulator.org"> <img src="https://github.com/nest/nest-simulator/blob/master/doc/logos/nest-simulated.png" alt="NEST simulated" width="50"/></a> 
+
 ## Installing the python package `microcircuit`
 
 The PyNEST implementation of the model is provided in the form of a python package `microcircuit` and is contained in `microcircuit-PD14-model/PyNEST`:
@@ -34,21 +37,22 @@ runs the unit test(s) in `microcircuit-PD14-model/PyNEST/tests`.
 
 ## Usage
 
-You can now import the python package `microcircuit` in your python applications
+After installation, the `microcircuit` python package can be imported in a python application using
 
 ```python
 import microcircuit
 ```
-See also [example](examples/run_microcircuit.py).
+
+See [this example](examples/run_microcircuit.py) for a more detailed illustration of how the package can be used.
   
 ## Software requirements
 
 - NEST ([NEST installation](https://nest-simulator.readthedocs.io/en/stable/installation))
-- Python (tested on Python 3.10)
+- Python 3.x
 
 - docopt-ng, matplotlib, numpy, psutil, ruamel.yaml (handled by python package dependencies)
 
-## Hardware requirements
+## Memory requirements
 
 | scaling factor (`N_scaling`=`K_scaling`)  | Memory    |
 |-------------------------------------------|-----------|
@@ -56,6 +60,9 @@ See also [example](examples/run_microcircuit.py).
 | 0.2                                       | 1200 MB   |
 | 0.5                                       | 4400 MB   |
 | 1                                         |   14 GB   |
+
+## Performance benchmarking
+Recent performance benchmarking results for the microcircuit model can be found [here](https://nest-test.readthedocs.io/en/neuron-docs/benchmark_results.html).
 
 ## Implementation details
 
@@ -85,11 +92,6 @@ The PyNEST implementation runs with [NEST 3.6](https://github.com/nest/nest-simu
 License
 -------
 
-This project is licensed under GNU General Public License v2.0 or later.
-See LICENSE for details.
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-```
-SPDX-License-Identifier: GPL-2.0-or-later
-SPDX-Copyright: 2025, Forschungszentrum Jülich GmbH, Jülich, Germany
-SPDX-Author: Bender Bending Rodríguez <t.tetzlaff@fz-juelich.de, j.senk@fz-juelich.de>
-```
+This project is licensed under GNU General Public License v2.0 or later. See LICENSE for details.

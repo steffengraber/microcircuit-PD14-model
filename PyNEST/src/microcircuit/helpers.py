@@ -1,24 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-# helpers.py
-#
-# This file is part of NEST.
-#
-# Copyright (C) 2004 The NEST Initiative
-#
-# NEST is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
-# (at your option) any later version.
-#
-# NEST is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with NEST.  If not, see <http://www.gnu.org/licenses/>.
-
 """PyNEST Microcircuit: Helper Functions
 -------------------------------------------
 
@@ -37,7 +16,6 @@ if "DISPLAY" not in os.environ:
     import matplotlib
 
     matplotlib.use("Agg")
-
 
 def num_synapses_from_conn_probs(conn_probs, popsize1, popsize2):
     """Computes the total number of synapses between two populations from
@@ -285,7 +263,6 @@ def plot_raster(path, name, begin, end, N_scaling):
     plt.subplots_adjust(bottom=0.13,left=0.12,top=0.97,right=0.95)
     plt.savefig(os.path.join(path, "raster_plot.png"))    
 
-
 def firing_rates(path, name, begin, end):
     """Computes mean and standard deviation of firing rates per population.
 
@@ -345,9 +322,7 @@ def boxplot(path, populations):
 
     """
 
-
-    fig_size = (4,3) ## figure size (inch)
-    
+    fig_size = (4,3) ## figure size (inch)    
     pop_names = [string.replace("23", "2/3") for string in populations]
     label_pos = list(range(len(populations), 0, -1))
     color_list = ["#af143c", "#595289"]
@@ -395,13 +370,13 @@ def boxplot(path, populations):
         k = i % 2
         boxPolygon = Polygon(boxCoords, facecolor=color_list[k])
         plt.gca().add_patch(boxPolygon)
+        
     plt.xlabel(r'neuron population')
     plt.ylabel("firing rate (spikes/s)")
     plt.xticks(label_pos, pop_names)
 
     plt.subplots_adjust(bottom=0.13,left=0.12,top=0.97,right=0.95)
     plt.savefig(os.path.join(path, "box_plot.png"))
-
 
 def __gather_metadata(path, name):
     """Reads names and ids of spike recorders and first and last ids of
