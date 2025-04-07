@@ -11,6 +11,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Polygon
+import json
 
 if "DISPLAY" not in os.environ:
     import matplotlib
@@ -460,3 +461,28 @@ def __load_spike_times(path, name, begin, end):
         high = np.searchsorted(data_i_raw["time_ms"], v=end, side="right")
         data[i] = data_i_raw[low:high]
     return sd_names, node_ids, data
+
+##########################################################################
+def dict2json(dictionary,filename):
+    '''
+    Writes python dictionary to json file.
+
+    Arguments:
+    ----------
+    dictionary: dict
+                Python dictionary.
+
+    filename: str
+              Name of json file.
+
+    Returns:
+    --------
+    -
+
+    '''
+    to_list = lambda x: x.tolist() if isinstance(x, np.ndarray) else str(x)
+
+    with open(filename, 'w') as file:
+        json.dump(dictionary, file, indent=4, default=to_list)
+        
+##########################################################################

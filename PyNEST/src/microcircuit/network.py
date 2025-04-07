@@ -105,6 +105,38 @@ class Network:
         nest.Prepare()
         nest.Cleanup()
 
+    def store_metadata(self):
+        if self.sim_dict['store_metadata']:
+            print(
+f"""
+
+####################################################################
+
+Storing simulation metadata to {self.sim_dict['data_path']}
+
+####################################################################
+
+"""
+            )
+
+            ### parameters
+            helpers.dict2json(self.sim_dict, self.sim_dict['data_path'] + '/' + 'sim_dict.json')
+            helpers.dict2json(self.stim_dict, self.sim_dict['data_path'] + '/' + 'stim_dict.json')
+            helpers.dict2json(self.net_dict, self.sim_dict['data_path'] + '/' + 'net_dict.json')
+
+            ### nodes (populations, readout neurons, recording/stimulus devices)
+            nodes = {}
+            for i, pop in enumerate(self.pops):
+                pop_name = self.net_dict['populations'][i]
+                nodes[str(pop_name)] = pop.tolist()
+
+            for i, spike_recorder in enumerate(self.spike_recorders):
+                pop_name = self.net_dict['populations'][i]
+                nodes[f'spike_recorder_{pop_name}'] = spike_recorder.tolist()
+
+            helpers.dict2json(nodes, self.sim_dict['data_path'] + '/' + 'nodes.json')
+
+
     def simulate(self, t_sim):
         """Simulates the microcircuit.
 
