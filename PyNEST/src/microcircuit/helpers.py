@@ -462,6 +462,131 @@ def __load_spike_times(path, name, begin, end):
         data[i] = data_i_raw[low:high]
     return sd_names, node_ids, data
 
+#################################################
+def get_data_file_list(path, label):
+    '''
+    Searches for files with extension "*.dat" in directory "path" with names starting with "label", 
+    and returns list of file names.
+
+    Arguments
+    ---------
+    path:           str
+                    Path to folder containing spike files.
+
+    label:          str
+                    Spike file label (file name root).
+
+    Returns
+    -------
+    files:          list(str)
+                    List of file names
+
+
+    '''
+ 
+    ## get list of files names
+    files = []
+    for file_name in os.listdir(path):
+        if file_name.endswith('.dat') and file_name.startswith(label):
+            files += [file_name]
+    files.sort()
+    
+    assert len(files)>0 ,'No files of type "%s*.dat" found in path "%s".' % (label,path)
+
+    return files
+
+
+#################################################
+def load_spike_data(path, label, time_interval = None, pop = None, skip_rows = 3):        
+    '''
+    Load spike data from files.
+
+    Arguments
+    ---------
+    path:           str
+                    Path to folder containing spike files.
+
+    label:          str
+                    Spike file label (file name root).
+
+    time_interval:  None (default) or tuple (optional)
+                    Start and stop of observation interval (ms). All spikes outside this interval are discarded.
+                    If None, all recorded spikes are loaded.
+
+    pop:            None (default), list, or nest.NodeCollection (optional)
+                    Oberserved neuron population. All spike senders that are not part of this population are discarded.
+                    If None, all recorded spikes are loaded.
+
+    skip_rows:      int (optional)
+                    Number of rows to be skipped while reading spike files (to remove file headers). The default is 3.
+
+    Returns
+    -------
+    spikes:   numpy.ndarray
+              Lx2 array of spike senders spikes[:,0] and spike times spikes[:,1] (L = number of spikes).
+
+    '''
+
+    if type(time_interval) == tuple:
+        print('Loading spike data in interval (%.1f ms, %.1f ms] ...' % (time_interval[0], time_interval[1]) )
+    else:
+        print('Loading spike data...')        
+
+    files = get_data_file_list(path, label)
+    
+    ## open spike files and read data
+    spikes = []
+    for file_name in files:
+        try:
+            buf = np.loadtxt('%s/%s' % (path,file_name),skiprows=skip_rows) ## load spike file while skipping the header            
+            if buf.shape[0]>0:
+                if buf.shape == (2,):
+                    buf = np.reshape(buf, (1,2))  ## needs to be reshaped to 2-dimensional array in case there is only a single row
+                spikes += [buf] 
+        except:
+            print('Error: %s' % sys.exc_info()[1])
+            print('Remove non-numeric entries from file %s (e.g. in file header) by specifying (optional) parameter "skip_rows".\n' % (file_name))
+
+    if len(spikes)>1:
+        spikes = np.concatenate(spikes)
+    elif len(spikes)==1:
+        spikes = np.array(spikes[0])
+    elif len(spikes)==0:
+        spikes = np.array([])
+        
+    spike_dict = {}
+    
+    if spikes.shape == (0,):
+        print("WARNING: No spikes contained in %s/%s*." % (path,label))
+        spike_dict['senders'] = np.array([])
+        spike_dict['times'] = np.array([])        
+    else:
+        ## extract spikes in specified time interval
+        if time_interval != None:
+            if type(time_interval) == tuple:
+                ind = (spikes[:,1]>=time_interval[0]) * (spikes[:,1]<=time_interval[1]) 
+                spikes = spikes[ind,:]
+            else:
+                print("Warning: time_interval must be a tuple or None. All spikes are loaded.")
+
+        if type(pop) == nest.NodeCollection or type(pop) == list:
+            spikes_subset = []
+            for cn,nid in enumerate(pop):  ## loop over all neurons
+                print("Spike extraction from %d/%d (%d%%) neurons completed" % (cn+1, len(pop), 1.*(cn+1)/len(pop)*100), end = '\r')            
+                ind = np.where(spikes[:,0] == nid)[0]
+                spikes_subset += list(spikes[ind,:])
+            spikes = np.array(spikes_subset)
+        elif pop == None:
+            pass
+        else:
+            print("Warning: pop must be a list, a NEST NodeCollection, or None. All spikes are loaded.")
+        print()
+
+        spike_dict['senders'] = spikes[:,0]
+        spike_dict['times'] = spikes[:,1]
+    
+    return spike_dict
+
 ##########################################################################
 def dict2json(dictionary,filename):
     '''
@@ -485,4 +610,303 @@ def dict2json(dictionary,filename):
     with open(filename, 'w') as file:
         json.dump(dictionary, file, indent=4, default=to_list)
         
+##########################################################################
+def json2dict(filename):
+    '''
+    Read python dictionary from json file.
+
+    Arguments:
+    ----------
+    filename: str
+              Name of json file.
+
+    Returns:
+    --------
+    dictionary: dict
+                Python dictionary.
+
+    '''
+    
+    with open(filename, 'r') as file:
+        dictionary = json.load(file)
+
+    return dictionary
+
+#################################################
+def truncate_spike_data(spikes, interval):
+    '''
+    Extracts spike data from a specified time interval (including left an right bound).
+
+    Parameters:
+    -----------
+
+    spikes:                dict
+                           Dictionary containing 'senders' IDs and spike 'times'.
+
+    interval:              tuple
+                           Tuple containing left and right bound of time interval.
+
+    Returns:
+    --------
+
+    spikes_trunc:          dict
+                           Truncated spike data.
+
+    '''
+    
+    assert(type(spikes) == dict)
+    assert('senders' in spikes)
+    assert('times' in spikes)        
+    assert(len(spikes['senders'])==len(spikes['times']))
+        
+    ind1=np.where(spikes['times'] >= interval[0])[0]
+    ind2=np.where(spikes['times'][ind1] <= interval[1])[0]
+
+    spikes_trunc = {}
+    spikes_trunc['senders']=spikes['senders'][ind2]
+    spikes_trunc['times']=spikes['times'][ind2]    
+    
+    return spikes_trunc
+
+#################################################
+def time_averaged_single_neuron_firing_rates(spikes, pop, interval):
+    '''
+    Computes single-neuron firing rates for a specified population of neurons,
+    averaged across a speficied time interval.
+
+    Parameters:
+    -----------
+    spikes:                dict
+                           Dictionary containing 'senders' IDs and spike 'times'.
+
+    pop:                   numpy.ndarray
+                           Array of IDs of observed neurons.
+
+    interval:              tuple
+                           Tuple containing left and right bound of time interval (ms).
+
+    Returns:
+    --------
+    rates:                 numpy.ndarray
+                           List of time averaged single neuron firing rates (spikes/s).
+
+    '''
+    assert(type(spikes) == dict)
+    assert('senders' in spikes)
+    assert('times' in spikes)        
+    assert(len(spikes['senders'])==len(spikes['times']))
+
+    spikes = truncate_spike_data(spikes, interval)
+    
+    rates = []    
+    D=(interval[1]-interval[0])
+    for n in pop:        
+        rates += [ len(np.where(spikes['senders'] == n)[0]) * 1./D * 1e3]
+    return np.array(rates)
+
+#################################################
+def single_neuron_isi_cvs(spikes, pop, interval):    
+    '''
+    Computes coefficient of variation (CV) of inter-spike intervals (ISIs)
+    for each neuron in the specified population within a given observation time interval.
+
+    Parameters:
+    -----------
+    spikes:                dict
+                           Dictionary containing 'senders' IDs and spike 'times'.
+
+    pop:                   numpy.ndarray
+                           Array of IDs of observed neurons.
+
+    interval:              tuple
+                           Tuple containing left and right bound of observation time interval (ms).
+
+    Returns:
+    --------
+    cvs:                   numpy.ndarray
+                           Array of single neuron ISI CVs.
+
+    '''
+
+    assert(type(spikes) == dict)
+    assert('senders' in spikes)
+    assert('times' in spikes)        
+    assert(len(spikes['senders'])==len(spikes['times']))
+    
+    spikes = truncate_spike_data(spikes, interval)
+
+    cvs = []
+    for n in pop:
+        ind = np.where(spikes['senders'] == n)
+        spike_times = spikes['times'][ind]
+        if len(spike_times) > 2:            
+            intervals = np.diff(spike_times)
+            cvs += [np.std(intervals)/np.mean(intervals)]
+
+    return np.array(cvs)
+
+#################################################
+def generate_spike_counts(spikes, pop, interval, binsize):    
+    '''
+    Converts spike data into spike-count signals.
+    
+    Parameters:
+    -----------
+    spikes:                dict
+                           Dictionary containing 'senders' IDs and spike 'times'.
+
+    pop:                   numpy.ndarray
+                           Array of IDs of observed neurons.
+
+    interval:              tuple
+                           Tuple containing left and right bound of observation time interval (ms).
+
+    binsize:               float
+                           Bin size (ms).
+
+    Returns:
+    --------
+    spike_counts:          numpy.ndarray
+                           Array of spike-count signals for all neurons in specified population.
+                           dim(spike_counts) = (number of neurons in pop, number of bins)
+
+    times:                 numpy.ndarray
+                           Time grid.
+    '''
+
+    assert(type(spikes) == dict)
+    assert('senders' in spikes)
+    assert('times' in spikes)        
+    assert(len(spikes['senders'])==len(spikes['times']))
+    
+    times = np.arange(interval[0],interval[1]+binsize,binsize)
+    spike_counts = []
+    for n in pop:
+        ind = np.where(spikes['senders']==n)
+        spike_times = spikes['times'][ind]
+        spike_counts += [list(np.histogram(spike_times, times)[0])]
+        
+    spike_counts = np.array(spike_counts)
+    return spike_counts, times   
+
+#################################################
+def pairwise_spike_count_correlations(spikes, pop, interval, binsize):    
+    '''
+    Computes pairwise spike-count correlation coefficients.
+    
+    Parameters:
+    -----------
+    spikes:                dict
+                           Dictionary containing 'senders' IDs and spike 'times'.
+
+    pop:                   numpy.ndarray
+                           Array of IDs of observed neurons.
+
+    interval:              tuple
+                           Tuple containing left and right bound of observation time interval (ms).
+
+    binsize:               float
+                           Bin size (ms).
+
+    Returns:
+    --------
+    ccs:                   numpy.ndarray
+                           Array of spike-count correlation coefficients for all pairs of neurons in specified population.
+
+    '''
+
+    assert(type(spikes) == dict)
+    assert('senders' in spikes)
+    assert('times' in spikes)        
+    assert(len(spikes['senders'])==len(spikes['times']))
+    
+    spikes=truncate_spike_data(spikes, interval)
+    
+    spike_counts, times = generate_spike_counts(spikes, pop, interval, binsize)
+    
+    ## calculate correlation coefficients for each pair
+    cc_matrix=np.corrcoef(spike_counts)
+
+    ## extract elements above diagonal
+    ccs=[]    
+    for cn, n in enumerate(pop):
+        ccs+=list(cc_matrix[cn,cn+1:])
+
+    ccs=np.array(ccs)
+    ind = np.where(np.isnan(ccs))
+    ccs = np.delete(ccs,ind)
+
+    return np.array(ccs)
+
+#################################################
+def data_distribution(data, label, unit='', hist_bin=None):
+    '''
+    Calculates distribution (histogram) of a given data array, and basic statistics.
+
+    Parameters:
+    -----------
+    data:      numpy.ndarray
+               Data samples.
+
+    label:     str
+               Data type (name).
+
+    unit:      str
+               Data unit.
+
+    hist_bin   None or float
+               Bin width for calculation of histogram.
+               None (default): Use Freedman-Diaconis estimator.
+
+    Returns:
+    --------
+
+    data_hist: numpy.ndarray
+               Histogram of data.
+
+    bins:      numpy.ndarray
+               Histogram bins.
+
+    stats:     dict
+               Dictionary containing basic data statistics.
+
+    '''
+
+    assert(len(data)>0)
+
+    stat = {}
+
+    stat['sample_size'] = len(data)
+    #stat['samples']     = data.tolist()
+    stat['mean']        = np.mean(data).item()
+    stat['median']      = np.median(data).item()
+    stat['min']         = np.min(data).item()
+    stat['max']         = np.max(data).item()
+    stat['sd']          = np.std(data).item()
+
+    print()
+    print('%s statistics:' % label)    
+    print('\tsample size = %d'      % (stat['sample_size']        ))
+    print('\tmean        = %.3f %s' % (stat['mean']        , unit ))
+    print('\tmedian      = %.3f %s' % (stat['median']      , unit ))
+    print('\tSD          = %.3f %s' % (stat['sd']          , unit ))
+    print('\tmin         = %.3f %s' % (stat['min']         , unit ))
+    print('\tmax         = %.3f %s' % (stat['max']         , unit ))
+
+    ## histogram
+    if hist_bin == None:
+        print()
+        print('\tUsing Freedman-Diaconis estimator for histogram binsize.')
+        print()
+        bins = 'fd'  ## Freedman Diaconis estimator
+    else:
+        if hist_bin>0:
+            bins = np.arange(stat['min'] - hist_bin, stat['max'] + 1.1 * hist_bin, hist_bin)
+        else:
+            bins = np.array([0,stat['min'],2*stat['min']])
+            
+    data_hist, bins = np.histogram(data,bins=bins)    
+    
+    return data_hist, bins[:-1], stat
+
 ##########################################################################
