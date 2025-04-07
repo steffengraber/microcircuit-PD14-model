@@ -39,4 +39,6 @@ default_sim_dict = {
     # print the time progress. This should only be used when the simulation
     # is run on a local machine.
     "print_time": True,
+    # store meta data
+    "store_metadata": True,
 }

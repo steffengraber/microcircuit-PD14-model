@@ -50,6 +50,9 @@ def main():
     net.simulate(sim_dict["t_sim"])
     time_simulate = time.time()
 
+    ## store metadata
+    net.store_metadata()
+
     ## current memory consumption of the python process (in MB)
     import psutil
     mem = psutil.Process().memory_info().rss / (1024 * 1024)
