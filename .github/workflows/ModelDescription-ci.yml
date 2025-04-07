@@ -22,7 +22,7 @@ jobs:
         with:
           root_file: ModelDescription_microcircuit-PD14-model.tex
           working_directory: docs
-          extra_system_packages: libreoffice
+          #extra_system_packages: libreoffice
 
       - name: List of out files
         run: ls -R docs
@@ -33,10 +33,3 @@ jobs:
         with:
           name: ModelDescription_microcircuit-PD14-model
           path: docs/ModelDescription_microcircuit-PD14-model.pdf
-
-      - name: Upload Release of model description
-        id: upload-release-asset
-        uses: softprops/action-gh-release@v2
-        with:
-          files: docs/ModelDescription_microcircuit-PD14-model.pdf
-          tag_name: latest_model_description
