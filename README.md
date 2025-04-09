@@ -21,7 +21,7 @@ Specifically, the model demonstrates that the observed cell-type and layer speci
 
 *Sketch of the cortical microcircuit model (left), spiking activity (middle) and distributions of time averaged single-neuron firing rates across neurons in each subpopulation (right). Adapted from ([van Albada et al., 2018][2])*
 
-In recent years, the model became an established Computational Neuroscience benchmark for various soft- and hardware architectures ([van Albada et al., 2018][2]; [Jordan et al., 2018][3]; [Rhodes et al., 2020][4]; [Dasbach et al., 2021][5]; [Albers et al., 2022][6]; [Kurth et al., 2022][7]; [Heittmann et al., 2022][8]; [Pronold et al., 2022][9]; [Pronold et al., 2022][10]; [Golosio et al., 2023][11]; [Kauth et al., 2023][12]; [Schmidt et al., 2024][13]).
+In recent years, the model became an established Computational Neuroscience benchmark for various soft- and hardware architectures ([van Albada et al., 2018][2]; [Jordan et al., 2018][3]; [Rhodes et al., 2020][4]; [Dasbach et al., 2021][5]; [Albers et al., 2022][6]; [Kurth et al., 2022][7]; [Heittmann et al., 2022][8]; [Pronold et al., 2022][9]; [Pronold et al., 2022][10]; [Golosio et al., 2023][11]; [Kauth et al., 2023][12]; [Schmidt et al., 2024][13]). A list of studies using the microcircuit model is provided [here](publications.bib).
 
 ## Model description
 
@@ -40,6 +40,7 @@ A detailed mathematical, implementation agnostic description of the model and it
 | &emsp;[`PyNEST/examples`](PyNEST/examples) | examples illustrating usage of the python package |
 | &emsp;[`PyNEST/reference_data`](PyNEST/reference_data) | reference spike data |
 | &emsp;[`PyNEST/tests`](PyNEST/tests) | unit tests |
+| [`publications.bib`](publications.bib) | publications using the microciruit model |
 | [`figures`](figures) | overview figures |
 
 ## References
