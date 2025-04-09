@@ -40,7 +40,7 @@ A detailed mathematical, implementation agnostic description of the model and it
 | &emsp;[`PyNEST/examples`](PyNEST/examples) | examples illustrating usage of the python package |
 | &emsp;[`PyNEST/reference_data`](PyNEST/reference_data) | reference spike data |
 | &emsp;[`PyNEST/tests`](PyNEST/tests) | unit tests |
-| [`publications.bib`](publications.bib) | publications using the microciruit model |
+| [`publications.bib`](publications.bib) | publications using the microcircuit model |
 | [`figures`](figures) | overview figures |
 
 ## References
