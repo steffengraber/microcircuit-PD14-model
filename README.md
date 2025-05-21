@@ -23,7 +23,7 @@ Specifically, the model demonstrates that the observed cell-type and layer speci
 
 In recent years, the model became an established Computational Neuroscience benchmark for various soft- and hardware architectures ([van Albada et al., 2018][2]; [Jordan et al., 2018][3]; [Rhodes et al., 2020][4]; [Dasbach et al., 2021][5]; [Albers et al., 2022][6]; [Kurth et al., 2022][7]; [Heittmann et al., 2022][8]; [Pronold et al., 2022][9]; [Pronold et al., 2022][10]; [Golosio et al., 2023][11]; [Kauth et al., 2023][12]; [Schmidt et al., 2024][13]). 
 
-A list of studies *using* the microcircuit model is provided [here](publications.bib). Feel free to contact us in case publications are missing in this list.
+A list of studies citing and/or using the microcircuit model is provided [here](publications.bib) (studies *using* the model are tagged by `uses_PD14 = {yes}`). Feel free to contact us in case publications are missing in this list.
 
 ## Model description
 
