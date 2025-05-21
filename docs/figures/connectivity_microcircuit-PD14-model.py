@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+##
+## SPDX-License-Identifier: CC-BY-NC-SA-4.0
+##
+
 """
 Created on Tue Oct 31 12:01:38 2023
 
