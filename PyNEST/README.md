@@ -94,4 +94,4 @@ License
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-This project is licensed under GNU General Public License v2.0 or later. See LICENSE for details.
+This project is licensed under GNU General Public License v2.0 or later.  For details, see [here](../LICENSES/GPL-2.0-or-later.txt).
