@@ -101,4 +101,7 @@ The material in this repository is subject to different licenses:
 
 - The material inside the `PyNEST` folder is licensed under the GNU General Public License v2.0 or later ([![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)). For details, see [here](LICENSES/GPL-2.0-or-later.txt).
 
+[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+[cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
