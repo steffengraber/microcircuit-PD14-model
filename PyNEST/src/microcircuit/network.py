@@ -442,6 +442,7 @@ Storing simulation metadata to {self.sim_dict['data_path']}
 
         dc_dict = {
             "amplitude": dc_amp_stim,
+            #"amplitude": self.DC_amp,
             "start": self.stim_dict["dc_start"],
             "stop": self.stim_dict["dc_start"] + self.stim_dict["dc_dur"],
         }
