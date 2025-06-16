@@ -52,6 +52,12 @@ log = logging.getLogger()
 logging.basicConfig(level=logging.INFO)
 
 def run_example():
+
+    ## set network scale
+    scaling_factor = 0.1
+    net_dict["N_scaling"] = scaling_factor
+    net_dict["K_scaling"] = scaling_factor
+
     time_start = time.time()
 
     ###############################################################################
