@@ -103,9 +103,12 @@ net_dict = {
     # relative standard deviation of the delay of excitatory and
     # inhibitory connections
     "delay_rel_std": 0.5,
+    # type of background (cortico-cortical) input
+    #"bg_input_type": "poisson",
+    "bg_input_type": "dc",
     # turn Poisson input on or off (True or False)
     # if False: DC input is applied for compensation
-    "poisson_input": True,
+    #"poisson_input": True,
     # indegree of external connections to the different populations (same order
     # as in 'populations')
     "K_ext": np.array([1600, 1500, 2100, 1900, 2000, 1900, 2900, 2100]),
