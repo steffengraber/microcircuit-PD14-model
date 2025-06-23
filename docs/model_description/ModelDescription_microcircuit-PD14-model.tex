@@ -824,7 +824,7 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
   %%% 
 \item \label{remark:downscaling} The implementation contains, besides the original full-scale model of \citet{Potjans14}, a downscaled version, which can run on a desktop computer. This is controlled by the parameters \texttt{N\_scaling} and \texttt{K\_scaling} in the network parameters file. The first parameter scales the number of neurons, whereas the second parameter scales the number of synapses per neuron or in-degree. The scaling happens on both, inter-population and external connectivity.
 \par
-Downscaling the in-degree $K$ changes the mean and variance of the synaptic input currents. In order to avoid this, one can choose the new synaptic weights $J^{*}$ in such a way that together with a compensation current these effects are compensated. For the full-scale model we have
+Downscaling the in-degree $K_{\mathcal{C}_x}$ changes the mean and variance of the synaptic input currents. In order to avoid this, one can choose the new synaptic weights $J^{*}$ in such a way that together with a compensation current these effects are compensated. For the full-scale model we have
 \begin{equation*}
   \begin{aligned}
     \mu &= \tauS K J r \, ,\\
@@ -835,7 +835,7 @@ where $K$ is the in-degree, $J$ the synaptic weight and $r$ the firing rate. For
 \begin{equation*}
   \begin{aligned}
     \mu^{*} &= \tauS K^{*} J^{*} r + \mu_{0}\, ,\\
-    \sigma^{2*} &= \tauS K^{*} (J^{*})^2 r\, .
+    (\sigma^{*})^{2} &= \tauS K^{*} (J^{*})^2 r\, .
   \end{aligned}
 \end{equation*}
 Here, $K^{*}=f K$ with some factor $0<f<1$, and $\mu_{0}$ is a compensation current. Comparing the equations of the variance we find $J^{*}=J/\sqrt{f}$. Inserting this in the equation of the mean and solving for the compensation current $\mu_{0}$ we find
@@ -843,13 +843,13 @@ Here, $K^{*}=f K$ with some factor $0<f<1$, and $\mu_{0}$ is a compensation curr
   \mu_{0} = \tauS \left(1 - \sqrt{f}\right) K J r\, .
 \end{equation*}
 There are other ways to downscale the model, for more details see \citep{vanAlbada15}.
-\item \label{remark:DC_stim} In the original model of \citet{Potjans14}, the cortico-cortical inputs are modeled as independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate $\nu_{\mathcal{C}_{x}} = K_{\mathcal{C}_{x}}\nu_{\mathcal{C}}$, filtered by an exponential kernel $\text{PSC}(t)$ with time constant $\tauS$ and amplitude $\bar{I}$. 
+\item \label{remark:DC_stim} In the original model of \citet{Potjans14}, the cortico-cortical inputs are modeled as independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate $\nu_{\mathcal{C}_{x}} = K_{\mathcal{C}_{x}}\nu_{\mathcal{C}}$, filtered by an exponential kernel $\text{PSC}(t)$ with time constant $\tauS$ and amplitude $\bar{I}_{\mathcal{C}}$. 
 Here, $K_{\mathcal{C}_{x}}$ denotes the cortico-cortical in-degree and $\nu_{\mathcal{C}}$ a constant rate.
 DC inputs are computationally less expensive, exactly reproducible, and lead to similar network activity statistics.
 When replacing Poissonian input spikes $s(t)$ by DC inputs, the current implementation preserves the mean input current
 \begin{equation*}
     I_{\mathcal{C}} = (\langle s \rangle * \text{PSC})(t)
-    = \bar{I} \nu_{\mathcal{C}} \tauS\, .
+    = \bar{I}_{\mathcal{C}} \nu_{\mathcal{C}} \tauS\, .
 \end{equation*}
 \item \label{remark:initial_conditions} The original model of \citet{Potjans14} uses population \emph{unspecific} normal distributions of initial membrane potentials.
 By default, the current implementation uses population \emph{specific} initial membrane potential distributions instead to speed up convergence to the stationary state.
