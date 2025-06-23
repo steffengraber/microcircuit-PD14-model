@@ -205,12 +205,12 @@ def adjust_weights_and_input_to_synapse_scaling(
     indegree_matrix = full_num_synapses / full_num_neurons[:, np.newaxis]
     input_rec = np.sum(mean_PSC_matrix * indegree_matrix * full_mean_rates, axis=1)
 
-    DC_amp_new = DC_amp + 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_rec # why square root?
+    DC_amp_new = DC_amp + 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_rec 
 
-    #if poisson_input:
-    if bg_input_type == "poisson":
-        input_ext = PSC_ext * K_ext * bg_rate
-        DC_amp_new += 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_ext
+    #if bg_input_type == "poisson":
+    input_ext = PSC_ext * K_ext * bg_rate
+    DC_amp_new += 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_ext
+
     return PSC_matrix_new, PSC_ext_new, DC_amp_new
 
 

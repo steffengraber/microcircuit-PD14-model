@@ -276,6 +276,9 @@ Storing simulation metadata to {self.sim_dict['data_path']}
         self.weight_ext = PSC_ext
         self.DC_amp = DC_amp
 
+        # Compute the mean and variance of synaptic current and print out
+        # J K r, J^2 K r
+        
         # thalamic input
         if self.stim_dict["thalamic_input"]:
             num_th_synapses = helpers.num_synapses_from_conn_probs(
