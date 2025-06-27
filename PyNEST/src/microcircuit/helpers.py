@@ -207,9 +207,9 @@ def adjust_weights_and_input_to_synapse_scaling(
 
     DC_amp_new = DC_amp + 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_rec 
 
-    #if bg_input_type == "poisson":
-    input_ext = PSC_ext * K_ext * bg_rate
-    DC_amp_new += 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_ext
+    if bg_input_type == "poisson":
+        input_ext = PSC_ext * K_ext * bg_rate
+        DC_amp_new += 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_ext
 
     return PSC_matrix_new, PSC_ext_new, DC_amp_new
 
