@@ -54,9 +54,11 @@ logging.basicConfig(level=logging.INFO)
 def run_example():
 
     ## set network scale
-    scaling_factor = 0.1
+    scaling_factor = 0.12
     net_dict["N_scaling"] = scaling_factor
     net_dict["K_scaling"] = scaling_factor
+
+    sim_dict['data_path'] = 'data_scale_%.2f/' % scaling_factor
 
     time_start = time.time()
 
