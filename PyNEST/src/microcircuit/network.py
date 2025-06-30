@@ -94,7 +94,8 @@ class Network:
         if self.net_dict["bg_input_type"] == "poisson":
             self.__create_poisson_bg_input()
         #if self.stim_dict["dc_input"]:
-        elif self.net_dict["bg_input_type"] == "dc":
+        if self.stim_dict["dc_input_ext"]:
+        #elif self.net_dict["bg_input_type"] == "dc":
             self.__create_dc_stim_input()
         if self.stim_dict["thalamic_input"]:
             self.__create_thalamic_stim_input()
@@ -125,7 +126,8 @@ class Network:
         if self.net_dict["bg_input_type"] == "poisson":
             self.__connect_poisson_bg_input()
         #if self.stim_dict["dc_input"]:
-        elif self.net_dict["bg_input_type"] == "dc":
+        if self.stim_dict["dc_input_ext"]:
+        #elif self.net_dict["bg_input_type"] == "dc":
             self.__connect_dc_stim_input()
         if self.stim_dict["thalamic_input"]:
             self.__connect_thalamic_stim_input()
@@ -275,9 +277,6 @@ Storing simulation metadata to {self.sim_dict['data_path']}
         self.weight_matrix_mean = PSC_matrix_mean
         self.weight_ext = PSC_ext
         self.DC_amp = DC_amp
-
-        # Compute the mean and variance of synaptic current and print out
-        # J K r, J^2 K r
         
         # thalamic input
         if self.stim_dict["thalamic_input"]:
@@ -447,16 +446,16 @@ Storing simulation metadata to {self.sim_dict['data_path']}
         The final amplitude is the ``stim_dict['dc_amp'] * net_dict['K_ext']``.
 
         """
-        #dc_amp_stim = self.stim_dict["dc_amp"] * self.net_dict["K_ext"]
+        dc_amp_stim = self.stim_dict["dc_amp"] * self.net_dict["K_ext"]
 
         if nest.Rank() == 0:
             print("Creating DC generators for external stimulation.")
 
         dc_dict = {
-            #"amplitude": dc_amp_stim,
-            "amplitude": self.DC_amp,
-            #"start": self.stim_dict["dc_start"],
-            #"stop": self.stim_dict["dc_start"] + self.stim_dict["dc_dur"],
+            "amplitude": dc_amp_stim,
+            #"amplitude": self.DC_amp,
+            "start": self.stim_dict["dc_start"],
+            "stop": self.stim_dict["dc_start"] + self.stim_dict["dc_dur"],
         }
         self.dc_stim_input = nest.Create("dc_generator", n=self.num_pops, params=dc_dict)
 
