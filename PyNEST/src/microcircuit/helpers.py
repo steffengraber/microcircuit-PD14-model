@@ -203,7 +203,7 @@ def adjust_weights_and_input_to_synapse_scaling(
 
     # recurrent input of full network
     indegree_matrix = full_num_synapses / full_num_neurons[:, np.newaxis]
-    input_rec = np.sum(mean_PSC_matrix * indegree_matrix * full_mean_rates, axis=1)
+    input_rec = np.sum(mean_PSC_matrix * indegree_matrix * full_mean_rates, axis=1) # local input currents in full scale network
 
     DC_amp_new = DC_amp + 0.001 * tau_syn * (1.0 - np.sqrt(K_scaling)) * input_rec 
 
