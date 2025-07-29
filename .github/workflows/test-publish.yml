@@ -1,0 +1,52 @@
+name: Test Publish to TestPyPI
+
+on:
+  # Trigger on pushes to main branch
+  push:
+    branches: [ main, add-packaging ]
+  # Trigger on pull requests
+  pull_request:
+    branches: [ main ]
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  test-publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+        
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+        
+    - name: Build package
+      run: python -m build
+      working-directory: ./PyNEST
+      
+    - name: Check package
+      run: python -m twine check PyNEST/dist/*
+      
+    - name: Publish to TestPyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TESTPYPI_API_TOKEN }}
+      run: |
+        python -m twine upload --repository testpypi PyNEST/dist/* --verbose
+        
+    - name: Test installation from TestPyPI
+      run: |
+        # Wait a bit for TestPyPI to process the upload
+        sleep 30
+        # Install from TestPyPI
+        pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ microcircuit-pd14
+        # Test import
+        python -c "import microcircuit; print(f'Successfully imported microcircuit version {microcircuit.__version__}')"
