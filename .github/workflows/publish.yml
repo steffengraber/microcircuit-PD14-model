@@ -46,7 +46,7 @@ jobs:
         # Install the built package
         pip install PyNEST/dist/*.whl
         # Test NEST availability
-        python -c "import nest; print(f'NEST version: {nest.version()}')"
+        python -c "import nest; print(f'NEST version: {nest.__version__}')"
         # Test import
         python -c "import microcircuit; print(f'Successfully imported microcircuit version {microcircuit.__version__}')"
       
