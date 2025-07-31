@@ -74,7 +74,7 @@ jobs:
         python -m twine check PyNEST/dist/*
       
     - name: Publish to TestPyPI
-      if: github.event_name != 'pull_request' && github.repository_owner == 'INM-6'
+      if: github.event_name != 'pull_request'
       run: |
         source $HOME/miniconda/bin/activate nest-env
         cd PyNEST
@@ -84,7 +84,6 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.TESTPYPI_API_TOKEN }}
         
     - name: Test installation from TestPyPI
-      if: github.event_name != 'pull_request' && github.repository_owner == 'INM-6'
       run: |
         source $HOME/miniconda/bin/activate nest-env
         # Wait a bit for TestPyPI to process the upload
