@@ -22,7 +22,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 [project]
-name = "microcircuit-pd14"
+name = "microcircuit"
 description = "PyNEST implementation of the cortical microcircuit model of Potjans & Diesmann (2014)."
 dynamic = ["version"]
 readme = "README.md"
