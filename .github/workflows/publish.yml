@@ -12,39 +12,59 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       
-    - name: Setup Miniconda
-      uses: conda-incubator/setup-miniconda@835234971496cad1653abb28a638a281cf32541f
+    - name: Setup Python
+      uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
       with:
-        auto-update-conda: true
         python-version: '3.11'
-        channels: conda-forge
-        channel-priority: strict
-        conda-remove-defaults: true
-        activate-environment: build-env
+        
+    - name: Setup Miniconda
+      run: |
+        # Download and install Miniconda
+        # Pin Miniconda version and verify checksum
+        MINICONDA_VERSION=py311_24.1.2-0
+        MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh"
+        MINICONDA_SHA256="b2c1e1e7e7e1e9e7e1e7e1e7e1e7e1e7e1e7e1e7e1e7e1e7e1e7e1e7e1e7e1e7" # Replace with actual SHA256
+        wget "$MINICONDA_URL" -O miniconda.sh
+        echo "$MINICONDA_SHA256  miniconda.sh" | sha256sum -c -
+        bash miniconda.sh -b -p $HOME/miniconda
+        export PATH="$HOME/miniconda/bin:$PATH"
+        echo "$HOME/miniconda/bin" >> $GITHUB_PATH
+        # Initialize conda for this shell session
+        eval "$($HOME/miniconda/bin/conda shell.bash hook)"
+        # Configure conda
+        conda config --set channel_priority strict
+        conda config --add channels conda-forge
+        conda config --set auto_activate_base false
         
     - name: Install NEST Simulator
-      shell: bash -l {0}
       run: |
+        source $HOME/miniconda/bin/activate
+        conda create -n nest-env python=3.11 -y
+        conda activate nest-env
         conda install -c conda-forge nest-simulator -y
+        echo "CONDA_DEFAULT_ENV=nest-env" >> $GITHUB_ENV
+        echo "$HOME/miniconda/envs/nest-env/bin" >> $GITHUB_PATH
         
     - name: Install build dependencies
-      shell: bash -l {0}
       run: |
+        source $HOME/miniconda/bin/activate nest-env
         python -m pip install --upgrade pip
         pip install build twine
         
     - name: Build package
-      shell: bash -l {0}
-      run: python -m build
+      run: |
+        source $HOME/miniconda/bin/activate nest-env
+        python -m build
       working-directory: ./PyNEST
       
     - name: Check package
-      shell: bash -l {0}
-      run: python -m twine check PyNEST/dist/*
+      run: |
+        source $HOME/miniconda/bin/activate nest-env
+        python -m twine check PyNEST/dist/*
       
     - name: Test package before publishing
-      shell: bash -l {0}
       run: |
+        source $HOME/miniconda/bin/activate nest-env
         # Install the built package
         pip install PyNEST/dist/*.whl
         # Test NEST availability
@@ -53,9 +73,9 @@ jobs:
         python -c "import microcircuit; print(f'Successfully imported microcircuit version {microcircuit.__version__}')"
       
     - name: Publish to PyPI
-      shell: bash -l {0}
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
+        source $HOME/miniconda/bin/activate nest-env
         python -m twine upload PyNEST/dist/* --verbose
