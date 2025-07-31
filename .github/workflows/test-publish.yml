@@ -2,8 +2,8 @@ name: Test Publish to TestPyPI
 
 on:
   # Trigger on pushes to main branch
-  push:
-    branches: [ main, add-packaging ]
+  # push:
+  #  branches: [ main, add-packaging ]
   # Trigger on pull requests
   pull_request:
     branches: [ main ]
