@@ -2,8 +2,8 @@ name: Test Publish to TestPyPI
 
 on:
   # Trigger on pushes to main branch
-  # push:
-  #  branches: [ main, add-packaging ]
+  push:
+    branches: [ main, add-packaging ]
   # Trigger on pull requests
   pull_request:
     branches: [ main ]
@@ -74,7 +74,7 @@ jobs:
         python -m twine check PyNEST/dist/*
       
     - name: Publish to TestPyPI
-      if: github.repository_owner == 'INM-6'
+      if: github.event_name != 'pull_request' && github.repository_owner == 'INM-6'
       run: |
         source $HOME/miniconda/bin/activate nest-env
         cd PyNEST
@@ -84,6 +84,7 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.TESTPYPI_API_TOKEN }}
         
     - name: Test installation from TestPyPI
+      if: github.event_name != 'pull_request' && github.repository_owner == 'INM-6'
       run: |
         source $HOME/miniconda/bin/activate nest-env
         # Wait a bit for TestPyPI to process the upload
