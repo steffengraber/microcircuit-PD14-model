@@ -23,7 +23,6 @@ jobs:
     - name: Setup Miniconda
       run: |
         # Download and install Miniconda
-        # Get correct SHA256 for Miniconda3-py311_24.1.2-0-Linux-x86_64.sh
         MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-py311_24.1.2-0-Linux-x86_64.sh"
         wget "$MINICONDA_URL" -O miniconda.sh
         # Verify download succeeded
@@ -77,6 +76,11 @@ jobs:
         python -c "import microcircuit; print(f'Successfully imported microcircuit version {microcircuit.__version__}')"
         
     - name: Publish to PyPI
-      uses: pypa/gh-action-pypi-publish@ec4db0b4ddc65acdf4bff5fa45ac92d78b56bdf0  # v1.9.0
-      with:
-        packages-dir: PyNEST/dist/
+      if: github.repository_owner == 'expected-owner'
+      run: |
+        source $HOME/miniconda/bin/activate nest-env
+        cd PyNEST
+        python -m twine upload dist/*
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
