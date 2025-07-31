@@ -23,7 +23,7 @@ jobs:
         # Pin Miniconda version and verify checksum
         MINICONDA_VERSION=py311_24.1.2-0
         MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh"
-        MINICONDA_SHA256="c9ae82568e9665b1105117b4b1e499607d2a920f0aea6f94410e417a0eff1b9c"
+        MINICONDA_SHA256="3f2e5498e550a6437f15d9cc8020d52742d0ba70976ee8fce4f0daefa3992d2e"
         wget "$MINICONDA_URL" -O miniconda.sh
         echo "$MINICONDA_SHA256  miniconda.sh" | sha256sum -c -
         bash miniconda.sh -b -p $HOME/miniconda
