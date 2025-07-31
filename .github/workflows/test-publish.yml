@@ -74,7 +74,7 @@ jobs:
         python -m twine check PyNEST/dist/*
       
     - name: Publish to TestPyPI
-      if: github.repository_owner == 'expected-owner'
+      if: github.repository_owner == 'INM-6'
       run: |
         source $HOME/miniconda/bin/activate nest-env
         cd PyNEST

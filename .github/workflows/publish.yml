@@ -76,7 +76,7 @@ jobs:
         python -c "import microcircuit; print(f'Successfully imported microcircuit version {microcircuit.__version__}')"
         
     - name: Publish to PyPI
-      if: github.repository_owner == 'expected-owner'
+      if: github.repository_owner == 'INM-6'
       run: |
         source $HOME/miniconda/bin/activate nest-env
         cd PyNEST
