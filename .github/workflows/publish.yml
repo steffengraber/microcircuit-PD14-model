@@ -19,6 +19,8 @@ jobs:
         python-version: '3.11'
         channels: conda-forge
         channel-priority: strict
+        conda-remove-defaults: true
+        activate-environment: build-env
         
     - name: Install NEST Simulator
       shell: bash -l {0}
