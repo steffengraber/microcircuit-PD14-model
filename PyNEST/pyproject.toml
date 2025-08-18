@@ -118,6 +118,11 @@ doc = [
     "sphinx",
     "sphinx-autodoc-typehints",
     "pygments",
+    "myst-parser",
+    "sphinx-design",
+    "sphinx-material",
+    "sphinx-gallery",
+    "sphinxcontrib-bibtex",
     "recommonmark",
 ]
 
