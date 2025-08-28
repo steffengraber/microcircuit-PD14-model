@@ -12,8 +12,8 @@
 :maxdepth: 1
 :hidden:
 
-detailed_description.md
-implementation.md
+model_description.md
+pynest_implementation.md
 publications/publications.md
 ```
 
