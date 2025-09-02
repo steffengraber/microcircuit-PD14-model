@@ -1,4 +1,4 @@
-%%
+%
 %% SPDX-License-Identifier: CC-BY-NC-SA-4.0
 %%
 
@@ -77,7 +77,7 @@ pdfkeywords={}
 
 \title{Detailed description of the \\ cortical microcircuit model \citep{Potjans14}}
 \author{}
-\date{}
+\date{last update: \today}
 \maketitle
 \thispagestyle{empty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -822,57 +822,69 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
 
 \begin{enumerate}
   %%% 
-\item \label{remark:downscaling} The implementation contains, besides the original full-scale model of \citet{Potjans14}, a downscaled version, which can run on a desktop computer. This is controlled by the parameters \texttt{N\_scaling} and \texttt{K\_scaling} in the network parameters file. The first parameter scales the number of neurons, whereas the second parameter scales the number of synapses per neuron or in-degree. The scaling happens on both, inter-population and external connectivity.
-\par
-Downscaling the in-degree $K$ changes the mean and variance of the synaptic input currents. In order to avoid this, one can choose the new synaptic weights $\bar{I}_{i,x}^{*}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}, x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}, \mathcal{C}_{y}\}$) in such a way that together with a compensation current these effects are compensated. For the full-scale model we have
-\begin{equation*}
-  \begin{aligned}
-    \mu_{i} &= I_{\text{rec},i} + I_{\text{ext}, i} = \tauS \sum_{x} K_{i,x} \bar{I}_{i,x} \nu_{x} \, ,\\
-    \sigma^2_{i} &= \sigma^{2}_{\text{rec},i} + \sigma^{2}_{\text{ext}, i} = \tauS \sum_{x} K_{i,x} \bar{I}_{i,x}^{2} \nu_{x} \, ,
-  \end{aligned}
-\end{equation*}
-where $K_{i,x}$ is the in-degree, $\bar{I}_{i, x}$ the synaptic weight and $\nu_{x}$ the mean firing rate. For the downscaled model we have
-\begin{equation*}
-  \begin{aligned}
-    \mu^{*}_{i} &= \tauS \sum_{x} K_{i,x}^{*} \bar{I}_{i,x}^{*} \nu_{x} + \mu_{i,0}\, ,\\
-    (\sigma^{*})^{2} &= \tauS \sum_{x} K_{i,x}^{*} (\bar{I}_{i,x}^{*})^{2} \nu_{x}\, .
-  \end{aligned}
-\end{equation*}
-Here, $K^{*}_{i,x}=f K_{i,x}$ with some factor $0<f<1$. Comparing the equations of the variance we find $\bar{I}_{i,x}^{*}=\bar{I}_{i,x}/\sqrt{f}$, if we want to leave fluctuations invariant. We have also a constant compensation current $\mu_{i,0}$ to leave also the mean input current invariant. Inserting this in the equation of the mean and solving for the compensation current $\mu_{i,0}$ we find
-\begin{equation*}
-  \mu_{i,0} = \tauS \left(1 - \sqrt{f}\right) \sum_{x} K_{i,x} \bar{I}_{i,x} \nu_{x}\, .
-\end{equation*}
-There are other ways to downscale the model, for more details see \citep{vanAlbada15}.
-Note that this derivation assumes that all spike-trains are stationary Poissonian inputs (for downscaling with DC inputs see remark \ref{remark:downscaling_dc}).\\
-The scaling and compensation current are implemented in the PyNEST implementation provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}.
-
-\item \label{remark:DC_stim} In the original model of \citet{Potjans14}, the cortico-cortical inputs are modeled as independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate $\nu_{\mathcal{C}_{x}} = K_{\mathcal{C}_{x}}\nu_{\mathcal{C}}$, filtered by an exponential kernel $\text{PSC}(t)$ with time constant $\tauS$ and amplitude $\bar{I}_{y,\mathcal{C}}$ ($\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\}$). 
-Here, $K_{\mathcal{C}_{x}}$ denotes the cortico-cortical in-degree and $\nu_{\mathcal{C}}$ a constant rate.
-DC inputs are computationally less expensive, exactly reproducible, and lead to similar network activity statistics.
-When replacing cortico-cortical input spikes $s(t)$ by DC inputs, the current implementation preserves the mean input current
-\begin{equation*}
+\item \label{remark:downscaling}
+  In the PyNEST implementation, the model size can be configured by the parameters \texttt{N\_scaling} and \texttt{K\_scaling}, which
+  scale  the number of neurons in the network and the number of synapses per neuron (in-degree), respectively. 
+  The original full-scale model corresponds to \texttt{N\_scaling=1} and \texttt{K\_scaling=1} (default).
+  Downscaling the model enables running the model on a desktop computer.
+  The scaling of the synapse number affects both connections within the local network and external (cortico-cortical) inputs.
+  %% 
+  \par
+  Without any compensation, downscaling the in-degree would change the mean and the variance of the synaptic input currents.
+  In order to avoid this, one can choose the new synaptic weights $\bar{I}_{i,x}^{*}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}, x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}, \mathcal{C}_{y}\}$) in such a way that together with a compensation current these effects are compensated. For the full-scale model we have
+  \begin{equation*}
+    \begin{aligned}
+      \mu_{i} &= I_{\text{rec},i} + I_{\text{ext}, i} = \tauS \sum_{x} K_{i,x} \bar{I}_{i,x} \nu_{x} \, ,\\
+      \sigma^2_{i} &= \sigma^{2}_{\text{rec},i} + \sigma^{2}_{\text{ext}, i} = \tauS \sum_{x} K_{i,x} \bar{I}_{i,x}^{2} \nu_{x} \, ,
+    \end{aligned}
+  \end{equation*}
+  where $K_{i,x}$ is the in-degree, $\bar{I}_{i, x}$ the synaptic weight and $\nu_{x}$ the mean firing rate. For the downscaled model we have
+  \begin{equation*}
+    \begin{aligned}
+      \mu^{*}_{i} &= \tauS \sum_{x} K_{i,x}^{*} \bar{I}_{i,x}^{*} \nu_{x} + \mu_{i,0}\, ,\\
+      (\sigma^{*})^{2} &= \tauS \sum_{x} K_{i,x}^{*} (\bar{I}_{i,x}^{*})^{2} \nu_{x}\, .
+    \end{aligned}
+  \end{equation*}
+  Here, $K^{*}_{i,x}=f K_{i,x}$ with some factor $0<f<1$. Comparing the equations of the variance we find $\bar{I}_{i,x}^{*}=\bar{I}_{i,x}/\sqrt{f}$, if we want to leave fluctuations invariant. We have also a constant compensation current $\mu_{i,0}$ to leave also the mean input current invariant. Inserting this in the equation of the mean and solving for the compensation current $\mu_{i,0}$ we find
+  \begin{equation*}
+    \mu_{i,0} = \tauS \left(1 - \sqrt{f}\right) \sum_{x} K_{i,x} \bar{I}_{i,x} \nu_{x}\, .
+  \end{equation*}
+  There are other ways to downscale the model, for more details see \citep{vanAlbada15}.
+  Note that this derivation assumes that all spike-trains are stationary Poissonian inputs (for downscaling with DC inputs see remark \ref{remark:downscaling_dc}).\\
+  The scaling and compensation current are implemented in the PyNEST implementation provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}.
+  %%% 
+\item \label{remark:DC_stim}
+  In the original model of \citet{Potjans14}, the cortico-cortical inputs are modeled as independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate $\nu_{\mathcal{C}_{x}} = K_{\mathcal{C}_{x}}\nu_{\mathcal{C}}$, filtered by an exponential kernel $\text{PSC}(t)$ with time constant $\tauS$ and amplitude $\bar{I}_{y,\mathcal{C}}$ ($\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\}$). 
+  Here, $K_{\mathcal{C}_{x}}$ denotes the cortico-cortical in-degree and $\nu_{\mathcal{C}}$ a constant rate.
+  In the implementation provided here, these Poissonian inputs are replaced by constant external currents (DC).
+  DC inputs are computationally less expensive, exactly reproducible, and lead to similar network activity statistics.
+  When replacing cortico-cortical input spikes $s(t)$ by DC inputs, the current implementation preserves the mean input current
+  \begin{equation*}
     I_{\mathcal{C}} = (\langle s \rangle * \text{PSC})(t)
     = \bar{I}_{y, \mathcal{C}} \nu_{\mathcal{C}} \tauS\, .
-\end{equation*}
-
-\item \label{remark:downscaling_dc} In remark \ref{remark:DC_stim} one can find the expression for the DC amplitude to keep the same mean input current as in the Poissonian case. With cortico-cortical inputs modeled as DC currents, the current amplitude of the downscaled model is given by
-\begin{equation*}
-  I_{\text{DC},i}^{*} = I_{\text{DC},i} + (1 - \sqrt{f}) I_{\text{rec},i}\, ,
-\end{equation*}
-(see remark \ref{remark:downscaling}). 
-To ensure the downscaled network is activated by the cortico-cortical input, the current amplitude $I_{\text{DC},i}^{*}$ of the downscaled model needs to exceed the rheobase current, i.e.
-\begin{equation*}
-  I_{\text{rh},i} = \frac{\Theta - E_{\text{L}}}{\RM} \leq I_{\text{DC},i}^{*}\, .
-\end{equation*} 
-which allows us to compute the minimal downscaling factor $f_{\text{min}}$ as
-\begin{equation*}
-  f_{\text{min}} = \left(1 - \frac{I_{\text{rh}, i} - I_{\text{ext},i}}{-\vert I_{\text{rec},i}\vert}\right)^{2}\, .
-\end{equation*}
-
+  \end{equation*}
+  %%% 
+\item \label{remark:downscaling_dc}
+  With cortico-cortical inputs modeled as DC currents, the DC amplitude of the downscaled model is given by
+  \begin{equation*}
+    I_{\text{DC},i}^{*} = I_{\text{DC},i} + (1 - \sqrt{f}) I_{\text{rec},i}\, ,
+  \end{equation*}
+  (see remark \ref{remark:downscaling}). 
+  To ensure the downscaled network is activated by the cortico-cortical input, the DC amplitude $I_{\text{DC},i}^{*}$ of the downscaled model needs to exceed the rheobase current, i.e.
+  \begin{equation*}
+    I_{\text{rh},i} = \frac{\Theta - E_{\text{L}}}{\RM} \leq I_{\text{DC},i}^{*}\, .
+  \end{equation*}
+  All populations $i$ with
+  \begin{equation*}
+    f < f_{\text{min},i} = \left(1 - \frac{I_{\text{rh}, i} - I_{\text{ext},i}}{-\vert I_{\text{rec},i}\vert}\right)^{2},
+  \end{equation*}
+  are not activated by the cortico-cortical inputs (neurons in these populations may still fire due to local inputs from other populations of the microcircuit).
+  %%% 
 \item \label{remark:initial_conditions} The original model of \citet{Potjans14} uses population \emph{unspecific} normal distributions of initial membrane potentials.
 By default, the current implementation uses population \emph{specific} initial membrane potential distributions instead to speed up convergence to the stationary state.
 In the reference implementation, the type of initial conditions can be set by the parameter \texttt{V0\_type} (\texttt{"optimized"} [default] or \texttt{"original"}).
 In \citep{Senk25_arxiv}, the population specific initial conditions are refered to as \emph{amended} initial conditions.
+  %%% 
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
