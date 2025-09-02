@@ -11,9 +11,10 @@ build:
     build:
       pdf:
         - echo "building pdf $READTHEDOCS_OUTPUT"
-        - pdflatex -interaction=nonstopmode -recorder --jobname="microcircuit-pd14-model"  "docs/model_description/ModelDescription_microcircuit-PD14-model.tex"
-        - pdflatex -interaction=nonstopmode -recorder --jobname="microcircuit-pd14-model"  "docs/model_description/ModelDescription_microcircuit-PD14-model.tex"
-        - cp microcircuit-pd14-model.pdf _readthedocs/html/_static/
+        - cd docs/model_description/
+        - pdflatex -interaction=nonstopmode -recorder --jobname="microcircuit-pd14-model"  "ModelDescription_microcircuit-PD14-model.tex"
+        - pdflatex -interaction=nonstopmode -recorder --jobname="microcircuit-pd14-model"  "ModelDescription_microcircuit-PD14-model.tex"
+        - cp microcircuit-pd14-model.pdf ../../_readthedocs/html/_static/
         - ls _readthedocs/html/_static
 sphinx:
   builder: html
