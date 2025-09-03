@@ -140,19 +140,18 @@ It does not contain any information on specific numerical implementations.
   \hline 
   \textbf{Name} & \textbf{Elements} & \textbf{Size}\\
   \hline
-  \parbox{\linewidth}{
-  \vspace{0.5ex}
-  cortical subpopulations\\
-  $x \in \{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\}$
-  \vspace{0.5ex}
-  } & LIF & $N_{x}$\\
+  cortical populations & LIF & $N_{x}$ \\
+  $x \in \{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\}$ & & \\
   \hline 
-  total network $\mathcal{P} = \bigcup_{x} x$ & LIF & \parbox{\linewidth}{\vspace{0.5ex}$N= \sum_{x} N_{x}$\\ (see remark \ref{remark:network_scaling})\vspace{0.5ex}}\\
+  total network $\mathcal{P} = \bigcup_{x} x$ & LIF & $N= \sum_{x} N_{x}$\\
+  & & (see remark \ref{remark:network_scaling})\\
+  \hline
+  cortico-cortical subpopulations $\mathcal{C}_{x}$ & population specific constant currents & $N_{x}$ \\
+  \hline
+  total population of cortico-cortical inputs & population specific constant currents & $N= \sum_{x} N_{x}$ \\
+  $\mathcal{C} = \bigcup_{x} \mathcal{C}_x$ & & \\ 
   \hline 
    thalamic inputs $\mathcal{T}$ & realizations of Poisson point process & $N_{\mathcal{T}}$ \\
-   \hline
-   %cortico-cortical inputs $\mathcal{C}=\bigcup_{y}\mathcal{C}_{y}$ & population specific constant currents & $N = \sum_{y} N_{y}$
-   cortico-cortical inputs $\mathcal{C}_{x}$ & population specific constant currents & $N_{x}$ \\
   \hline 
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%
@@ -173,27 +172,28 @@ It does not contain any information on specific numerical implementations.
   |@{\hspace*{\marg}}p{0.6\textwidth-2.\marg}@{\hspace*{\marg}}
   |}
   \hline 
-  \multicolumn{3}{|>{\color{white}\columncolor{black}}c|}{
-  \textbf{Connectivity}
-  }\\
-  \hline 
-	\textbf{Source} & \textbf{Target} & \textbf{Pattern}\\
+  \multicolumn{3}{|>{\color{white}\columncolor{black}}c|}{\textbf{Connectivity}}\\
   \hline
-   $x \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
-                            \begin{itemize}[align=left,leftmargin=*]
+  \textbf{Source} & \textbf{Target} & \textbf{Pattern}\\
+  \hline
+  $x \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
+                            \vspace{-1ex}                                                                                  
+                            \begin{itemize}[topsep=0pt,leftmargin=*]
 				    \item random, fixed total number $Q_{yx}$ of connections\cref{def:random_fixed_total_number} (see remark \ref{remark:network_scaling})
                             \item synaptic weights $J_{ij}$ ($\forall{}i\in y, j\in x$)
                             \item spike-transmission delays $d_{ij}$ ($\forall{}i\in y, j\in x$)
                             \end{itemize}\\
   \hline
   $\mathcal{T}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
-                            \begin{itemize}[align=left,leftmargin=*]
+                            \vspace{-1ex}                                               
+                            \begin{itemize}[topsep=0pt,leftmargin=*]
 				    \item random, fixed total number $Q_{y\mathcal{T}}$ of connections\cref{def:random_fixed_total_number} 
                             \item synaptic weights $J_{ij}$ ($\forall{}i\in y, j\in \mathcal{T}$)                            \item spike-transmission delays $d_{ij}$ ($\forall{}i\in y, j\in \mathcal{T}$)
                             \end{itemize}\\
   \hline
-  $\mathcal{C}_{y}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ & 
-                            \begin{itemize}[align=left,leftmargin=*]
+  $\mathcal{C}_{y}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
+                            \vspace{-1ex}                                                   
+                            \begin{itemize}[topsep=0pt,leftmargin=*]
 				                    \item one-to-one\cref{def:one_to_one}
                             \end{itemize}\\
   \hline
@@ -307,7 +307,7 @@ It does not contain any information on specific numerical implementations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% model description table: Synapses
 %%
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{
   |@{\hspace*{\marg}}p{0.2\textwidth-2.\marg}@{\hspace*{\marg}}
   |@{\hspace*{\marg}}p{0.8\textwidth-2.\marg}@{\hspace*{\marg}}
@@ -373,7 +373,7 @@ It does not contain any information on specific numerical implementations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% model description table: Synapses (cnt) and Initial conditions
 %%
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{
   |@{\hspace*{\marg}}p{0.2\textwidth-2.\marg}@{\hspace*{\marg}}
   |@{\hspace*{\marg}}p{0.8\textwidth-2.\marg}@{\hspace*{\marg}}
@@ -508,7 +508,8 @@ It does not contain any information on specific numerical implementations.
     |@{\hspace*{\marg}}p{\widthB\textwidth-2.\marg}@{\hspace*{\marg}}
     |@{\hspace*{\marg}}p{\widthC\textwidth-2.\marg}@{\hspace*{\marg}}
     |}
-\hline
+  \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \multicolumn{3}{|>{\color{black}\columncolor{lightgray}}c|}{\textbf{Neuron}}\\
 \hline 
 \textbf{Name} & \textbf{Value} & \textbf{Description}\\
