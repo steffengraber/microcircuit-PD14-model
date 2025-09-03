@@ -22,7 +22,7 @@ a.md-tabs__link, a.md-source {
  }
 
 .md-typeset table:not([class]) th {
-  background-color: #fff;
+  background-color: #ededed;
   color: black;
 }
 .md-typeset table:not([class]) th {
