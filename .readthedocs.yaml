@@ -13,7 +13,7 @@ build:
       - mkdir -p docs/_static/images
       - cp -r figures/* docs/_static/images/
       # Replace GitHub paths with Sphinx paths in README.md
-      - sed -i 's|figures/|source/images/|g' README.md
+      - sed -i "s|figures/|source/images/|g" README.md
     build:
      pdf:
         - echo "building pdf $READTHEDOCS_OUTPUT"
