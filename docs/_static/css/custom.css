@@ -22,7 +22,8 @@ a.md-tabs__link, a.md-source {
  }
 
 .md-typeset table:not([class]) th {
-  background-color: #fff;
+  background-color: #ededed;
+  color: black;
 }
 
 /* To add matching styling for the header in index.html */

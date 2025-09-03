@@ -17,7 +17,7 @@ Specifically, the model demonstrates that the observed cell-type and layer speci
 
 |  |  |  |
 |--|--|--|
-| <img src="https://microcircuit-pd14-model.readthedocs.io/en/latest/_images/potjans_2014_microcircuit.png" width="300"/> | <img src="https://microcircuit-pd14-model.readthedocs.io/en/latest/_images/potjans_2014_raster_plot.png" width="400"/> | <img src="https://microcircuit-pd14-model.readthedocs.io/en/latest/_images/potjans_2014_box_plot.png" width="400"/> |
+| <img src="figures/potjans_2014_microcircuit.png" width="300"/> | <img src="figures/potjans_2014_raster_plot.png" width="400"/> | <img src="figures/potjans_2014_box_plot.png" width="400"/> |
 
 *Sketch of the cortical microcircuit model (left), spiking activity (middle) and distributions of time averaged single-neuron firing rates across neurons in each subpopulation (right). Adapted from ([van Albada et al., 2018](https://doi.org/10.3389/fnins.2018.00291))*
 
