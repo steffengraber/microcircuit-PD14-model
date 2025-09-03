@@ -56,11 +56,11 @@ See [this example](https://microcircuit-PD14-model.readthedocs.io/en/latest/auto
 ## Memory requirements
 
 | scaling factor (`= N_scaling = K_scaling`)  | Memory    |
-|-------------------------------------------|-----------|
-| 0.1 (default)                             |  490 MB   |
-| 0.2                                       | 1200 MB   |
-| 0.5                                       | 4400 MB   |
-| 1                                         |   14 GB   |
+|---------------------------------------------|-----------|
+| 0.1 (default)                               |  490 MB   |
+| 0.2                                         | 1200 MB   |
+| 0.5                                         | 4400 MB   |
+| 1                                           |   14 GB   |
 
 ## Performance benchmarking
 Recent performance benchmarking results for the microcircuit model can be found [here](https://nest-simulator.org/documentation/benchmark_results.html).
