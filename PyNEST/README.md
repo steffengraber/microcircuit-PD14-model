@@ -55,7 +55,7 @@ See [this example](https://microcircuit-PD14-model.readthedocs.io/en/latest/auto
 
 ## Memory requirements
 
-| scaling factor (`N_scaling`=`K_scaling`)  | Memory    |
+| scaling factor (`= N_scaling = K_scaling`)  | Memory    |
 |-------------------------------------------|-----------|
 | 0.1 (default)                             |  490 MB   |
 | 0.2                                       | 1200 MB   |
