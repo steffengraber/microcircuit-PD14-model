@@ -35,6 +35,7 @@ pdfkeywords={}
 \renewcommand\familydefault{cmss}
 
 \usepackage{cleveref}
+\usepackage{setspace}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% configuration of model-component definitions
@@ -129,15 +130,20 @@ pdfkeywords={}
   \multicolumn{3}{|>{\color{white}\columncolor{black}}c|}{\textbf{Populations}}\\
   \hline 
   \textbf{Name} & \textbf{Elements} & \textbf{Size}\\
+  \hline
+  \parbox{\linewidth}{
+  \vspace{0.5ex}
+  cortical subpopulations\\
+  $x \in \{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\}$
+  \vspace{0.5ex}
+  } & LIF & $N_{x}$\\
   \hline 
-   $x \in \{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\}$ & LIF & $N_{x}$\\
+  total network $\mathcal{P} = \bigcup_{x} x$ & LIF & \parbox{\linewidth}{\vspace{0.5ex}$N= \sum_{x} N_{x}$\\ (see remark \ref{remark:downscaling})\vspace{0.5ex}}\\
   \hline 
-  $\mathcal{P} = \bigcup_{x} x$ & LIF & $N= \sum_{x} N_{x}$ (see remark \ref{remark:downscaling})\\
-  \hline 
-   $\mathcal{T}$ & realizations of Poisson point process & $N_{\mathcal{T}}$ \\
+   thalamic inputs $\mathcal{T}$ & realizations of Poisson point process & $N_{\mathcal{T}}$ \\
    \hline
-   $\mathcal{C}=\bigcup_{x}\mathcal{C}_{x}$ & population specific currents & $N= \sum_{x} N_{x}$
-   \\
+   %cortico-cortical inputs $\mathcal{C}=\bigcup_{y}\mathcal{C}_{y}$ & population specific constant currents & $N = \sum_{y} N_{y}$
+   cortico-cortical inputs $\mathcal{C}_{x}$ & population specific constant currents & $N_{x}$ \\
   \hline 
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%
@@ -166,14 +172,14 @@ pdfkeywords={}
   \hline
    $x \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
                             \begin{itemize}[align=left,leftmargin=*]
-				    \item random, fixed total number $K_{yx}$ of connections\cref{def:random_fixed_total_number} (see remark \ref{remark:downscaling})
+				    \item random, fixed total number $Q_{yx}$ of connections\cref{def:random_fixed_total_number} (see remark \ref{remark:downscaling})
                             \item synaptic weights $J_{ij}$ ($\forall{}i\in y, j\in x$)
                             \item spike-transmission delays $d_{ij}$ ($\forall{}i\in y, j\in x$)
                             \end{itemize}\\
   \hline
   $\mathcal{T}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
                             \begin{itemize}[align=left,leftmargin=*]
-				    \item random, fixed total number $K_{y\mathcal{T}}$ of connections\cref{def:random_fixed_total_number} 
+				    \item random, fixed total number $Q_{y\mathcal{T}}$ of connections\cref{def:random_fixed_total_number} 
                             \item synaptic weights $J_{ij}$ ($\forall{}i\in y, j\in \mathcal{T}$)                            \item spike-transmission delays $d_{ij}$ ($\forall{}i\in y, j\in \mathcal{T}$)
                             \end{itemize}\\
   \hline
@@ -200,7 +206,7 @@ pdfkeywords={}
     \emph{random, fixed total number} ($N_\text{Syn}$):
 	  This rule establishes a total number of
 	  \begin{equation*}
-		  K_{yx} = \frac{\text{ln}\left(1-C_{yx}\right)}{\text{ln}\left(1-\left(N_{x}N_{y}\right)^{-1}\right)},
+		  Q_{yx} = \frac{\text{ln}\left(1-C_{yx}\right)}{\text{ln}\left(1-\left(N_{x}N_{y}\right)^{-1}\right)},
 	  \end{equation*}
 	  connections between a source population $x$ of size $N_x$ and a target population $y$ of size $N_y$.
           $C_{yx}$ denotes the connection probability.
@@ -270,11 +276,11 @@ pdfkeywords={}
                              \begin{aligned}
                                &\forall{}k,\ \forall t \notin \left[t_{i}^{k},\,t_{i}^{k}+\tauR\right):\\
                                &\qquad\tauM\frac{\diff{}V_i(t)}{\diff{}t} =
-                               \Bigl[E_\text{L}-V_i(t)\Bigr]+\RM I_i(t)
+                               \Bigl[E_\text{L}-V_i(t)\Bigr]+\RM I_i(t) + \RM I_{i,\mathcal{C}_y}
                              \end{aligned}
                            \end{equation}
-                           with membrane time constant $\tauM$, membrane resistance $\RM$, resting potential $E_\text{L}$, and total synaptic input current $I_i(t)$
-                         \item see App.\,\ref{sec:normal_form} for the normal form of the combined neuron-synapse dynamics
+                           with membrane time constant $\tauM$, membrane resistance $\RM$, resting potential $E_\text{L}$, total synaptic input current $I_i(t)$ (see ``Synapses''), and constant background current $I_{i,\mathcal{C}_y}=I_{\mathcal{C}_y}$ for $i\in{}y$ (see ``Cortico-cortical inputs'')
+                        \item[] (see App.\,\ref{sec:normal_form} for the normal form of the combined subthreshold neuron-synapse dynamics)
                          \end{itemize}\\
   \hline 
   \multicolumn{2}{|>{\color{black}\columncolor{lightgray}}c|}{\textbf{Thalamic neurons}}\\
@@ -292,12 +298,12 @@ pdfkeywords={}
   \hline 
 	\textbf{Description} & population specific constant input current of magnitude
 \begin{equation*}
-	I_{\mathcal{C}_x} = K_{\mathcal{C}_x} \cdot I_{\mathcal{C}}
-  \quad (\forall x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\})\, ,
+	I_{\mathcal{C}_y} = K_{y,\mathcal{C}_y} \cdot I_{y,\mathcal{C}_y}
+  \quad (\forall y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\})\, ,
 \end{equation*}
-	with cortico-cortical in-degree $K_{\mathcal{C}_x}$, and mean current
+	with cortico-cortical in-degree $K_{y,\mathcal{C}_y}$, and mean current
   \begin{equation*}
-    I_{\mathcal{C}} = \nu_{\mathcal{C}} \cdot \bar{I}_{y,\mathcal{C}}\cdot\tauS \quad (\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\})
+    I_{y,\mathcal{C}} = \nu_{\mathcal{C}_y} \cdot \bar{I}_{y,\mathcal{C}_y}\cdot\tauS \quad (\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\})
   \end{equation*}
     generated by a Poissonian spike train with rate $\nu_{\mathcal{C}}$, convolved with an exponential kernel with amplitude $\bar{I}_{y, \mathcal{C}}$ and time constant $\tauS$ (see remark \ref{remark:DC_stim})
   \\
@@ -332,17 +338,12 @@ pdfkeywords={}
 			\label{eq:synaptic_current}
 			\left(\frac{\diff}{\diff t} + \frac{1}{\tauS}\right) I_{i} (t) = f_{i}(t)
 		\end{equation}
-		with superposition from all neurons $j \in x,\;\forall x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}, \mathcal{T}, \mathcal{C}\}$
+		with superposition from all neurons $j \in x,\;\forall x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}, \mathcal{T}\}$
 		\begin{equation*}
 			f_{i} (t) = \sum_{x} \sum_{j} f_{ij} (t) = \sum_{x} \sum_{j} \hat{I}_{ij} s_{j}(t-d_{ij})
 		\end{equation*}
-		  of weighted spike trains with static synaptic weigths $\hat{I}_{ij}$, synaptic time constant $\tauS$, and spike transmission delays $d_{ij}$
-		
-  %\begin{equation*}
-      %I_{i}(t) = \sum_{j} J_{ij} \left(h * s_{j}\right)(t-d_{ij}),
-  %\end{equation*}
-  %with 
-  %\begin{itemize}
+                of weighted spike trains with static synaptic weigths $\hat{I}_{ij}$, synaptic time constant $\tauS$, and spike transmission delays $d_{ij}$
+        \item[] (see App.\,\ref{sec:normal_form} for the normal form of the combined subthreshold neuron-synapse dynamics)	
 	\item solution of \eqref{eq:synaptic_current} for $\displaystyle f_{ij}(t)=\hat{I}_{ij}s_{j}(t)$ and $I_{ij}(t=0)=0$:
 		\begin{equation*}
 			\text{PSC}_{ij}(t)=\hat{I}_{ij} \exp(-t/\tauS)\Theta(t)
@@ -400,7 +401,7 @@ pdfkeywords={}
 	  \hat{I}_{ij} = \begin{cases} 
       \text{max}(0,z_{yx}), & j \in x\in\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{T}\} \\
       \text{min}(0,z_{yx}), & j \in x\in\{\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\} \\
-      \bar{I}_{yx}, & j \in x=\mathcal{C} \\
+      \bar{I}_{yx}, & j \in x=\mathcal{C}_y \\
       \end{cases}
   \end{equation*}
   with
@@ -412,15 +413,15 @@ pdfkeywords={}
   \item distributed synaptic delays
   \begin{equation*}
       d_{ij} = \begin{cases} 
-	      \text{max}(d_\text{min},z_{x}), & j \in x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6},\mathcal{T}\} \\
-      	\bar{d}_{x}, & j \in x=\mathcal{C} \\
+	      \text{max}(d_\text{min},z_{yx}), & \forall i,\ \forall j \in x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6},\mathcal{T}\} \\
+      	\bar{d}_{yx}, & \forall i,\ \forall j \in x=\mathcal{C}_y \\
       \end{cases}
   \end{equation*}
   with
   \begin{equation*}
-      z_{x} \sim\mathcal{N}\left\{\bar{d}_{x},\,\sigma_{\text{d},x}^2\right\}
+      z_{yx} \sim\mathcal{N}\left\{\bar{d}_{yx},\,\sigma_{\text{d},yx}^2\right\}
   \end{equation*}
-  drawn from a normal distribution with mean $\bar{d}_{x}$, variance $\sigma_{\text{d},x}^2$, and minimal delay $d_\text{min} > 0$
+  drawn from a normal distribution with mean $\bar{d}_{yx}$, variance $\sigma_{\text{d},yx}^2$, and minimal delay $d_\text{min}$
   \end{itemize}\\
   \hline
 \end{tabular}
@@ -602,8 +603,6 @@ $V_{\text{reset}}$ & $-65\mV$ & reset potential \\
 \hline
 $\tau_{\text{ref}}$ & $2\ms$ & absolute refractory period \\
 \hline
-$\tau_{\text{s}}$ & $0.5\ms$ & postsynaptic current time constant \\
-\hline
 $\nu_{\mathcal{T}}$ & $120\sps$ & rate of thalamic neurons \\
 \hline
 $t_{\text{start}}$ & $700\ms$ & start time of thalamic input\\
@@ -612,15 +611,15 @@ $\Delta{t_{\mathcal{T}}}$ & $10\ms$ & duration of thalamic input \\
 \hline
 \drvd{$t_{\text{stop}}$} & \drvd{$t_{\text{start}}+\Delta{t_{\mathcal{T}}} = 710\ms$} & stop time of thalamic input\\
 \hline
-$\nu_{\mathcal{C}}$ & $8\sps$ & rate of cortico-cortical inputs\\
+$\nu_{\mathcal{C}_y}$ & $8\sps$ & ``rate'' of cortico-cortical inputs ($\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\}$)\\
 \hline
-\drvd{$I_{\mathcal{C}}$} & \drvd{$\nu_{\mathcal{C}}\bar{I}_{y,\mathcal{C}}\tauS = 0.3 \pA$} & mean amplitude of DC inputs ($\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\}$)\\
+\drvd{$I_{y,\mathcal{C}_y}$} & \drvd{$\tauS\nu_{\mathcal{C}}\bar{I}_{y,\mathcal{C}_y} = 0.3 \pA$} & amplitude of cortico-cortical DC inputs ($\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\}$)\\
 \hline
 %\end{tabular}\\
 %%%%%%%%%%%%%%%%
 %\begin{tabular}{|@{\hspace*{\marg}}p{1.0\textwidth-2.\marg}@{\hspace*{\marg}}|}
   %\hline
-    \multicolumn{3}{|>{\color{black}\columncolor{white}}c|}{\textbf{Population specific cortico-cortical in-degree }$K_{\mathcal{C}_{x}}$}\\
+    \multicolumn{3}{|>{\color{black}\columncolor{white}}c|}{\textbf{Population specific cortico-cortical in-degrees} $K_{y,\mathcal{C}_y}$}\\
     \hline
     %\vspace{-1ex}
     \multicolumn{3}{|c|}{}\\
@@ -628,9 +627,9 @@ $\nu_{\mathcal{C}}$ & $8\sps$ & rate of cortico-cortical inputs\\
       %\begin{center}
       \begin{tabular}{|p{7ex}|p{7ex}|p{7ex}|p{7ex}|p{7ex}|p{7ex}|p{7ex}|p{7ex}|p{7ex}|p{7ex}|}
       \hline
-       $\mathcal{C}_{x}$ & $\mathcal{C}_{\mathcal{E}_{23}}$ & $\mathcal{C}_{\mathcal{I}_{23}}$ & $\mathcal{C}_{\mathcal{E}_{4}}$ & $\mathcal{C}_{\mathcal{I}_{4}}$ & $\mathcal{C}_{\mathcal{E}_{5}}$ & $\mathcal{C}_{\mathcal{I}_{5}}$ & $\mathcal{C}_{\mathcal{E}_{6}}$ & $\mathcal{C}_{\mathcal{I}_{6}}$ & $\mathcal{C}_{\mathcal{T}}$\\
+       $\mathcal{C}_{y}$ & $\mathcal{C}_{\mathcal{E}_{23}}$ & $\mathcal{C}_{\mathcal{I}_{23}}$ & $\mathcal{C}_{\mathcal{E}_{4}}$ & $\mathcal{C}_{\mathcal{I}_{4}}$ & $\mathcal{C}_{\mathcal{E}_{5}}$ & $\mathcal{C}_{\mathcal{I}_{5}}$ & $\mathcal{C}_{\mathcal{E}_{6}}$ & $\mathcal{C}_{\mathcal{I}_{6}}$ & $\mathcal{C}_{\mathcal{T}}$\\
       \hline
-      $K_{\mathcal{C}_{x}}$ & $1600$ & $1500$ & $2100$ & $1900$ & $2000$ & $1900$ & $2900$ & $2100$ & $-$\\
+      $K_{y,\mathcal{C}_{y}}$ & $1600$ & $1500$ & $2100$ & $1900$ & $2000$ & $1900$ & $2900$ & $2100$ & $-$\\
       \hline
       \end{tabular}
       %\end{center}
@@ -659,18 +658,23 @@ $\nu_{\mathcal{C}}$ & $8\sps$ & rate of cortico-cortical inputs\\
 \hline 
 $J$ & $0.15\mV$ & (mean) weight (PSP amplitude) of excitatory synapses\\
 \hline
-\drvd{$\bar{I}_{yx}$} &  & synaptic weights:\\
-	& \drvd{$J/J_{\text{unit}}\approx 87.81\pA$} & $x\in\left\{ \mathcal{E}_{23}, \mathcal{E}_{4}, \mathcal{E}_{5}, \mathcal{E}_{6},\mathcal{T}, \mathcal{C}\right\} $\\
-	& \drvd{$-4J/J_{\text{unit}}$} & $x\in\left\{ \mathcal{I}_{23}, \mathcal{I}_{4}, \mathcal{I}_{5}, \mathcal{I}_{6}\right\}$, except for:\\
+\drvd{$\bar{I}_{yx}$} &  & synaptic weights\\
+	& \drvd{$J/J_{\text{unit}}\approx 87.81\pA$} & $\forall x\in\left\{ \mathcal{E}_{23}, \mathcal{E}_{4}, \mathcal{E}_{5}, \mathcal{E}_{6},\mathcal{T}, \mathcal{C}_y\right\}$, $\forall y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\right\}$, except for:\\
 	& \drvd{$2J/J_{\text{unit}}$} & $\left(x,y\right)=\left(\mathcal{E}_{23}, \mathcal{E}_{4}\right)$\\
+	& \drvd{$-4J/J_{\text{unit}}$} & $\forall x\in\left\{ \mathcal{I}_{23}, \mathcal{I}_{4}, \mathcal{I}_{5}, \mathcal{I}_{6}\right\}$,  $\forall y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\right\}$\\
 \hline
 $\sigma_{\text{s},yx}$ & $0.1\cdot \bar{I}_{yx}$ & standard deviation of weight distribution\\
 \hline
-$\bar{d}_{x}$ &  & mean spike transmission delays:\\
- & $1.5\ms$ & $x\in\left\{ \mathcal{E}_{23}, \mathcal{E}_{4}, \mathcal{E}_{5}, \mathcal{E}_{6},\mathcal{T},\mathcal{C}\right\} $\\
- & $0.75\ms$ & $x\in\left\{ \mathcal{I}_{23}, \mathcal{I}_{4}, \mathcal{I}_{5}, \mathcal{I}_{6}\right\}$ \\
+$\tau_{\text{s}}$ & $0.5\ms$ &  synaptic time constant \\
+\hline
+$\bar{d}_{yx}$ &  & mean spike transmission delays\\
+              & $1.5\ms$ & $x\in\left\{ \mathcal{E}_{23}, \mathcal{E}_{4}, \mathcal{E}_{5}, \mathcal{E}_{6},\mathcal{T},\mathcal{C}_y\right\} $,
+$y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\right\}$
+  \\
+ & $0.75\ms$ & $x\in\left\{ \mathcal{I}_{23}, \mathcal{I}_{4}, \mathcal{I}_{5}, \mathcal{I}_{6}\right\}$, 
+$y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\mathcal{I}_{23},\mathcal{I}_{4},\mathcal{I}_{5},\mathcal{I}_{6}\right\}$ \\
  \hline
-  $\sigma_{\text{d},x}$ & $0.5\cdot\bar{d}_{x}$ & standard deviation of spike transmission delays\\
+  $\sigma_{\text{d},yx}$ & $0.5\cdot\bar{d}_{yx}$ & standard deviation of spike transmission delays\\
   \hline
   $d_\text{min}$      & $0.1\ms$      & minimal spike transmission delay\\ 
 \hline
@@ -824,35 +828,62 @@ $\bar{d}_{x}$ &  & mean spike transmission delays:\\
 \begin{enumerate}
   %%% 
 \item \label{remark:downscaling}
-  In the PyNEST implementation, the model size can be configured by the parameters \texttt{N\_scaling} and \texttt{K\_scaling}, which
-  scale  the number of neurons in the network and the number of synapses per neuron (in-degree), respectively. 
-  The original full-scale model corresponds to \texttt{N\_scaling=1} and \texttt{K\_scaling=1} (default).
-  Downscaling the model enables running the model on a desktop computer.
-  The scaling of the synapse number affects both connections within the local network and external (cortico-cortical) inputs.
+  In the PyNEST implementation of the model provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}, the model size can be configured by the parameters \texttt{N\_scaling} and \texttt{K\_scaling}, which scale the number of neurons in the network and the number of synapses per neuron (in-degree), respectively. 
+  The original (default) full-scale model corresponds to \texttt{N\_scaling=1} and \texttt{K\_scaling=1}.
+  Downscaling the model enables running it in the presence of limited computing resources (e.g., on a laptop).
+  The scaling of the synapse number affects both the connections within the local network and the external (cortico-cortical) inputs.
   %% 
-  \par
-  Without any compensation, downscaling the in-degree would change the mean and the variance of the synaptic input currents.
-  In order to avoid this, one can choose the new synaptic weights $\bar{I}_{i,x}^{*}$ ($\forall i \in y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}, x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}, \mathcal{C}_{y}\}$) in such a way that together with a compensation current these effects are compensated. For the full-scale model we have
-  \begin{equation*}
-    \begin{aligned}
-      \mu_{i} &= I_{\text{rec},i} + I_{\text{ext}, i} = \tauS \sum_{x} K_{i,x} \bar{I}_{i,x} \nu_{x} \, ,\\
-      \sigma^2_{i} &= \sigma^{2}_{\text{rec},i} + \sigma^{2}_{\text{ext}, i} = \tauS \sum_{x} K_{i,x} \bar{I}_{i,x}^{2} \nu_{x} \, ,
-    \end{aligned}
-  \end{equation*}
-  where $K_{i,x}$ is the in-degree, $\bar{I}_{i, x}$ the synaptic weight and $\nu_{x}$ the mean firing rate. For the downscaled model we have
-  \begin{equation*}
-    \begin{aligned}
-      \mu^{*}_{i} &= \tauS \sum_{x} K_{i,x}^{*} \bar{I}_{i,x}^{*} \nu_{x} + \mu_{i,0}\, ,\\
-      (\sigma^{*})^{2} &= \tauS \sum_{x} K_{i,x}^{*} (\bar{I}_{i,x}^{*})^{2} \nu_{x}\, .
-    \end{aligned}
-  \end{equation*}
-  Here, $K^{*}_{i,x}=f K_{i,x}$ with some factor $0<f<1$. Comparing the equations of the variance we find $\bar{I}_{i,x}^{*}=\bar{I}_{i,x}/\sqrt{f}$, if we want to leave fluctuations invariant. We have also a constant compensation current $\mu_{i,0}$ to leave also the mean input current invariant. Inserting this in the equation of the mean and solving for the compensation current $\mu_{i,0}$ we find
-  \begin{equation*}
-    \mu_{i,0} = \tauS \left(1 - \sqrt{f}\right) \sum_{x} K_{i,x} \bar{I}_{i,x} \nu_{x}\, .
-  \end{equation*}
-  There are other ways to downscale the model, for more details see \citep{vanAlbada15}.
-  Note that this derivation assumes that all spike-trains are stationary Poissonian inputs (for downscaling with DC inputs see remark \ref{remark:downscaling_dc}).\\
-  The scaling and compensation current are implemented in the PyNEST implementation provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}.
+  Without any compensation, changing the number of synapses would change the statistics of the total input current
+  \begin{equation}
+    \label{eq:total_synaptic_input_current}
+    I_i(t)=\sum_{x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}} \sum_{j\in{}x} (s_j* \text{PSC}_{ij})(t-d_{ij}) + I_{i,\mathcal{C}}
+  \end{equation}
+  for each postsynaptic neuron $i$ in population $y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$, and hence the firing statistics.
+  In the PyNEST implementation provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}, this change in the activity statistics is suppressed by rescaling the average synaptic weights $\bar{I}_{yx}$ and injecting an additional constant input current into each neuron.
+  In the following, we outline this compensation procedure.
+  %%
+  \par  
+  Under the assumption that the spike trains $s_j(t)$ can be described by stationary Poisson point processes with rates $\nu_j$, the mean and the variance of the total synaptic input current \cref{eq:total_synaptic_input_current} read\footnote{Here, we have absorbed the constant cortico-cortical input current $I_{i,\mathcal{C}}$ into the sum across all presynaptic sources.}
+  \begin{equation}
+    \label{eq:mean_and_variances_synaptic_input}
+      \mu_i      =             \tauS \sum_{x\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6},\mathcal{C}_y\}} \sum_j \hat{I}_{ij}   \nu_j 
+      \quad\text{and}\quad
+      \sigma_i^2 = \frac{1}{2} \tauS \sum_x \sum_j \hat{I}_{ij}^2 \nu_j  .
+  \end{equation}
+  If we further assume that the variance $\sigma_{\text{s},yx}^2$ of the synaptic weight distribution can be neglected, the population averaged mean and variance are approximated by
+  \begin{equation}
+    \label{eq:mean_and_variances_synaptic_input_pop_av}
+    \mu_y      :=\langle\mu_i\rangle_{i\in{}y}       = \tauS            \sum_x K_{yx}  \bar{I}_{yx}   \nu_x 
+    \quad\text{and}\quad
+    \sigma_y^2 := \langle\sigma_i^2\rangle_{i\in{}y}  = \frac{1}{2}\tauS \sum_x K_{yx} \bar{I}_{yx}^2 \nu_x  .
+  \end{equation}
+  Here, $K_{yx}$ refers to the average number of inputs a neuron in population $y$ receives from the presynaptic population $x$, and $\nu_x$ to the population averaged firing rate of neurons in population $x$.
+  Without further compensation, scaling the in-degrees $K_{yx}^*=fK_{yx}$ by some factor $f$ would evidently change  $\mu_y$ and $\sigma_y^2$.
+  However, if we rescale the synaptic weights according to
+  \begin{equation}
+    \bar{I}_{yx}^*=\frac{\bar{I}_{yx}}{\sqrt{f}},
+  \end{equation}
+  the variance of the total input current is remains unchanged:
+  \begin{equation}
+    (\sigma_y^*)^2
+    = \frac{1}{2}\tauS \sum_x K_{yx}^* \bar{I}_{yx}^{*,2} \nu_x
+    = \frac{1}{2}\tauS \sum_x fK_{yx} \left(\frac{\bar{I}_{yx}^*}{\sqrt{f}}\right)^2 \nu_x
+    = \sigma_y^2.
+  \end{equation}
+  If we furthermore inject an additional constant input current with amplitude
+  \begin{equation}
+    \mu_{y,0} = \left(1-\sqrt{f}\right)  \mu_y 
+  \end{equation}
+  into all neurons in population $y$, we simultaneously preserve the mean of the total input current:
+  \begin{equation}
+    \mu_y^*
+    = \tauS \sum_x K_{yx}^*  \bar{I}_{yx}^*   \nu_x + \mu_{y,0}
+    = \tauS \sum_x f K_{yx}  \frac{\bar{I}_{yx}}{\sqrt{f}}   \nu_x +  \mu_{y,0}
+    = \sqrt{f} \mu_y  +  \left(1-\sqrt{f}\right)  \mu_y
+    =  \mu_y.
+  \end{equation}
+  (see remark \ref{remark:downscaling_dc}).
+  For more details and other scaling methods, see \citep{vanAlbada15}.
   %%% 
 \item \label{remark:DC_stim}
   In the original model of \citet{Potjans14}, the cortico-cortical inputs are modeled as independent realizations $s_{i}(t)$ ($i\in\mathcal{C}_x$ for $x\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate $\nu_{\mathcal{C}_{x}} = K_{\mathcal{C}_{x}}\nu_{\mathcal{C}}$, filtered by an exponential kernel $\text{PSC}(t)$ with time constant $\tauS$ and amplitude $\bar{I}_{y,\mathcal{C}}$ ($\forall y\in\{\mathcal{E}_{23}, \dots, \mathcal{I}_{6}\}$). 
