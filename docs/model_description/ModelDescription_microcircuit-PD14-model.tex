@@ -78,7 +78,10 @@ pdfkeywords={}
 
 \title{Detailed description of the \\ cortical microcircuit model \citep{Potjans14}}
 \author{}
-\date{last update: \today}
+\date{%
+  source: \href{https://github.com/INM-6/microcircuit-PD14-model}{https://github.com/INM-6/microcircuit-PD14-model}\\[1ex]
+  last update: \today\\
+}
 \maketitle
 \thispagestyle{empty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,7 +141,7 @@ pdfkeywords={}
   \vspace{0.5ex}
   } & LIF & $N_{x}$\\
   \hline 
-  total network $\mathcal{P} = \bigcup_{x} x$ & LIF & \parbox{\linewidth}{\vspace{0.5ex}$N= \sum_{x} N_{x}$\\ (see remark \ref{remark:downscaling})\vspace{0.5ex}}\\
+  total network $\mathcal{P} = \bigcup_{x} x$ & LIF & \parbox{\linewidth}{\vspace{0.5ex}$N= \sum_{x} N_{x}$\\ (see remark \ref{remark:network_scaling})\vspace{0.5ex}}\\
   \hline 
    thalamic inputs $\mathcal{T}$ & realizations of Poisson point process & $N_{\mathcal{T}}$ \\
    \hline
@@ -172,7 +175,7 @@ pdfkeywords={}
   \hline
    $x \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ & $y \in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$ &
                             \begin{itemize}[align=left,leftmargin=*]
-				    \item random, fixed total number $Q_{yx}$ of connections\cref{def:random_fixed_total_number} (see remark \ref{remark:downscaling})
+				    \item random, fixed total number $Q_{yx}$ of connections\cref{def:random_fixed_total_number} (see remark \ref{remark:network_scaling})
                             \item synaptic weights $J_{ij}$ ($\forall{}i\in y, j\in x$)
                             \item spike-transmission delays $d_{ij}$ ($\forall{}i\in y, j\in x$)
                             \end{itemize}\\
@@ -306,7 +309,7 @@ pdfkeywords={}
                                  I_{\mathcal{C}_y} = K_{y\mathcal{C}_y} \cdot \tauS \cdot \bar{I}_{y\mathcal{C}_y} \cdot \nu_{\mathcal{C}_y} 
                                  \quad (\forall y\in\{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\})\, ,
                                \end{equation}
-                               mimicking the mean input resulting from a superposition of $K_{y\mathcal{C}_y}$ spike trains with constant rates $\nu_{\mathcal{C}_y}$, filtered by an exponential kernel with amplitude (weight) $\bar{I}_{y\mathcal{C}_y}$ and time constant $\tauS$ (see remark \ref{remark:DC_stim})
+                               mimicking the mean input resulting from a superposition of $K_{y\mathcal{C}_y}$ spike trains with constant rates $\nu_{\mathcal{C}_y}$, filtered by an exponential kernel with amplitude (weight) $\bar{I}_{y\mathcal{C}_y}$ and time constant $\tauS$ (see remark \ref{remark:cortico_cortical_dc})
   \\
   \hline
   
@@ -819,16 +822,16 @@ $y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\ma
   \end{equation}
   \citep[see Sec.\,3.2.2 in][]{Rotter99_381}
 \end{itemize}
-
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
 \section{Remarks}
 \label{sec:remarks}
-
+%%
 \begin{enumerate}
-  %%% 
-\item \label{remark:downscaling}
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\item \label{remark:network_scaling}
   In the PyNEST implementation of the model provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}, the model size can be configured by the parameters \texttt{N\_scaling} and \texttt{K\_scaling}, which scale the number of neurons in the network and the number of synapses per neuron (in-degree), respectively. 
   The original (default) full-scale model corresponds to \texttt{N\_scaling=1} and \texttt{K\_scaling=1}.
   Downscaling the model enables running it in the presence of limited computing resources (e.g., on a laptop).
@@ -854,9 +857,9 @@ $y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\ma
   If we further assume that the variance $\sigma_{\text{s},yx}^2$ of the synaptic weight distribution can be neglected, the population averaged mean and variance are approximated by
   \begin{equation}
     \label{eq:mean_and_variances_synaptic_input_pop_av}
-    \mu_y      :=\langle\mu_i\rangle_{i\in{}y}       = \tauS            \sum_x K_{yx}  \bar{I}_{yx}   \nu_x 
+    \mu_y      =\langle\mu_i\rangle_{i\in{}y}       = \tauS            \sum_x K_{yx}  \bar{I}_{yx}   \nu_x 
     \quad\text{and}\quad
-    \sigma_y^2 := \langle\sigma_i^2\rangle_{i\in{}y}  = \frac{1}{2}\tauS \sum_x K_{yx} \bar{I}_{yx}^2 \nu_x  .
+    \sigma_y^2 = \langle\sigma_i^2\rangle_{i\in{}y}  = \frac{1}{2}\tauS \sum_x K_{yx} \bar{I}_{yx}^2 \nu_x  .
   \end{equation}
   Here, $K_{yx}$ refers to the average number of inputs a neuron in population $y$ receives from the presynaptic population $x$, and $\nu_x$ to the population averaged firing rate of neurons in population $x$.
   Without further compensation, scaling the in-degrees $K_{yx}^*=fK_{yx}$ by some factor $f$ would evidently change  $\mu_y$ and $\sigma_y^2$.
@@ -873,20 +876,21 @@ $y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\ma
   \end{equation}
   If we furthermore inject an additional constant input current with amplitude
   \begin{equation}
-    \mu_{y,0} = \left(1-\sqrt{f}\right)  \mu_y 
+   \Delta\mu_y = \left(1-\sqrt{f}\right)  \mu_y 
   \end{equation}
   into all neurons in population $y$, we simultaneously preserve the mean of the total input current:
   \begin{equation}
     \mu_y^*
-    = \tauS \sum_x K_{yx}^*  \bar{I}_{yx}^*   \nu_x + \mu_{y,0}
-    = \tauS \sum_x f K_{yx}  \frac{\bar{I}_{yx}}{\sqrt{f}}   \nu_x +  \mu_{y,0}
+    = \tauS \sum_x K_{yx}^*  \bar{I}_{yx}^*   \nu_x + \Delta\mu_y
+    = \tauS \sum_x f K_{yx}  \frac{\bar{I}_{yx}}{\sqrt{f}}   \nu_x +  \Delta\mu_y
     = \sqrt{f} \mu_y  +  \left(1-\sqrt{f}\right)  \mu_y
     =  \mu_y.
   \end{equation}
-  (see remark \ref{remark:downscaling_dc}).
+  (see remark \ref{remark:dc_scaling_constraints}).
   For more details and other scaling methods, see \citep{vanAlbada15}.
-  %%% 
-\item \label{remark:DC_stim}
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\item \label{remark:cortico_cortical_dc}
   In the original model of \citet{Potjans14}, the cortico-cortical inputs to neurons in population $y$ are modeled as $K_{y\mathcal{C}_{y}}$ independent realizations $s_j(t)$ ($j\in\mathcal{C}_y,\ y\in \{\mathcal{E}_{23},\ldots,\mathcal{I}_{6}\}$) of a Poisson point process with constant rate $\nu_{\mathcal{C}_y}$, filtered by an exponential kernel $\text{PSC}(t)$ with time constant $\tauS$ and amplitude $\bar{I}_{y\mathcal{C}_y}$.   
   In the implementation provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}, these Poissonian inputs are replaced by constant external currents (DC).
   DC inputs are computationally less expensive, exactly reproducible, and lead to similar network activity statistics.
@@ -896,26 +900,52 @@ $y\in\left\{\mathcal{E}_{23},\mathcal{E}_{4},\mathcal{E}_{5},\mathcal{E}_{6},\ma
     = \left\langle \sum_{j=1}^{K_{y\mathcal{C}_y}} \left(s_j*\text{PSC}\right)(t) \right\rangle
     = K_{y\mathcal{C}_y} \cdot \tauS \cdot \bar{I}_{y\mathcal{C}_y} \cdot \nu_{\mathcal{C}_y} .
   \end{equation}
-  %%% 
-\item \label{remark:downscaling_dc}
-  With cortico-cortical inputs modeled as DC currents, the DC amplitude of the downscaled model is given by
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+\item \label{remark:dc_scaling_constraints}
+  In the scaled version of the model (see remark \ref{remark:network_scaling}), the neurons receive --in addition to the cortico-cortical inputs-- an additional constant input current of magnitude $\Delta\mu_y = ( 1 - \sqrt{f}) \mu_y$ (see remark \ref{remark:network_scaling}).
+  The total DC input current injected into neurons of population $y$ is hence given by
   \begin{equation}
-    I_{\text{DC},i}^{*} = I_{\text{DC},i} + (1 - \sqrt{f}) I_{\text{rec},i}\, ,
+    \label{eq:dc_magnitude_rescaled}
+    \begin{aligned}
+    I_{\text{DC},y}
+    & = I_{y\mathcal{C}_y}^* + \left( 1 - \sqrt{f} \right) \mu_y\\
+    & = \sqrt{f} I_{y\mathcal{C}_y} + \left( 1 - \sqrt{f} \right) \left( \mu_{y,\text{loc}} + I_{y\mathcal{C}_y}\right) \\
+    & = I_{y\mathcal{C}_y} + \left( 1 - \sqrt{f} \right) \mu_{y,\text{loc}}
+    ,      
+    \end{aligned}
   \end{equation}
-  (see remark \ref{remark:downscaling}). 
-  To ensure the downscaled network is activated by the cortico-cortical input, the DC amplitude $I_{\text{DC},i}^{*}$ of the downscaled model needs to exceed the rheobase current, i.e.
+  where $I_{y\mathcal{C}_y}^* = \tauS \cdot fK_{y\mathcal{C}_y} \cdot \bar{I}_{y\mathcal{C}_y}/\sqrt{f} = \sqrt{f} I_{y\mathcal{C}_y}$ denotes the rescaled cortico-cortical input current, and  $\mu_{y,\text{loc}}=\mu_y - I_{y\mathcal{C}_y}$ the mean input current resulting from synaptic inputs from the local network.
+  In the absence of any initial spikes, the neurons in the network can generate spikes only if $I_{\text{DC},y}$ exceeds the rheobase current
   \begin{equation}
-    I_{\text{rh},i} = \frac{\Theta - E_{\text{L}}}{\RM} \leq I_{\text{DC},i}^{*}\, .
+    \label{eq:rheobase_current}
+     I_{\text{rh},y} = \frac{\theta - E_{\text{L}}}{\RM} ,
   \end{equation}
-  All populations $i$ with
+  at least for some of the populations $y$.
+  To ensure that population $y$ of the scaled network becomes is activated by the external inputs, the scaling factor $f$ must fulfill
   \begin{equation}
-    f < f_{\text{min},i} = \left(1 - \frac{I_{\text{rh}, i} - I_{\text{ext},i}}{-\vert I_{\text{rec},i}\vert}\right)^{2},
+    \label{eq:scaling_factor_constraint}
+      I_{y\mathcal{C}_y} + \left( 1 - \sqrt{f} \right) \mu_{y,\text{loc}} \geq I_{\text{rh},y} 
+      \quad\Leftrightarrow\quad
+      f
+      \begin{cases} 
+        \ge f_y^* & \text{if}\ \mu_{y,\text{loc}} < 0 \\
+        \le f_y^* & \text{if}\ \mu_{y,\text{loc}} > 0 \\
+      \end{cases},
   \end{equation}
-  are not activated by the cortico-cortical inputs (neurons in these populations may still fire due to local inputs from other populations of the microcircuit).
-  %%% 
+  with the critical scaling factor
+  \begin{equation}
+    \label{eq:critical_scaling_factor}
+    f_y^* = \left(1 - \frac{I_{\text{rh},y} - I_{y\mathcal{C}_y}}{\mu_{y,\text{loc}}}\right)^2 .
+  \end{equation}
+  Typically, the mean of the local input current is negative, $\mu_{y,\text{loc}}<0$, due to the dominant inhibitory feedback in balanced networks.
+  In this case, the critical scaling factor $f_y^*$ defines a lower bound for $f$.
+  If the network is downscaled too much such that $f<f_y^*$ for some population $y$, this population can only be activated by other populations $y'$ where $f>f_{y'}^*$.
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 \item \label{remark:initial_conditions} The original model of \citet{Potjans14} uses population \emph{unspecific} normal distributions of initial membrane potentials.
 By default, the current implementation uses population \emph{specific} initial membrane potential distributions instead to speed up convergence to the stationary state.
-In the reference implementation, the type of initial conditions can be set by the parameter \texttt{V0\_type} (\texttt{"optimized"} [default] or \texttt{"original"}).
+In the reference implementation provided \href{https://github.com/INM-6/microcircuit-PD14-model}{here}, the type of initial conditions can be set by the parameter \texttt{V0\_type} (\texttt{"optimized"} [default] or \texttt{"original"}).
 In \citep{Senk25_arxiv}, the population specific initial conditions are refered to as \emph{amended} initial conditions.
   %%% 
 \end{enumerate}
